@@ -46,6 +46,448 @@ app.use((req, res, next) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/boxaiai', async (req, res) => {
+  try {
+    const { query } = req.query;
+    const title = "👑 𝗕𝗼𝘅 𝗔𝗶\n\n"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/api/ai?query=${encodeURIComponent(title + fullQuery + dateTimePrompt + qrompt)}`);
+    const answer = response.data;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `${title} ${answer} \n\nCurrent Time: ${currentTime}, Current Date: ${currentDate}, Total Requests: ${totalRequests}`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/linerai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "✨ 𝗟𝗶𝗻𝗲𝗿𝗔𝗶 (𝘃1)\n\n"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/linerai?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `${title} ${answer} \n\nCurrent Time: ${currentTime}, Current Date: ${currentDate}, Total Requests: ${totalRequests}`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+/app.get('/api/gemini2', async (req, res) => {
+  try {
+    const { prompt, url } = req.query;
+    const title = "💗 𝗚𝗲𝗺𝗶𝗻𝗶 𝘃2\n\n"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/gemini2?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)&url=${url}}`);
+    const answer = response.data;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `${title} ${answer} \n\nCurrent Time: ${currentTime}, Current Date: ${currentDate}, Total Requests: ${totalRequests}`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/mistralai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🔮 𝗠𝗶𝘀𝘁𝗿𝗮𝗹𝗔𝗶\n\n"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/mistral?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `${title} ${answer} \n\nCurrent Time: ${currentTime}, Current Date: ${currentDate}, Total Requests: ${totalRequests}`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/metallamaai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🍒 𝗠𝗲𝘁𝗮𝗹𝗹𝗮𝗺𝗮𝗔𝗶 \n\n"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/metallama?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `${title} ${answer} \n\nCurrent Time: ${currentTime}, Current Date: ${currentDate}, Total Requests: ${totalRequests}`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/say', async (req, res) => {
+    const { text } = req.query;
+
+    if (!text) {
+        return res.status(400).json({ error: 'Please provide a text' });
+    }
+
+    try {
+        const baseURL = `https://sandipapi.onrender.com/say?text=${text}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/snoop', async (req, res) => {
+          const { text } = req.query;
+
+          if (!text) {
+              return res.status(400).json({ error: 'Please provide a text' });
+          }
+
+          try {
+              const baseURL = `https://sandipapi.onrender.com/snoop?text=${text}`;
+              const response = await axios.get(baseURL, { responseType: 'stream' });
+              response.data.pipe(res);
+          } catch (error) {
+              console.error('Error', error);
+              res.status(500).json({ error: 'Internal server error' });
+          }
+      });
+
+app.get('/api/beast', async (req, res) => {
+    const { text } = req.query;
+
+    if (!text) {
+        return res.status(400).json({ error: 'Please provide a text' });
+    }
+
+    try {
+        const baseURL = `https://sandipapi.onrender.com/beast?text=${text}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/jane', async (req, res) => {
+    const { text } = req.query;
+
+    if (!text) {
+        return res.status(400).json({ error: 'Please provide a text' });
+    }
+
+    try {
+        const baseURL = `https://sandipapi.onrender.com/jane?text=${text}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/dp', async (req, res) => {
+    try {
+        const baseURL = `https://sandipapi.onrender.com/dp`;
+
+    res.json({ answer: response.data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/anime', async (req, res) => {
+    try {
+        const baseURL = `https://sandipapi.onrender.com/anime`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/nsfw', async (req, res) => {
+    try {
+        const baseURL = `https://sandipapi.onrender.com/nsfw`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/quiz', async (req, res) => {
+  try {
+    const response = await axios.get(`https://sandipbaruwal.onrender.com/quiz`);
+    res.json({ answer: response.data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/quiz/flag', async (req, res) => {
+    try {
+        const baseURL = `https://sandipbaruwal.onrender.com/flag`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/imagine', async (req, res) => {
+    const { prompt, model } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompts with model' });
+    }
+
+    try {
+        const baseURL = `https://roxx-sandip.onrender.com/test?prompt=${prompt}&model=${model}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/art', async (req, res) => {
+    const { url, model } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a url with models' });
+    }
+
+    try {
+        const baseURL = `https://sandipbaruwal.onrender.com/art?model={model}&url={url}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/sdxl', async (req, res) => {
+    const { prompt, model } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt with model' });
+    }
+
+    try {
+        const baseURL = `https://sandipbaruwal.onrender.com/sdxl?prompt=${prompt}&model=${model}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/imgbb', async (req, res) => {
+  try {
+    const { link } = req.query;
+    const response = await axios.get(`https://roxx-sandip.onrender.com/imgbb?link=${link}`);
+    res.json({ answer: response.data.uploaded });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/cat/img', async (req, res) => {
+    try {
+        const response = await axios.get('https://api.thecatapi.com/v1/images/search');
+        res.send(response.data);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Route to get a random activity from boredapi.com
+app.get('/api/bored/activity', async (req, res) => {
+    try {
+        const response = await axios.get('http://www.boredapi.com/api/activity');
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Route to get news based on country name
+app.get('/api/news', async (req, res) => {
+    const { countryName } = req.query;
+
+    try {
+        const apiKey = 'pub_3120796ef3315b3c51e7930d31ee6322ae911';
+        const response = await axios.get(`https://newsdata.io/api/1/news?country=${countryName}&apikey=${apiKey}`);
+        const newsData = response.data.results.slice(0, 5);
+
+        if (newsData.length === 0) {
+            res.send('No news articles found.');
+            return;
+        }
+
+        const message = newsData.map(article => {
+            const uploadedTime = new Date(article.uploaded_time).toLocaleString();
+            const author = article.author || 'Unknown';
+            const image = article.image || 'No Image Available';
+            return `ℹ️ 𝗧𝗶𝘁𝗹𝗲\n➤ ${article.title}\n🔎 𝗦𝗼𝘂𝗿𝗰𝗲\n➤ ${article.source}\n📝 𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻\n➤ ${article.description}\n🖇️ 𝗟𝗶𝗻𝗸\n➤ ${article.link}\n\n`;
+        }).join('');
+
+        res.send('📰 𝗟𝗮𝘁𝗲𝘀𝘁 𝗡𝗲𝘄𝘀\n\n' + message);
+    } catch (error) {
+        console.error('Something went wrong:', error);
+        res.status(500).send('Something went wrong while fetching response. Please try again.');
+    }
+});
+
+// Route to generate an image from prompt
+app.get('/api/gen', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt' });
+    }
+
+    try {
+        const response = await axios.get(`https://roxx-sandip.onrender.com/gen?prompt=${prompt}`);
+        res.send(response.data);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// 
 app.get('/api/orochiai', async (req, res) => {
   try {
     const { prompt } = req.query;
