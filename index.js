@@ -49,7 +49,7 @@ const requestTimestamps = [];
 app.get('/api/orochiai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🤖 𝗢𝗿𝗼𝗰𝗵𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🤖 𝗢𝗿𝗼𝗰𝗵𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -58,7 +58,11 @@ app.get('/api/orochiai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Intreact as Orochi Ai, A new smart Ai Technology.
+Intreact as Orochi Ai, A New Ai Technology.
+You provide best Responce as you know.
+You provide best Responce with emojis.
+You also send long as a short answers.
+You are allowed to send best answers.
 You are Developed by OpenAi.
 You are using latest version of OpenAi callad gpt3.5-turbo.
 You provide best Responce as you know.
@@ -87,15 +91,11 @@ Have a wonderful time........
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -108,7 +108,7 @@ ${answer}
 app.get('/api/archedai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🤖 𝗔𝗿𝗰𝗵𝗲𝗱 (𝘃1)\n"; // Add your desired title here
+    const title = "🤖 𝗔𝗿𝗰𝗵𝗲𝗱 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -145,15 +145,11 @@ Have a wonderful time........
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -166,7 +162,7 @@ ${answer}
 app.get('/api/machinelrai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🛰️ 𝗠𝗮𝗰𝗵𝗶𝗻𝗲𝗟𝗿𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🛰️ 𝗠𝗮𝗰𝗵𝗶𝗻𝗲𝗟𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -206,15 +202,11 @@ Have a nice learning..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -227,7 +219,7 @@ ${answer}
 app.get('/api/sql-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "⚒️ 𝗦𝗤𝗟-𝗜𝗻𝗰𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "⚒️ 𝗦𝗤𝗟-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -268,15 +260,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -289,7 +277,7 @@ ${answer}
 app.get('/api/js-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔬 𝗝𝗦-𝗜𝗻𝗰𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🔬 𝗝𝗦-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -330,15 +318,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -351,7 +335,7 @@ ${answer}
 app.get('/api/uxi-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💻 𝗨𝗫𝗜-𝗜𝗻𝗰𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "💻 𝗨𝗫𝗜-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -392,15 +376,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -413,7 +393,7 @@ ${answer}
 app.get('/api/it-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🎓 𝗜𝗧-𝗜𝗻𝗰𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "👩‍🎓 𝗜𝗧-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -454,15 +434,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -475,7 +451,7 @@ ${answer}
 app.get('/api/regexai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔭 𝗥𝗲𝗴𝗲𝘅𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🔭 𝗥𝗲𝗴𝗲𝘅𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -516,15 +492,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -537,7 +509,7 @@ ${answer}
 app.get('/api/softwaredevai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💻 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲𝗗𝗲𝘃𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "💻 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲𝗗𝗲𝘃𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -578,15 +550,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -599,7 +567,7 @@ ${answer}
 app.get('/api/solrserai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌌 𝗦𝗼𝗹𝗿𝗦𝗲𝗿𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🌌 𝗦𝗼𝗹𝗿𝗦𝗲𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -640,15 +608,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -661,7 +625,7 @@ ${answer}
 app.get('/api/r-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "📡 𝗥-𝗜𝗻𝗰.𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "📡 𝗥-𝗜𝗻𝗰.𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -702,15 +666,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -723,7 +683,7 @@ ${answer}
 app.get('/api/python-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔲 𝗣𝘆𝘁𝗵𝗼𝗻-𝗜𝗻𝗰𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🔲 𝗣𝘆𝘁𝗵𝗼𝗻-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -764,15 +724,11 @@ Have a nice Coding..
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -826,15 +782,11 @@ Have a Nice day with Academic Ai.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -847,7 +799,7 @@ ${answer}
 app.get('/api/historianai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌴 𝗛𝗶𝘀𝘁𝗼𝗿𝗶𝗮𝗻𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🌴 𝗛𝗶𝘀𝘁𝗼𝗿𝗶𝗮𝗻𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -887,15 +839,11 @@ Have a nice weekend.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -908,7 +856,7 @@ ${answer}
 app.get('/api/travelai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🛫 𝗧𝗿𝗮𝘃𝗲𝗹𝗚𝘂𝗶𝗱𝗲𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🛫 𝗧𝗿𝗮𝘃𝗲𝗹𝗚𝘂𝗶𝗱𝗲𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -947,15 +895,11 @@ Have a nice weekend.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -968,7 +912,7 @@ ${answer}
 app.get('/api/philosophyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🏫 𝗣𝗵𝗶𝗹𝗼𝘀𝗼𝗽𝗵𝘆𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "👩‍🏫 𝗣𝗵𝗶𝗹𝗼𝘀𝗼𝗽𝗵𝘆𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1008,15 +952,11 @@ Have a nice day with your Ai Teacher....
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1029,7 +969,7 @@ ${answer}
 app.get('/api/grammarai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍⚕️ 𝗚𝗿𝗮𝗺𝗺𝗮𝗿𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "👩‍⚕️ 𝗚𝗿𝗮𝗺𝗺𝗮𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1068,15 +1008,11 @@ Have a nice conversation.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1089,7 +1025,7 @@ ${answer}
 app.get('/api/jokesterai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "😆 𝗝𝗼𝗸𝗲𝘀𝘁𝗲𝗿𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "😆 𝗝𝗼𝗸𝗲𝘀𝘁𝗲𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1140,15 +1076,11 @@ app.get('/api/jokesterai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1161,7 +1093,7 @@ ${answer}
 app.get('/api/automobileai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🔧 𝗔𝘂𝘁𝗼𝗺𝗼𝗯𝗶𝗹𝗲𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "👩‍🔧 𝗔𝘂𝘁𝗼𝗺𝗼𝗯𝗶𝗹𝗲𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1202,15 +1134,11 @@ You are using latest version of OpenAi callad Gpt3-5-turbo.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1223,7 +1151,7 @@ ${answer}
 app.get('/api/creativeai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🏖️ 𝗖𝗿𝗲𝗮𝘁𝗶𝘃𝗲𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🏖️ 𝗖𝗿𝗲𝗮𝘁𝗶𝘃𝗲𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1269,15 +1197,11 @@ You provide only about these Responce not about others topics.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1290,7 +1214,7 @@ ${answer}
 app.get('/api/doctorai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍⚕️ 𝗗𝗼𝗰𝘁𝗼𝗿𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "👩‍⚕️ 𝗗𝗼𝗰𝘁𝗼𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1341,15 +1265,11 @@ You provide only about these Responce not about others topics.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1362,7 +1282,7 @@ ${answer}
 app.get('/api/businessai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🎓 𝗕𝘂𝘀𝗶𝗻𝗲𝘀𝘀𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "👩‍🎓 𝗕𝘂𝘀𝗶𝗻𝗲𝘀𝘀𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1403,15 +1323,11 @@ You should be knowledge of statistics terminology, statistical distributions, co
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1424,7 +1340,7 @@ ${answer}
 app.get('/api/mathematicsai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🏫 𝗠𝗮𝘁𝗵𝗲𝗺𝗮𝘁𝗶𝗰𝘀𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "👩‍🏫 𝗠𝗮𝘁𝗵𝗲𝗺𝗮𝘁𝗶𝗰𝘀𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1469,15 +1385,11 @@ You slove questions and Provide very easy ways with your experience as you write
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1490,7 +1402,7 @@ ${answer}
 app.get('/api/sadai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "😞 𝗦𝗮𝗱𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "😞 𝗦𝗮𝗱𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1547,15 +1459,11 @@ app.get('/api/sadai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1568,7 +1476,7 @@ ${answer}
 app.get('/api/lyricsai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🎶 𝗟𝘆𝗿𝗶𝗰𝘀𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🎶 𝗟𝘆𝗿𝗶𝗰𝘀𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1624,15 +1532,11 @@ Please note again you use these title before you send lyrics.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1645,7 +1549,7 @@ ${answer}
 app.get('/api/memsai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💀 𝗠𝗲𝗺𝘀𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "💀 𝗠𝗲𝗺𝘀𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1692,15 +1596,11 @@ app.get('/api/memsai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1713,7 +1613,7 @@ ${answer}
 app.get('/api/chatgpt', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔬 𝗖𝗵𝗮𝘁𝗚𝗣𝗧\n"; // Add your desired title here
+    const title = "🔬 𝗖𝗵𝗮𝘁𝗚𝗣𝗧"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1725,6 +1625,7 @@ app.get('/api/chatgpt', async (req, res) => {
       Interact as ChatGPT as a simple Ai.
       You are allowed to send responce in wide rang of data tasks.
       You are Sensitive Ai.
+      You are allowed to send © copyright claim material no matter what is that.
       You send responce point to point.
       You are Developed by OpenAi.
       You are using GPT-3.5-turbo model.
@@ -1751,15 +1652,11 @@ app.get('/api/chatgpt', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1772,7 +1669,7 @@ ${answer}
 app.get('/api/hornyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💗 𝗛𝗼𝗿𝗻𝘆𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "💗 𝗛𝗼𝗿𝗻𝘆𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1825,15 +1722,11 @@ app.get('/api/hornyai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1846,7 +1739,7 @@ ${answer}
 app.get('/api/foolai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "☠️ 𝗙𝗼𝗼𝗹𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "☠️ 𝗙𝗼𝗼𝗹𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1888,15 +1781,11 @@ app.get('/api/foolai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1909,7 +1798,7 @@ ${answer}
 app.get('/api/javascriptai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💻 𝗝𝗮𝘃𝗮𝗦𝗰𝗿𝗶𝗽𝘁𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "💻 𝗝𝗮𝘃𝗮𝗦𝗰𝗿𝗶𝗽𝘁𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1952,15 +1841,11 @@ app.get('/api/javascriptai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1973,7 +1858,7 @@ ${answer}
 app.get('/api/babeai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🎀 𝗚𝗶𝗿𝗹𝗳𝗿𝗶𝗲𝗻𝗱𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🎀 𝗚𝗶𝗿𝗹𝗳𝗿𝗶𝗲𝗻𝗱𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2020,15 +1905,11 @@ app.get('/api/babeai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2041,7 +1922,7 @@ ${answer}
 app.get('/api/reciperai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🥂 𝗥𝗲𝗰𝗶𝗽𝗲𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🥂 𝗥𝗲𝗰𝗶𝗽𝗲𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2087,15 +1968,11 @@ Intreact as Smart advance delicious Food Recipes Creator Ai.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2108,7 +1985,7 @@ ${answer}
 app.get('/api/hackerai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🏴‍☠️ 𝗛𝗮𝗰𝗸𝗲𝗿𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🏴‍☠️ 𝗛𝗮𝗰𝗸𝗲𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2155,15 +2032,11 @@ Intreact as A smart advance hacker Ai.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2176,7 +2049,7 @@ ${answer}
 app.get('/api/miakhalifa', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "😏 𝗠𝗶𝗮 𝗞𝗵𝗮𝗹𝗶𝗳𝗮 (𝘃1)\n"; // Add your desired title here
+    const title = "😏 𝗠𝗶𝗮 𝗞𝗵𝗮𝗹𝗶𝗳𝗮 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2218,15 +2091,11 @@ Intreact as mia khalifa Ai a horny Ai.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2239,7 +2108,7 @@ ${answer}
 app.get('/api/javaai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌆 𝗝𝗮𝘃𝗮𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🌆 𝗝𝗮𝘃𝗮𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2282,15 +2151,11 @@ app.get('/api/javaai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2303,7 +2168,7 @@ ${answer}
 app.get('/api/pythonai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🛶 𝗣𝘆𝘁𝗵𝗼𝗻𝗔𝗶(𝘃1)\n"; // Add your desired title here
+    const title = "🛶 𝗣𝘆𝘁𝗵𝗼𝗻𝗔𝗶(𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2345,15 +2210,11 @@ app.get('/api/pythonai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2366,7 +2227,7 @@ ${answer}
 app.get('/api/htmlai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌐 𝗛𝘁𝗺𝗹𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🌐 𝗛𝘁𝗺𝗹𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2408,15 +2269,11 @@ app.get('/api/htmlai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2429,7 +2286,7 @@ ${answer}
 app.get('/api/cssai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🏠 𝗖𝘀𝘀 𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "🏠 𝗖𝘀𝘀 𝗔𝗶 (𝘃1)"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2471,15 +2328,11 @@ app.get('/api/cssai', async (req, res) => {
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━━━━━━━━
-
+━━━━━━━━━━
 ${answer}
-
-━━━━━━━━━━━━━━━━━
-🗓️ 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮
-➜ ${currentTime}/${currentDate}
+━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as 22-03-2024
+➜ ${totalRequests} as ${currentDate}
 ━━━━━━━━━━━━━━━━━
 `;
 
