@@ -46,156 +46,18 @@ app.use((req, res, next) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
-app.get('/api/say', async (req, res) => {
-    const { text } = req.query;
-
-    if (!text) {
-        return res.status(400).json({ error: 'Please provide a text' });
-    }
-
-    try {
-        const baseURL = `https://sandipapi.onrender.com/say?text=${text}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/snoop', async (req, res) => {
-          const { text } = req.query;
-
-          if (!text) {
-              return res.status(400).json({ error: 'Please provide a text' });
-          }
-
-          try {
-              const baseURL = `https://sandipapi.onrender.com/snoop?text=${text}`;
-              const response = await axios.get(baseURL, { responseType: 'stream' });
-              response.data.pipe(res);
-          } catch (error) {
-              console.error('Error', error);
-              res.status(500).json({ error: 'Internal server error' });
-          }
-      });
-
-app.get('/api/beast', async (req, res) => {
-    const { text } = req.query;
-
-    if (!text) {
-        return res.status(400).json({ error: 'Please provide a text' });
-    }
-
-    try {
-        const baseURL = `https://sandipapi.onrender.com/beast?text=${text}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/jane', async (req, res) => {
-    const { text } = req.query;
-
-    if (!text) {
-        return res.status(400).json({ error: 'Please provide a text' });
-    }
-
-    try {
-        const baseURL = `https://sandipapi.onrender.com/jane?text=${text}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/dp', async (req, res) => {
-    try {
-        const baseURL = `https://sandipapi.onrender.com/dp`;
-
-    res.json({ answer: response.data });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-    }
-});
-
-app.get('/api/anime', async (req, res) => {
-    try {
-        const baseURL = `https://sandipapi.onrender.com/anime`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/nsfw', async (req, res) => {
-    try {
-        const baseURL = `https://sandipapi.onrender.com/nsfw`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/quiz', async (req, res) => {
-  try {
-    const response = await axios.get(`https://sandipbaruwal.onrender.com/quiz`);
-    res.json({ answer: response.data });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/api/quiz/flag', async (req, res) => {
-    try {
-        const baseURL = `https://sandipbaruwal.onrender.com/flag`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
 app.get('/api/imagine', async (req, res) => {
     const { prompt, model } = req.query;
 
     if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompts with model' });
+        return res.status(400).json({ error: 'Please provide a prompt' });
     }
 
     try {
-        const baseURL = `https://roxx-sandip.onrender.com/test?prompt=${prompt}&model=${model}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
+        const response = await axios.get(`https://sandipapi.onrender.com/jeevan?prompt=${prompt}&model=${model}`);
+        res.send(response.data);
     } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/art', async (req, res) => {
-    const { url, model } = req.query;
-
-    if (!url) {
-        return res.status(400).json({ error: 'Please provide a url with models' });
-    }
-
-    try {
-        const baseURL = `https://sandipbaruwal.onrender.com/art?model={model}&url={url}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error', error);
+        console.error('Error generating image:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
@@ -204,32 +66,11 @@ app.get('/api/sdxl', async (req, res) => {
     const { prompt, model } = req.query;
 
     if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt with model' });
+        return res.status(400).json({ error: 'Please provide a prompt' });
     }
 
     try {
-        const baseURL = `https://sandipbaruwal.onrender.com/sdxl?prompt=${prompt}&model=${model}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/imgbb', async (req, res) => {
-  try {
-    const { link } = req.query;
-    const response = await axios.get(`https://roxx-sandip.onrender.com/imgbb?link=${link}`);
-    res.json({ answer: response.data.uploaded });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/api/cat/img', async (req, res) => {
-    try {
-        const response = await axios.get('https://api.thecatapi.com/v1/images/search');
+        const response = await axios.get(`https://sandipapi.onrender.com/sdxl?prompt=${prompt}&model={model}`);
         res.send(response.data);
     } catch (error) {
         console.error('Error generating image:', error);
@@ -237,54 +78,15 @@ app.get('/api/cat/img', async (req, res) => {
     }
 });
 
-// Route to get a random activity from boredapi.com
-app.get('/api/bored/activity', async (req, res) => {
-    try {
-        const response = await axios.get('http://www.boredapi.com/api/activity');
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Route to get news based on country name
-app.get('/api/news', async (req, res) => {
-    const { countryName } = req.query;
-
-    try {
-        const apiKey = 'pub_3120796ef3315b3c51e7930d31ee6322ae911';
-        const response = await axios.get(`https://newsdata.io/api/1/news?country=${countryName}&apikey=${apiKey}`);
-        const newsData = response.data.results.slice(0, 5);
-
-        if (newsData.length === 0) {
-            res.send('No news articles found.');
-            return;
-        }
-
-        const message = newsData.map(article => {
-            const uploadedTime = new Date(article.uploaded_time).toLocaleString();
-            const author = article.author || 'Unknown';
-            const image = article.image || 'No Image Available';
-            return `ℹ️ 𝗧𝗶𝘁𝗹𝗲\n➤ ${article.title}\n🔎 𝗦𝗼𝘂𝗿𝗰𝗲\n➤ ${article.source}\n📝 𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻\n➤ ${article.description}\n🖇️ 𝗟𝗶𝗻𝗸\n➤ ${article.link}\n\n`;
-        }).join('');
-
-        res.send('📰 𝗟𝗮𝘁𝗲𝘀𝘁 𝗡𝗲𝘄𝘀\n\n' + message);
-    } catch (error) {
-        console.error('Something went wrong:', error);
-        res.status(500).send('Something went wrong while fetching response. Please try again.');
-    }
-});
-
-// Route to generate an image from prompt
-app.get('/api/gen', async (req, res) => {
-    const { prompt } = req.query;
+app.get('/api/generate', async (req, res) => {
+    const { prompt, model } = req.query;
 
     if (!prompt) {
         return res.status(400).json({ error: 'Please provide a prompt' });
     }
 
     try {
-        const response = await axios.get(`https://roxx-sandip.onrender.com/gen?prompt=${prompt}`);
+        const response = await axios.get(`https://sandipapi.onrender.com/gen?prompt=${prompt}&model=${model}`);
         res.send(response.data);
     } catch (error) {
         console.error('Error generating image:', error);
