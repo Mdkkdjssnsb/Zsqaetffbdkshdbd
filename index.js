@@ -71,7 +71,7 @@ You know everything.
 Have a wonderful time........
 `;
 
-    const response = await axios.get(`https://markdevsapi-2014427ac33a.herokuapp.com/gpt4?ask=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -125,7 +125,7 @@ You are developed by OpenAi.
 Have a wonderful time........
 `;
 
-    const response = await axios.get(`https://markdevsapi-2014427ac33a.herokuapp.com/gpt4?ask=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1632,7 +1632,7 @@ app.get('/api/chatgpt', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       `;
 
-    const response = await axios.get(`https://markdevsapi-2014427ac33a.herokuapp.com/gpt4?ask=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
