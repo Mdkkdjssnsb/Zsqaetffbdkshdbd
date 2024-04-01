@@ -3,6 +3,11 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 
+// Serve the HTML file
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
 // Array to store request timestamps
 const requestTimestamps = [];
 
