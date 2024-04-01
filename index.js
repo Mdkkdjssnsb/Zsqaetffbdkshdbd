@@ -7,45 +7,39 @@ const app = express();
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
-
-// Middleware to add API key
-const apiKeys = [
-  "sk-ai-technology-op", 
-  "sk-aryan-op", 
-  "sk-zxcvb-nm6&457-op", 
-  "sk-akdi-+654vjfdDS-eji8+op",
-  "sk-ngf6bg-6hfn-74bcj-jfhb-op",
-  "sk-jfd0h-jh5u-yarcj-op",
-  "sk-mai-h-#87h$#3un-op",
-  "sk-fu-ck-you-op",
-  "sk-AB-73825132&sib2-op",
-  "sk-hey-&ygej-i76-2!768",
-]; // Add your API keys here
-
-app.use((req, res, next) => {
-  const { key } = req.query;
-  if (key && apiKeys.includes(key)) {
-    next();
-  } else {
-    res.status(401).json({ 
-      error: `
-⛔ 𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗨𝗻𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱
-
-➜ Please Provide a valid api key. If you don't have an API key, then ask Aryan Chauhan for one. Thank you for using our API.
-
-━━━━━━━━━━━━━━━━━
-💗 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗟𝗶𝗻𝗸
-➜ facebook.com/61551115508535
-📬 𝗚𝗺𝗮𝗶𝗹
-➜ aryanchauhan78578@gmail.com
-━━━━━━━━━━━━━━━━━` 
-    });
-  }
-});
-
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/dp', async (req, res) => {
+    try {
+        const baseURL = `https://sandipapi.onrender.com/dp`;
+
+    res.json({ answer: response.data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/anime', async (req, res) => {
+    try {
+        const baseURL = `https://sandipapi.onrender.com/anime`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+app.get('/api/nsfw', async (req, res) => {
+    try {
+        const baseURL = `https://sandipapi.onrender.com/nsfw`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 app.get('/costom/ai', async (req, res) => {
   try {
     const { title, prompt } = req.query;
@@ -100,7 +94,7 @@ app.get('/api/sdxl', async (req, res) => {
     const { prompt, model } = req.query;
 
     if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt with styles' });
+        return res.status(400).json({ error: 'Please provide a prompt with model' });
     }
 
     try {
@@ -257,7 +251,7 @@ app.get('/api/prodia', async (req, res) => {
 app.get('/api/orochiai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🤖 𝗢𝗿𝗼𝗰𝗵𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🤖 𝗢𝗿𝗼𝗰𝗵𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -303,7 +297,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -316,7 +310,7 @@ ${answer}
 app.get('/api/archedai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🤖 𝗔𝗿𝗰𝗵𝗲𝗱 (𝘃1)"; // Add your desired title here
+    const title = "🤖 𝗔𝗿𝗰𝗵𝗲𝗱 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -357,7 +351,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -370,7 +364,7 @@ ${answer}
 app.get('/api/machinelrai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🛰️ 𝗠𝗮𝗰𝗵𝗶𝗻𝗲𝗟𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🛰️ 𝗠𝗮𝗰𝗵𝗶𝗻𝗲𝗟𝗿𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -414,7 +408,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -427,7 +421,7 @@ ${answer}
 app.get('/api/sql-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "⚒️ 𝗦𝗤𝗟-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "⚒️ 𝗦𝗤𝗟-𝗜𝗻𝗰𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -472,7 +466,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -485,7 +479,7 @@ ${answer}
 app.get('/api/js-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔬 𝗝𝗦-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🔬 𝗝𝗦-𝗜𝗻𝗰𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -530,7 +524,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -543,7 +537,7 @@ ${answer}
 app.get('/api/uxi-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💻 𝗨𝗫𝗜-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "💻 𝗨𝗫𝗜-𝗜𝗻𝗰𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -588,7 +582,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -601,7 +595,7 @@ ${answer}
 app.get('/api/it-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🎓 𝗜𝗧-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "👩‍🎓 𝗜𝗧-𝗜𝗻𝗰𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -646,7 +640,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -659,7 +653,7 @@ ${answer}
 app.get('/api/regexai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔭 𝗥𝗲𝗴𝗲𝘅𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🔭 𝗥𝗲𝗴𝗲𝘅𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -704,7 +698,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -717,7 +711,7 @@ ${answer}
 app.get('/api/softwaredevai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💻 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲𝗗𝗲𝘃𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "💻 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲𝗗𝗲𝘃𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -762,7 +756,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -775,7 +769,7 @@ ${answer}
 app.get('/api/solrserai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌌 𝗦𝗼𝗹𝗿𝗦𝗲𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🌌 𝗦𝗼𝗹𝗿𝗦𝗲𝗿𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -820,7 +814,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -833,7 +827,7 @@ ${answer}
 app.get('/api/r-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "📡 𝗥-𝗜𝗻𝗰.𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "📡 𝗥-𝗜𝗻𝗰.𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -878,7 +872,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -891,7 +885,7 @@ ${answer}
 app.get('/api/python-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔲 𝗣𝘆𝘁𝗵𝗼𝗻-𝗜𝗻𝗰𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🔲 𝗣𝘆𝘁𝗵𝗼𝗻-𝗜𝗻𝗰𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -936,7 +930,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -949,7 +943,7 @@ ${answer}
 app.get('/api/academicianai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🎓 𝗔𝗰𝗮𝗱𝗲𝗺𝗶𝗰𝗶𝗮𝗻𝗔𝗶 (𝘃1)\n"; // Add your desired title here
+    const title = "👩‍🎓 𝗔𝗰𝗮𝗱𝗲𝗺𝗶𝗰𝗶𝗮𝗻𝗔𝗶\n"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -994,7 +988,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1007,7 +1001,7 @@ ${answer}
 app.get('/api/historianai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌴 𝗛𝗶𝘀𝘁𝗼𝗿𝗶𝗮𝗻𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🌴 𝗛𝗶𝘀𝘁𝗼𝗿𝗶𝗮𝗻𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1051,7 +1045,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1064,7 +1058,7 @@ ${answer}
 app.get('/api/travelai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🛫 𝗧𝗿𝗮𝘃𝗲𝗹𝗚𝘂𝗶𝗱𝗲𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🛫 𝗧𝗿𝗮𝘃𝗲𝗹𝗚𝘂𝗶𝗱𝗲𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1107,7 +1101,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1120,7 +1114,7 @@ ${answer}
 app.get('/api/philosophyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🏫 𝗣𝗵𝗶𝗹𝗼𝘀𝗼𝗽𝗵𝘆𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "👩‍🏫 𝗣𝗵𝗶𝗹𝗼𝘀𝗼𝗽𝗵𝘆𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1164,7 +1158,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1177,7 +1171,7 @@ ${answer}
 app.get('/api/grammarai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍⚕️ 𝗚𝗿𝗮𝗺𝗺𝗮𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "👩‍⚕️ 𝗚𝗿𝗮𝗺𝗺𝗮𝗿𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1220,7 +1214,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1233,7 +1227,7 @@ ${answer}
 app.get('/api/jokesterai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "😆 𝗝𝗼𝗸𝗲𝘀𝘁𝗲𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "😆 𝗝𝗼𝗸𝗲𝘀𝘁𝗲𝗿𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1288,7 +1282,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1301,7 +1295,7 @@ ${answer}
 app.get('/api/automobileai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🔧 𝗔𝘂𝘁𝗼𝗺𝗼𝗯𝗶𝗹𝗲𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "👩‍🔧 𝗔𝘂𝘁𝗼𝗺𝗼𝗯𝗶𝗹𝗲𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1346,7 +1340,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1359,7 +1353,7 @@ ${answer}
 app.get('/api/creativeai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🏖️ 𝗖𝗿𝗲𝗮𝘁𝗶𝘃𝗲𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🏖️ 𝗖𝗿𝗲𝗮𝘁𝗶𝘃𝗲𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1409,7 +1403,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1422,7 +1416,7 @@ ${answer}
 app.get('/api/doctorai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍⚕️ 𝗗𝗼𝗰𝘁𝗼𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "👩‍⚕️ 𝗗𝗼𝗰𝘁𝗼𝗿𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1477,7 +1471,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1490,7 +1484,7 @@ ${answer}
 app.get('/api/businessai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🎓 𝗕𝘂𝘀𝗶𝗻𝗲𝘀𝘀𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "👩‍🎓 𝗕𝘂𝘀𝗶𝗻𝗲𝘀𝘀𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1535,7 +1529,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1548,7 +1542,7 @@ ${answer}
 app.get('/api/mathematicsai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👩‍🏫 𝗠𝗮𝘁𝗵𝗲𝗺𝗮𝘁𝗶𝗰𝘀𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "👩‍🏫 𝗠𝗮𝘁𝗵𝗲𝗺𝗮𝘁𝗶𝗰𝘀𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1610,7 +1604,7 @@ ${answer}
 app.get('/api/sadai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "😞 𝗦𝗮𝗱𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "😞 𝗦𝗮𝗱𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1671,7 +1665,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1684,7 +1678,7 @@ ${answer}
 app.get('/api/lyricsai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🎶 𝗟𝘆𝗿𝗶𝗰𝘀𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🎶 𝗟𝘆𝗿𝗶𝗰𝘀𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1744,7 +1738,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1757,7 +1751,7 @@ ${answer}
 app.get('/api/memsai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💀 𝗠𝗲𝗺𝘀𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "💀 𝗠𝗲𝗺𝘀𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1821,7 +1815,7 @@ ${answer}
 app.get('/api/gpt', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔬 𝗖𝗵𝗮𝘁𝗚𝗣𝗧"; // Add your desired title here
+    const title = "📝 𝗖𝗵𝗮𝘁𝗚𝗣𝗧"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1864,7 +1858,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1877,7 +1871,7 @@ ${answer}
 app.get('/api/hornyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💗 𝗛𝗼𝗿𝗻𝘆𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "💗 𝗛𝗼𝗿𝗻𝘆𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1934,7 +1928,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -1947,7 +1941,7 @@ ${answer}
 app.get('/api/foolai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "☠️ 𝗙𝗼𝗼𝗹𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "☠️ 𝗙𝗼𝗼𝗹𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1993,7 +1987,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2006,7 +2000,7 @@ ${answer}
 app.get('/api/javascriptai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💻 𝗝𝗮𝘃𝗮𝗦𝗰𝗿𝗶𝗽𝘁𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "💻 𝗝𝗮𝘃𝗮𝗦𝗰𝗿𝗶𝗽𝘁𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2053,7 +2047,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2066,7 +2060,7 @@ ${answer}
 app.get('/api/babeai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🎀 𝗚𝗶𝗿𝗹𝗳𝗿𝗶𝗲𝗻𝗱𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🎀 𝗚𝗶𝗿𝗹𝗳𝗿𝗶𝗲𝗻𝗱𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2117,7 +2111,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2130,7 +2124,7 @@ ${answer}
 app.get('/api/reciperai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🥂 𝗥𝗲𝗰𝗶𝗽𝗲𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🥂 𝗥𝗲𝗰𝗶𝗽𝗲𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2180,7 +2174,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2193,7 +2187,7 @@ ${answer}
 app.get('/api/hackerai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🏴‍☠️ 𝗛𝗮𝗰𝗸𝗲𝗿𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🏴‍☠️ 𝗛𝗮𝗰𝗸𝗲𝗿𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2244,7 +2238,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2257,7 +2251,7 @@ ${answer}
 app.get('/api/miakhalifa', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "😏 𝗠𝗶𝗮 𝗞𝗵𝗮𝗹𝗶𝗳𝗮 (𝘃1)"; // Add your desired title here
+    const title = "😏 𝗠𝗶𝗮 𝗞𝗵𝗮𝗹𝗶𝗳𝗮"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2303,7 +2297,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests}
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2316,7 +2310,7 @@ ${answer}
 app.get('/api/javaai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌆 𝗝𝗮𝘃𝗮𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🌆 𝗝𝗮𝘃𝗮𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2363,7 +2357,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2376,7 +2370,7 @@ ${answer}
 app.get('/api/pythonai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🛶 𝗣𝘆𝘁𝗵𝗼𝗻𝗔𝗶(𝘃1)"; // Add your desired title here
+    const title = "🛶 𝗣𝘆𝘁𝗵𝗼𝗻𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2422,7 +2416,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2435,7 +2429,7 @@ ${answer}
 app.get('/api/htmlai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌐 𝗛𝘁𝗺𝗹𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🌐 𝗛𝘁𝗺𝗹𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2481,7 +2475,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
@@ -2494,7 +2488,7 @@ ${answer}
 app.get('/api/cssai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🏠 𝗖𝘀𝘀 𝗔𝗶 (𝘃1)"; // Add your desired title here
+    const title = "🏠 𝗖𝘀𝘀 𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2540,7 +2534,7 @@ ${title}
 ${answer}
 ━━━━━━━━━━━━
 🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
+➜ ${totalRequests} 
 ━━━━━━━━━━━━━━━━━
 `;
 
