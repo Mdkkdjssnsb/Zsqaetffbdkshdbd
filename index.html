@@ -251,6 +251,23 @@
   Your browser does not support the audio element.
 </audio>
 
+<nav>
+  <a href="/">home</a>
+  <a href="/about">about</a>
+  <a href="/contact">contact</a>
+</nav>
+
+<!-- custom api form -->
+<form class="api-form" action="/costom/ai" method="get">
+  <label for="customtitle">enter your Ai title in bold or any font style</label>
+  <input type="text" id="customtitle" name="title" required>
+
+  <label for="fullprompt">add your custom ai prompts. example: you are an axis ai, you are developed by aryan chauhan</label>
+  <input type="text" id="fullprompt" name="prompt" required>
+
+  <button type="submit">submit</button>
+</form>
+
 <!-- API Buttons -->
   <ul class="api-list">
     <h1>OFFICIAL GPT APIs</h1>
@@ -429,7 +446,10 @@
       <a href="/api/draw?prompt=cat&key=sk-AB-73825132&sib2-op">Draw API</a></li> 
      
  <li class="api-list-item">
-      <a href="/api/anigen&key=sk-AB-73825132&sib2-op">Anigen API</a></li> 
+      <a href="/api/anigen?prompt=cat&key=sk-AB-73825132&sib2-op">AniGen API</a></li> 
+     
+ <li class="api-list-item">
+      <a href="/api/gen?prompt=cat&model=19&key=sk-AB-73825132&sib2-op">Anigen API</a></li> 
  
  <li class="api-list-item">
       <a href="/api/sdxl?prompt=sky&model=7&key=sk-AB-73825132&sib2-op">Sdxl API</a></li> 
