@@ -40,10 +40,11 @@ app.get('/api/nsfw', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 app.get('/costom/ai', async (req, res) => {
   try {
-    const { title, prompt } = req.query;
-    const customTitle = title || "🤖 𝗖𝗼𝘀𝘁𝗼𝗺 𝗔𝗜"; // Add your desired title here if not provided in the query
+    const { title, check, prompt } = req.query;
+    const customTitle = title || "🤖 𝗖𝗼𝘀𝘁𝗼𝗺 𝗔𝗜"; // Fixed variable name and default title
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -51,13 +52,12 @@ app.get('/costom/ai', async (req, res) => {
     const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
 
     // Enhanced prompt
-    const fullPrompt = `
-Interact as ${prompt}`;
+    const fullPrompt = `${check}: ${prompt}`;
 
     const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(customTitle + fullPrompt + prompt)}`);
 
     // Extracting the answer from the response object
-    const answer = response.data.response;
+    const answer = response.data.answer;
 
     // Store request timestamp
     const timestamp = new Date();
