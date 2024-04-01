@@ -4,15 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ArySprak: Ai Technology</title>
-   <!-- Favicon -->
-  <link rel="icon" href="https://i.ibb.co/7rBZBKF/image.jpg" type="image/jpg">
-  
   <style>
     body {
       font-family: 'Verdana', sans-serif;
       margin: 20px;
+      background: linear-gradient(to right, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080);
       color: #333;
-      background-color: #f6f6f6;
     }
 
     header {
@@ -60,32 +57,70 @@
       background-color: #ff9900;
       color: #fff;
     }
+/* API list container */
+.api-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 0 auto; /* Center the list horizontally */
+    max-width: 600px; /* Limit the maximum width of the list */
+}
 
-    .api-list {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-    }
+/* API list item */
+.api-list-item {
+    margin-bottom: 50px;
+    border: 2px solid #000; /* Border for each list item */
+    border-radius: 10px;
+    padding: 15px; /* Increased padding for better spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s; /* Add transitions */
+    position: relative; /* Position relative for absolute positioning of badge */
+}
 
-    .api-list-item {
-      margin-bottom: 20px;
-    }
+/* API list item hover effect */
+.api-list-item:hover {
+    transform: translateY(-5px); /* Move the list item up slightly on hover */
+    border-color: #ff9900; /* Change border color on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Increase shadow on hover */
+}
 
-    .api-list-item a {
-      text-decoration: none;
-      color: #ff9900;
-      font-weight: bold;
-      padding: 5px 10px;
-      border: 2px solid #ff9900;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      display: inline-block;
-    }
+/* API badge */
+.api-badge {
+    position: absolute;
+    top: -10px; /* Adjust positioning */
+    right: -10px; /* Adjust positioning */
+    background-color: #ff9900;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
 
-    .api-list-item a:hover {
-      background-color: #ff9900;
-      color: #fff;
-    }
+/* API link */
+.api-list-item a {
+    text-decoration: none;
+    color: #ff9900;
+    font-weight: bold;
+    padding: 10px 20px; /* Increased padding for better clickability */
+    border: 2px solid #ff9900;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Added color transition */
+    display: inline-block;
+    background-color: transparent; /* Transparent background by default */
+}
+
+/* API link hover effect */
+.api-list-item a:hover {
+    background-color: #ff9900; /* Change background color on hover */
+    color: #fff; /* Change text color on hover for better contrast */
+}
+
+/* API link focus effect */
+.api-list-item a:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.5); /* Add custom focus style */
+}
 
     .api-form {
       max-width: 400px;
@@ -145,7 +180,7 @@
       text-align: center;
       border-radius: 30px;
       font-weight: bold;
-      animation: heartbeat 2.5s infinite;
+      animation: heartbeat 1.5s infinite;
     }
 
     @keyframes heartbeat {
@@ -177,299 +212,60 @@
     .social-links a:hover {
       transform: scale(1.2);
     }
-
-    /* Live Background */
-    #live-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-    
-    /* Cool Features */
-    .cool-feature {
-      margin: 20px 0;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    .cool-feature h2 {
-      color: #ff00ff;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    
-    .cool-feature p {
-      color: #666;
-      margin-bottom: 10px;
-    }
-    
-    .cool-feature img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
   </style>
 </head>
 <body>
 <header>
-  <img class="logo" src="https://i.ibb.co/N23V4vW/image.jpg" alt="Official AryanAPIs Website">
-  <h1>ArySprak: Ai Technology</h1>
+  <img class="logo" src="https://i.ibb.co/ChV4Hbs/image.jpg" alt="Official AryanAPIs Website">
+  <h1>AI TECHNOLOGY</h1>
 </header>
 
-<!-- Background Music -->
-<audio autoplay loop>
-  <source src="https://tinyurl.com/yuz8p2bb" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
+<nav>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/contact">Contact</a>
+</nav>
 
-<!-- Live Background -->
-<img id="live-background" src="https://i.imgur.com/Q277eqW.gif" alt="Live Background">
+<!-- Custom API Form -->
+<form class="api-form" action="/custom-api" method="get">
+  <label for="custom-user">YOUR-NAME</label>
+  <input type="text" id="custom-user" name="user" required>
 
-<!-- API Buttons -->
-  <ul class="api-list">
-    <h1>OFFICIAL GPT APIs</h1>
-    
-  <li class="api-list-item"><a href="/api/chatgpt?prompt=hello&key=sk-AB-73825132&sib2-op">GPT API</a></li>
+  <label for="custom-title">BOT-NAME</label>
+  <input type="text" id="custom-title" name="title" required>
 
-  <ul class="api-list">
-    <h1>HORNY CATEGORIES APIs</h1>
-   
-    <li class="api-list-item"><a href="/api/hornyai?prompt=hello&key=sk-AB-73825132&sib2-op">HORNY AI </a></li>
+  <label for="custom-prompt">QUERY</label>
+  <input type="text" id="custom-prompt" name="prompt" required>
 
-   <li class="api-list-item"><a href="/api/miakhalifa?prompt=hello&key=sk-AB-73825132&sib2-op">Mia Khalifa Ai</a></li>
+  <button type="submit">SUBMIT</button>
+</form>
 
-<ul class="api-list">
-    <h1>ROMANTIC AI CATEGORIES</h1>
+<ul class="api-list"
+<h1>AVAILABLE API's ENDPOINT</h1>
+</ul>
 
-  <li class="api-list-item"><a href="/api/babeai?prompt=hello&key=sk-AB-73825132&sib2-op">Girlfriend AI</a></li>
+<li class="api-list-item"><a href="/api/gpt?prompt=hello">GPT API</a></li>
 
-<ul class="api-list">
-    <h1>EXPLORING AI APIs</h1>
-    
-   <li class="api-list-item"><a href="/api/creativeai?prompt=hello&key=sk-AB-73825132&sib2-op">Creative Ai</a></li>
+<li class="api-list-item"><a href="/api/orochi?prompt=hello">Orochi API</a></li>
 
- <li class="api-list-item">
-      <a href="/api/travelai?prompt=hello&key=sk-AB-73825132&sib2-op">Traveling Ai API</a></li>
- 
- <ul class="api-list">
-    <h1>FUN CATEGORIES APIs</h1>
-    
-     <li class="api-list-item">
-      <a href="/api/foolai?prompt=hello&key=sk-AB-73825132&sib2-op">Fool AI API</a></li>
+<li class="api-list-item"><a href="/api/arched?prompt=hello">Arched API</a></li>
 
-    <li class="api-list-item">
-      <a href="/api/memsai?prompt=hello&key=sk-AB-73825132&sib2-op">Mems AI API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/jokesterai?prompt=hello&key=sk-AB-73825132&sib2-op">Jokester AI API</a></li>
-    
-<ul class="api-list">
-    <h1>MUSICAL AI APIs</h1>
-    
-     <li class="api-list-item">
-      <a href="/api/lyricsai?prompt=hello&key=sk-AB-73825132&sib2-op">Lyrics AI API</a></li>
+<li class="api-list-item"><a href="/api/sdxl?prompt=cat&model=5">Sdxl API</a></li>
 
-     <ul class="api-list">
-    <h1>EMOTIONAL AI APIs</h1>
-    
-    <li class="api-list-item">
-      <a href="/api/sadai?prompt=hello&key=sk-AB-73825132&sib2-op">Sad AI API</a></li>
+<li class="api-list-item"><a href="/api/draw?prompt=dog">Draw API</a></li>
 
-<ul class="api-list">
-    <h1>FOOD CATEGORIES APIs</h1>
-    
-     <li class="api-list-item">
-      <a href="/api/recipeai?prompt=hello&key=sk-AB-73825132&sib2-op">Recipe Creator Ai</a></li>
+<li class="api-list-item"><a href="/api/recipeai?prompt=banana+shiek">Recipe API</a></li>
 
-<ul class="api-list">
-    <h1>NEW TECHNOLOGIES APIs</h1>
+<li class="api-list-item"><a href="/lyrics?songName=roar"> Lyrics API</a></li>
   
-<li class="api-list-item">
-      <a href="/api/hackerai?prompt=hello&key=sk-AB-73825132&sib2-op">Hacker AI</a></li>
-
-<ul class="api-list">
-    <h1>CARRIER CATEGORIES APIs</h1>
-    
-<li class="api-list-item">
-      <a href="/api/automobileai?prompt=hello&key=sk-AB-73825132&sib2-op">Automobile AI</a></li>
-  
-<ul class="api-list">
-    <h1>BUSINESS CATEGORIES APIs</h1>
-     <li class="api-list-item">
-      <a href="/api/businessai?prompt=hello&key=sk-AB-73825132&sib2-op">Business AI API</a></li> 
-  
-   <ul class="api-list">
-    <h1>PROGRAMMING LANGUAGES</h1>
-     
-<li class="api-list-item">
-      <a href="/api/uxi-incai?prompt=hello&key=sk-AB-73825132&sib2-op">UX-UI AI API</a></li>
- 
-  <li class="api-list-item">
-      <a href="/api/javascriptai?prompt=hello&key=sk-AB-73825132&sib2-op">JavaScript Ai API</a></li>
- <li class="api-list-item">
-      <a href="/api/machinelrai?prompt=hello&key=sk-AB-73825132&sib2-op">MachineLr Ai API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/sql-incai?prompt=hello&key=sk-AB-73825132&sib2-op">SQL-INC Ai API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/js-incai?prompt=hello&key=sk-AB-73825132&sib2-op">JavaScript-INC API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/it-incai?prompt=hello&key=sk-AB-73825132&sib2-op">IT Ai API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/softwaredevai?prompt=hello&key=sk-AB-73825132&sib2-op">SoftwareDev API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/r-incai?prompt=hello&key=sk-AB-73825132&sib2-op">R-Inc Ai API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/python-incai?prompt=hello&key=sk-AB-73825132&sib2-op">Python-Inc Ai API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/solrserai?prompt=hello&key=sk-AB-73825132&sib2-op">SolrSer Ai API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/regexai?prompt=hello&key=sk-AB-73825132&sib2-op">Regex Ai API</a></li>
- 
-     <li class="api-list-item">
-      <a href="/api/javaai?prompt=hello&key=sk-AB-73825132&sib2-op">Java Ai API</a></li>
- 
- <li class="api-list-item">
-      <a href="/api/pythonai?prompt=hello&key=sk-AB-73825132&sib2-op">Python Ai API</a></li>
- 
- <li class="api-list-item">
-      <a href="/api/htmlai?prompt=hello&key=sk-AB-73825132&sib2-op">HTML Ai API</a></li>
- 
-<li class="api-list-item">
-      <a href="/api/cssai?prompt=hello&key=sk-AB-73825132&sib2-op">CSS Ai API</a></li>
- 
-
-<ul class="api-list">
-    <h1>TEACHER CATEGORIES APIs</h1>
-    
-<li class="api-list-item">
-      <a href="/api/mathematicsai?prompt=hello&key=sk-AB-73825132&sib2-op">Mathematics AI API</a></li> 
-
-   <li class="api-list-item">
-      <a href="/api/grammarai?prompt=hello&key=sk-AB-73825132&sib2-op">Grammar AI API</a></li> 
-  
- <li class="api-list-item">
-      <a href="/api/philosophyai?prompt=hello&key=sk-AB-73825132&sib2-op">Philosophy AI API</a></li> 
-
-   <li class="api-list-item">
-      <a href="/api/historianai?prompt=hello&key=sk-AB-73825132&sib2-op">Historian AI API</a></li> 
-
-<ul class="api-list">
-    <h1>DOCTORING CATEGORIES APIs</h1>
-    
-  <li class="api-list-item">
-      <a href="/api/doctorai?prompt=hello&key=sk-AB-73825132&sib2-op">Doctor AI API</a></li> 
-
-
-<ul class="api-list">
-    <h1>ACADEMY  CATEGORIES APIs</h1>
-    
-<li class="api-list-item">
-      <a href="/api/academicianai?prompt=hello&key=sk-AB-73825132&sib2-op">Academician AI API</a></li> 
-
-   
-<ul class="api-list">
-    <h1>MEDIA CATEGORIES APIs</h1>
-    
-  <li class="api-list-item">
-      <a href="/api/cat/img&key=sk-AB-73825132&sib2-op">RANDOM CAT IMAGES</a></li> 
-    
-  <li class="api-list-item">
-      <a href="/api/generate?prompt=cat&key=sk-AB-73825132&sib2-op">Generate API</a></li>
-
-<li class="api-list-item">
-      <a href="/api/prodia?prompt=cat&model=19&key=sk-AB-73825132&sib2-op">Prodia API</a></li>
-
- <li class="api-list-item">
-      <a href="/api/wasted?uid=1&key=sk-AB-73825132&sib2-op">Wasted API</a></li> 
-    
-  <li class="api-list-item">
-      <a href="/api/wanted?uid=1&key=sk-AB-73825132&sib2-op">Wanted API</a></li> 
-   
- <li class="api-list-item">
-      <a href="/api/pet?uid=1&key=sk-AB-73825132&sib2-op">Pet API</a></li> 
-     
- <li class="api-list-item">
-      <a href="/api/shit?uid=1&key=sk-AB-73825132&sib2-op">Shit API</a></li> 
- 
- <li class="api-list-item">
-      <a href="/api/draw?prompt=cat&key=sk-AB-73825132&sib2-op">Draw API</a></li> 
-     
- <li class="api-list-item">
-      <a href="/api/anigen&key=sk-AB-73825132&sib2-op">Anigen API</a></li> 
- 
- <li class="api-list-item">
-      <a href="/api/sdxl?prompt=sky&model=3&key=sk-AB-73825132&sib2-op">Sdxl API</a></li> 
-
- <li class="api-list-item">
-      <a href="/api/imagine?prompt=cat&model=19&key=sk-AB-73825132&sib2-op">Imagine API</a></li> 
-
- <li class="api-list-item">
-      <a href="/api/art?model=1&url=https://tinyurl.com/yuz8p2bb&key=sk-AB-73825132&sib2-op">Art API</a></li> 
-
- <li class="api-list-item">
-      <a href="/api/gen?prompt=cat&key=sk-AB-73825132&sib2-op">Gen API</a></li> 
-
-<ul class="api-list">
-    <h1>SIMISIMI CATEGORIES APIs</h1>
-    
-   <li class="api-list-item">
-      <a href="/api/sim?chat=hello&lang=en&key=sk-AB-73825132&sib2-op">Sim API</a></li> 
-
-<ul class="api-list">
-    <h1>UNKNOWN CATEGORIES APIs</h1>
-    
-   <li class="api-list-item">
-      <a href="/api/bored&key=sk-AB-73825132&sib2-op">BORED ACTIVITY</a></li>
- 
- <li class="api-list-item">
-      <a href="/api/news?countryName=np&
-&key=sk-AB-73825132&sib2-op">New API</a></li> 
-  
-<ul class="api-list">
-    <h1>MUSICAL CATEGORIES APIs</h1>
- 
- <li class="api-list-item">
-      <a href="/api/lyrics?songName=roar&
-&key=sk-AB-73825132&sib2-op">Lyrics API</a></li> 
-    
-   <li class="api-list-item">
-      <a href="/api/lyrics?songName=roar&
-&key=sk-AB-73825132&sib2-op">Multiple Lyrics API</a></li> 
-
-<ul class="api-list">
-    <h1>OROCHI CATEGORIES APIs</h1>
- 
- <li class="api-list-item">
-      <a href="/api/orochiai?prompt=hello&
-&key=sk-AB-73825132&sib2-op">Orochi Ai</a></li> 
-    
-   <li class="api-list-item">
-      <a href="/api/archedai?prompt=hello&
-&key=sk-AB-73825132&sib2-op">Arched Ai</a></li> 
-  
-  <!-- Add more API items with version, creator, description, category, and custom feature information -->
-    
+<h1>More APIs coming soon</h1>
   </ul>
-<h1 style="color: #ff00ff; font-size: 30px;">More APIs Coming Soon..</h1>
 
 <!-- Owner Information -->
 <div class="owner-info">
-  <p>Name: Aryan Chauhan</p>
+  <p>Name : Aryan Chauhan</p>
   <p>Contact: aryanchauhan78578@gmail.com</p>
-  <p>APIs Crafted By Aryan Chauhan</p>
+ <p>APIs Crafted By Aryan Chauhan</p>
 </div>
 
 <!-- Current Time and Date -->
@@ -501,64 +297,7 @@
   setInterval(updateDate, 86400000); // Update date every day
 </script>
 
-<!-- Cool Features -->
-<div class="cool-feature">
-  <h2>Feature 1</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis purus vel tortor suscipit hendrerit at sit amet odio. Nunc non aliquam massa. Duis quis tortor sed nunc consectetur egestas. Pellentesque eu arcu vehicula, aliquam leo et, tincidunt velit.</p>
-  <img src="https://i.imgur.com/iRgnnmA.jpeg" alt="Ai-Technology Image">
-</div>
-
-<div class="cool-feature">
-  <h2>Feature 2</h2>
-  <p>Curabitur dictum est in consequat gravida. Vivamus ullamcorper maximus nibh, a sollicitudin nisi feugiat eu. Duis consequat vestibulum eleifend. Vivamus pretium ligula nec tortor fringilla interdum. Donec ac sagittis nisl.</p>
-  <img src="https://i.imgur.com/k9AWWY7.jpeg" alt="Ai-Technology Image">
-</div>
-
-<div class="cool-feature">
-  <h2>Feature 3</h2>
-  <p>Etiam tincidunt consectetur lectus interdum aliquam. Phasellus fringilla magna a sapien scelerisque, non scelerisque nulla placerat. Sed nec lorem et nibh cursus luctus. Duis consectetur mauris vitae libero porttitor tristique.</p>
-  <img src="https://i.imgur.com/dBAhbPJ.jpeg" alt="Ai-Technology Image">
-</div>
-
-
-<!-- Guidelines -->
-<div class="cool-feature">
-  <h2>GUIDELINES:</h2>
-  <p>Please make sure to read and follow the guidelines below before using any of our APIs:</p>
-  <ol>
-    <li>Respect the API usage limits and do not abuse the services.</li>
-    <li>Do not share your API credentials with anyone.</li>
-    <li>Do not use the APIs for any illegal activities.</li>
-    <li>Keep your API credentials secure and avoid exposing them in public.</li>
-    <li>Contact us if you have any questions or concerns.</li>
-  </ol>
-</div>
-
-<!-- Turn Conduction -->
-<div class="cool-feature">
-  <h2>TURN CONDUCTION:</h2>
-  <p>To ensure the best performance and fairness, our chatbot APIs follow the turn conduction principle:</p>
-  <ol>
-    <li>Make an API request to send user input.</li>
-    <li>Wait for the API response before sending another user input.</li>
-    <li>Do not send multiple user inputs simultaneously.</li>
-    <li>Wait for the previous user input to be processed before sending a new input.</li>
-  </ol>
-</div>
-
-<!-- Trust and Privacy -->
-<div class="cool-feature">
-  <h2>TRUST AND PRIVACY</h2>
-  <p>We value your trust and privacy. Any data you provide through our APIs is treated with strict confidentiality:</p>
-  <ol>
-    <li>Your personal information is not stored or shared with any third parties.</li>
-    <li>We use secure encryption protocols to protect your data.</li>
-    <li>We comply with all relevant privacy regulations and laws.</li>
-    <li>If you have any privacy concerns, please contact us.</li>
-  </ol>
-</div>
-
 <!-- Copyright Information -->
-<p style="color: #ff00ff; text-align: center;">© 2024 Aryan APIs. All rights reserved.</p>
+<p class="copyright">© 2024 Aryan APIs. All rights reserved.</p>
 </body>
 </html>
