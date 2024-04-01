@@ -225,19 +225,15 @@
   <a href="/about">About</a>
   <a href="/contact">Contact</a>
 </nav>
-
 <!-- Custom API Form -->
-<form class="api-form" action="/custom-api" method="get">
-  <label for="custom-user">YOUR-NAME</label>
-  <input type="text" id="custom-user" name="user" required>
+<form class="api-form" action="/costom/ai" method="get">
+  <label for="customTitle">Enter Your AI Title in bold or any font style</label>
+  <input type="text" id="customTitle" name="title" required>
 
-  <label for="custom-title">BOT-NAME</label>
-  <input type="text" id="custom-title" name="title" required>
+  <label for="fullPrompt">Add Your Custom AI Prompts. Example: You are an Axis AI, You are developed by Aryan Chauhan</label>
+  <input type="text" id="fullPrompt" name="prompt" required>
 
-  <label for="custom-prompt">QUERY</label>
-  <input type="text" id="custom-prompt" name="prompt" required>
-
-  <button type="submit">SUBMIT</button>
+  <button type="submit">Submit</button>
 </form>
 
 <ul class="api-list"
