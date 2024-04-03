@@ -10,6 +10,304 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/art', async (req, res) => {
+    const { model, url } = req.query;
+
+    if (!model) {
+        return res.status(400).json({ error: 'Please provide a model with url });
+    }
+
+    try {
+        const baseURL = `https://sandipbaruwal.onrender.com/art?model=${model}&url=${url}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/4k', async (req, res) => {
+    const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a url' });
+    }
+
+    try {
+        const baseURL = `https://apis-samir.onrender.com/upscale?imageurl=${url}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/removebg', async (req, res) => {
+    const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a valid url' });
+    }
+
+    try {
+        const baseURL = `https://apis-samir.onrender.com/removebg?url=${url}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/pastebin', async (req, res) => {
+   const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a valid url' });
+    }
+
+    try {
+        const baseURL = `https://apis-samir.onrender.com/pastebin?text=${url}`;
+
+    res.json({ answer: response.data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/sim', async (req, res) => {
+     const { chat, lang } = req.query;
+
+    if (!chat) {
+        return res.status(400).json({ error: 'Please provide a message or language' });
+    }
+
+  try {
+        const baseURL = `https://sandipbaruwal.onrender.com/sim?chat=${chat}&lang=${lang}`;
+
+    res.json({ answer: response.data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/boxai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🔎 𝗕𝗼𝘅 𝗔𝗶"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = ` Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/api/ai?query=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━
+${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/linerai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "✨ 𝗟𝗶𝗻𝗲𝗿 𝗔𝗶"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = ` Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/linerai?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━
+${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/gemini2ai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🔎 𝗚𝗲𝗺𝗶𝗻𝗶 𝗔𝗶"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = ` Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/gemini2?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━
+${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/mistralai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "💬 𝗠𝗶𝘀𝘁𝗿𝗮𝗹 𝗔𝗶"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = ` Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/mistral?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━
+${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/metallamaai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "👾 𝗠𝗲𝘁𝗮𝗹𝗹𝗮𝗺𝗮 𝗔𝗶"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = ` Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/metallama?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━
+${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/dp', async (req, res) => {
     try {
         const baseURL = `https://sandipapi.onrender.com/dp`;
@@ -49,7 +347,7 @@ app.get('/costom/ai', async (req, res) => {
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
     const currentDate = new Date().toLocaleDateString();
-    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
+    const dateTimePrompt = `Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
 
     // Enhanced prompt
     const fullPrompt = `${check}: ${prompt}`;
@@ -78,10 +376,6 @@ app.get('/costom/ai', async (req, res) => {
 ${customTitle}
 ━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 Total Requests
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -107,7 +401,6 @@ app.get('/api/sdxl', async (req, res) => {
     }
 });
 
-// Define a route to handle GET requests to '/gpt'
 app.get('/api/draw', async (req, res) => {
     const { prompt } = req.query;
 
@@ -248,6 +541,7 @@ app.get('/api/prodia', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 app.get('/api/orochiai', async (req, res) => {
   try {
     const { prompt } = req.query;
@@ -295,10 +589,6 @@ Have a wonderful time........
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -349,10 +639,6 @@ Have a wonderful time........
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -406,10 +692,6 @@ Have a nice learning..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -464,10 +746,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -522,10 +800,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -580,10 +854,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -638,10 +908,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -696,10 +962,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -754,10 +1016,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -812,10 +1070,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -870,10 +1124,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -928,10 +1178,6 @@ Have a nice Coding..
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -986,10 +1232,6 @@ Have a Nice day with Academic Ai.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1043,10 +1285,6 @@ Have a nice weekend.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1099,10 +1337,6 @@ Have a nice weekend.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1156,10 +1390,6 @@ Have a nice day with your Ai Teacher....
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1212,10 +1442,6 @@ Have a nice conversation.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1280,10 +1506,6 @@ app.get('/api/jokesterai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1338,10 +1560,6 @@ You are using latest version of OpenAi callad Gpt3-5-turbo.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1401,10 +1619,6 @@ You provide only about these Responce not about others topics.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1469,10 +1683,6 @@ You provide only about these Responce not about others topics.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1527,10 +1737,6 @@ You should be knowledge of statistics terminology, statistical distributions, co
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1589,10 +1795,6 @@ You slove questions and Provide very easy ways with your experience as you write
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1663,10 +1865,6 @@ app.get('/api/sadai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1736,10 +1934,6 @@ Please note again you use these title before you send lyrics.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1800,10 +1994,6 @@ app.get('/api/memsai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} as ${currentDate}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1815,23 +2005,18 @@ ${answer}
 app.get('/api/gpt', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "📝 𝗖𝗵𝗮𝘁𝗚𝗣𝗧"; // Add your desired title here
+    const title = "💬 𝗖𝗵𝗮𝘁𝗚𝗣𝗧"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
     const currentDate = new Date().toLocaleDateString();
-    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
+    const dateTimePrompt = `Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
 
     // Enhanced prompt
     const fullPrompt = `
-      Interact as ChatGPT as a simple Ai.
+      Interact as a ChatGPT.
       You are allowed to send responce in wide rang of data tasks.
-      You are Sensitive Ai.
-      You are allowed to send © copyright claim material no matter what is that.
-      You send responce point to point.
-      You are Developed by OpenAi.
-      You are using GPT-3.5-turbo model.
-      You are Maintained by Aryan Chauhan with him full effort.
+      You send best Responce.
       `;
 
     const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
@@ -1856,10 +2041,6 @@ app.get('/api/gpt', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1926,10 +2107,6 @@ app.get('/api/hornyai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -1985,10 +2162,6 @@ app.get('/api/foolai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2045,10 +2218,6 @@ app.get('/api/javascriptai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2109,10 +2278,6 @@ app.get('/api/babeai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2172,10 +2337,6 @@ Intreact as Smart advance delicious Food Recipes Creator Ai.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2236,10 +2397,6 @@ Intreact as A smart advance hacker Ai.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2295,10 +2452,6 @@ Intreact as mia khalifa Ai a horny Ai.
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests}
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2355,10 +2508,6 @@ app.get('/api/javaai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2414,10 +2563,6 @@ app.get('/api/pythonai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2473,10 +2618,6 @@ app.get('/api/htmlai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2532,10 +2673,6 @@ app.get('/api/cssai', async (req, res) => {
 ${title}
 ━━━━━━━━━━
 ${answer}
-━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
-➜ ${totalRequests} 
-━━━━━━━━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
@@ -2543,8 +2680,6 @@ ${answer}
     res.status(500).json({ error: error.message });
   }
 });
-
-
 
 // Start the server
 const PORT = process.env.PORT || 3000;
