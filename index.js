@@ -14,7 +14,7 @@ app.get('/api/art', async (req, res) => {
     const { model, url } = req.query;
 
     if (!model) {
-        return res.status(400).json({ error: 'Please provide a model with url });
+        return res.status(400).json({ error: 'Please provide a model with url' });
     }
 
     try {
