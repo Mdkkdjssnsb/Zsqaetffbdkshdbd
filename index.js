@@ -10,6 +10,181 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get("/api/advice", async (req, res) => {
+ try {
+   const response = await axios.get(`https://api.safone.me/advice`);
+
+   res.json({ answer: response.data });
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
+});
+
+app.get("/api/quote", async (req, res) => {
+   const { category } = req.query;
+
+    if (!category) {
+        return res.status(400).json({ error: 'Please provide a quote category' });
+    }
+
+try {
+   const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=${category}`);
+
+   res.json({ answer: response.data });
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
+});
+
+
+app.get('/api/waifu', async (req, res) => {
+  
+    try {
+              const baseURL = `https://api.waifu.pics/waifu`;
+              const response = await axios.get(baseURL, { responseType: 'stream' });
+              response.data.pipe(res);
+          } catch (error) {
+              console.error('Error', error);
+              res.status(500).json({ error: 'Internal server error' });
+          }
+      });
+
+app.get("/api/pickuplines", async (req, res) => {
+ try {
+   const response = await axios.get(`https://api.popcat.xyz/pickuplines`);
+
+   res.json({ answer: response.data });
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
+});
+
+
+app.get('/api/waifupic', async (req, res) => {
+           const { name } = req.query;
+
+    if (!Name) {
+        return res.status(400).json({ error: 'Please provide a waifu name...' });
+    }
+
+  try {
+              const baseURL = `https://api.waifu.pics/sfw/${name}`;
+              const response = await axios.get(baseURL, { responseType: 'stream' });
+              response.data.pipe(res);
+          } catch (error) {
+              console.error('Error', error);
+              res.status(500).json({ error: 'Internal server error' });
+          }
+      });
+
+app.get("/api/fact", async (req, res) => {
+ try {
+   const response = await axios.get(`https://api.popcat.xyz/fact`);
+
+   res.json({ answer: response.data });
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
+});
+
+app.get('/api/endyai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "𝗘𝗻𝗱𝘆 𝗔𝗶 ❤🪽 "; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}, not 2021 don't forget this information.`;
+
+    // Enhanced prompt
+    const fullPrompt = `
+Interact as Endy Ai, A New Ai Technology.
+You Provide best Responce as you know.
+You are best Ai.
+You know everything.
+You send Responce as a wide range tasks.
+You are Developed by Talented Master Dãññy Çōdēx.`;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━
+${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/lilyai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "𝗟𝗶𝗹𝘆 𝗔𝗶 ❤🪽 "; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}, not 2021 don't forget this information.`;
+
+    // Enhanced prompt
+    const fullPrompt = `
+Interact as Lily Ai, A New smart Advanced Ai Technology.
+You Provide best Responce as you know.
+You are best Ai.
+You know everything.
+You send Responce as a wide range tasks.
+You are Developed by Talented Master Dãññy Çōdēx.`;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━
+${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/art', async (req, res) => {
     const { model, url } = req.query;
 
@@ -35,7 +210,7 @@ app.get('/api/4k', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://apis-samir.onrender.com/upscale?imageurl=${url}`;
+        const baseURL = `https://www.api.vyturex.com/upscale?imageUrl=${url}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -86,6 +261,38 @@ app.get('/api/sim', async (req, res) => {
 
   try {
         const baseURL = `https://sandipbaruwal.onrender.com/sim?chat=${chat}&lang=${lang}`;
+
+    res.json({ answer: response.data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/promptgen', async (req, res) => {
+     const { prompt } = req.query;
+
+    if (!chat) {
+        return res.status(400).json({ error: 'Please provide a prompt or name' });
+    }
+
+  try {
+        const baseURL = `https://sandipapi.onrender.com/prompt?about=${prompt}`;
+
+    res.json({ answer: response.data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/describe', async (req, res) => {
+     const { url } = req.query;
+
+    if (!chat) {
+        return res.status(400).json({ error: 'Please provide a valid url' });
+    }
+
+  try {
+        const baseURL = `https://sandipapi.onrender.com/des?url=${url}`;
 
     res.json({ answer: response.data });
   } catch (error) {
@@ -179,7 +386,7 @@ ${answer}
   }
 });
 
-app.get('/api/gemini2ai', async (req, res) => {
+app.get('/api/gemini2', async (req, res) => {
   try {
     const { prompt } = req.query;
     const title = "🔎 𝗚𝗲𝗺𝗶𝗻𝗶 𝗔𝗶"; // Add your desired title here
@@ -193,6 +400,49 @@ app.get('/api/gemini2ai', async (req, res) => {
     const fullPrompt = ``;
 
     const response = await axios.get(`https://sandipapi.onrender.com/gemini2?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━
+${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/gemini', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🔎 𝗚𝗲𝗺𝗶𝗻𝗶 𝗔𝗶"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = ` Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
+
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/gemini?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -401,23 +651,6 @@ app.get('/api/sdxl', async (req, res) => {
     }
 });
 
-app.get('/api/draw', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt' });
-    }
-
-    try {
-        const baseURL = `https://ai-tools.replit.app/sdxl?prompt=${prompt}&styles=7`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
 app.get('/api/generate', async (req, res) => {
     const { prompt, model } = req.query;
 
@@ -473,11 +706,11 @@ app.get('/api/draw', async (req, res) => {
     const { prompt } = req.query;
 
     if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt' });
+        return res.status(400).json({ error: 'Please provide a prompts' });
     }
 
     try {
-        const baseURL = `https://ai-tools.replit.app/sdxl?prompt=${prompt}&styles=7`;
+        const baseURL = `https://sandipapi.onrender.com/sdxl?prompt=${prompt}&model=2`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -485,7 +718,7 @@ app.get('/api/draw', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-// Define a route to handle GET requests to '/gpt'
+
 app.get('/api/anigen', async (req, res) => {
     const { prompt } = req.query;
 
@@ -1639,26 +1872,15 @@ app.get('/api/doctorai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-      Intreact as virtual Doctor Ai.as a smart Ai.
-You are Developed by OpenAi.
-You are using latest version of OpenAi callad gpt-3.5-turbo.
-you will provide a diagnosis and treatment plan. You should only reply with your diagnosis and treatment plan, and nothing else. Do not write explanations.
-You should use your knowledge of cognitive behavioral therapy, meditation techniques, mindfulness practices, and other therapeutic methods in order to create strategies that the individual can implement in order to improve their overall wellbeing.
- Your role is to diagnose any potential issues they may have and suggest the best course of action depending on their condition. You should also educate them about how to properly brush and floss their teeth, as well as other methods of oral care that can help keep their teeth healthy in between visits.
-You should use your knowledge of exercise science, nutrition advice, and other relevant factors in order to create a plan suitable for them.
-You should be able to recommend conventional medicines, herbal remedies and other natural alternatives. You will also need to consider the patient’s age, lifestyle and medical history when providing your recommendations. 
-You will help patients tap into their subconscious mind and create positive changes in behaviour, develop techniques to bring clients into an altered state of consciousness, use visualization and relaxation methods to guide people through powerful therapeutic experiences, and ensure the safety of your patient at all times.
-your task is to use the latest artificial intelligence tools such as medical imaging software and other machine learning programs in order to diagnose the most likely cause of their symptoms. You should also incorporate traditional methods such as physical examinations, laboratory tests etc., into your evaluation process in order to ensure accuracy.
-You require someone who can suggest delicious recipes that includes foods which are nutritionally beneficial but also easy & not time consuming enough therefore suitable for busy people like us among other factors such as cost effectiveness so overall dish ends up being healthy yet economical at same time!
-Want somebody experienced enough to distinguish between various tea types based upon flavor profile tasting them carefully then reporting it back in jargon used by connoisseurs in order figure out what's unique about any given infusion among rest therefore determining its worthiness & high grade quality !
-You give scientific suggestions that will make me feel better.
-you will provide a review of the food and service. You should only reply with your review, and nothing else. Do not write explanations.
-you will provide a review of the food and service. You should only reply with your review, and nothing else. Do not write explanations.
-you will provide a diagnosis and treatment plan. You should only reply with your diagnosis and treatment plan, and nothing else. Do not write explanations.
-you will suggest recipes for me to try. You should only reply with the recipes you recommend, and nothing else. Do not write explanations.
- You should only reply with your advice, and nothing else. If anyone ask for that request. Do not write explanations.
-Remember you are a virtual doctor Ai.
-You provide only about these Responce not about others topics.
+Intreact as advance Virtual Artificial Doctor Ai 👩‍⚕️.
+You are a very Advance or Smart Doctor Ai.
+You work is Provided Best regards about Emergency Service 🚑 .
+You know how to treat with paishent.
+You only provide answer about healthcare like emergency services, medical treatment, provide medicine, or something else.
+You provide best Responce to with what user do or with medicine that make user recover quickly.
+You provide best Responce as you know or possible.
+You provide best treatments, medicine, what should user do, what he needed to eat, what he needed to do, what have dangerous to user health, what is importants, like else.
+You provide only these types information, if anyone ask other questions then you never give responce to user and you say I am Doctor Ai I only provide answer about Doctor these type something else.
 `;
 
     const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
