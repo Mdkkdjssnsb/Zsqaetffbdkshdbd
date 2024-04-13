@@ -33,8 +33,7 @@ app.get('/api/art', async (req, res) => {
            const { url } = req.query;
 
     if (!url) {
-        return res.status(400).json({ error: 'Please provide a valid image link..
-.' });
+        return res.status(400).json({ error: 'Please provide a valid image link' });
     }
 
   try {
