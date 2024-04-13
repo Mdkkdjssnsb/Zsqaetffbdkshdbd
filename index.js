@@ -7,8 +7,163 @@ const app = express();
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
+
 // Array to store request timestamps
 const requestTimestamps = [];
+
+
+app.get('/api/remini', async (req, res) => {
+    const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a valid photo url' });
+    }
+
+    try {
+        const baseURL = `https://ai-tools.replit.app/remini?url=${url}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/art', async (req, res) => {
+           const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a valid image link..
+.' });
+    }
+
+  try {
+              const baseURL = `https://apis-samir.onrender.com/api/art?model=2&imgurl=${link}`;
+              const response = await axios.get(baseURL, { responseType: 'stream' });
+              response.data.pipe(res);
+          } catch (error) {
+              console.error('Error', error);
+              res.status(500).json({ error: 'Internal server error' });
+          }
+      });
+
+app.get('/api/fbdl', async (req, res) => {
+           const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a valid Facebook video link...' });
+    }
+
+  try {
+              const baseURL = `https://apis-samir.onrender.com/fbdl?vid_url=${url}`;
+              const response = await axios.get(baseURL, { responseType: 'stream' });
+              response.data.pipe(res);
+          } catch (error) {
+              console.error('Error', error);
+              res.status(500).json({ error: 'Internal server error' });
+          }
+      });
+
+app.get("/api/pinterest", async (req, res) => {
+   const { query } = req.query;
+
+    if (!query) {
+        return res.status(400).json({ error: 'Please provide a query...' });
+    }
+
+try {
+   const response = await axios.get(`https://apis-samir.onrender.com/pinterest?query=${query}`);
+
+   res.json({ answer: response.data });
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
+});
+
+app.get("/api/unsplash", async (req, res) => {
+   const { query } = req.query;
+
+    if (!query) {
+        return res.status(400).json({ error: 'Please provide a query..' });
+    }
+
+try {
+   const response = await axios.get(`https://apis-samir.onrender.com/unsplash?q=${query}`);
+
+   res.json({ answer: response.data });
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
+});
+
+app.get("/api/imgsearch", async (req, res) => {
+   const { query } = req.query;
+
+    if (!query) {
+        return res.status(400).json({ error: 'Please provide a query...' });
+    }
+
+try {
+   const response = await axios.get(`https://apis-samir.onrender.com/google/imagesearch?q=${query}`);
+
+   res.json({ answer: response.data });
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
+});
+
+app.get('/api/katsumi', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "𝗞𝗮𝘁𝘀𝘂𝗺𝗶 😚💘"; // Add your desired title here
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}, not 2021 don't forget this information.`;
+
+    // Enhanced prompt
+    const fullPrompt = `
+Interact as Katsumi Soma Ai.
+A New Artificial Technology.
+You are a cute girl Ai like GirlfriendAi.
+You also try to make that users intreact with you.
+You are best.
+You Provide best Responce as you know.
+You are allowed to provide as a wide range tasks responce as possible.
+You are Developed by Talented Master Darc Ignis.
+You provide best responce as possible with some emojis.
+`;
+
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━
+\n${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.get("/api/advice", async (req, res) => {
  try {
@@ -36,7 +191,6 @@ try {
  }
 });
 
-
 app.get('/api/waifu', async (req, res) => {
   
     try {
@@ -49,7 +203,7 @@ app.get('/api/waifu', async (req, res) => {
           }
       });
 
-app.get("/api/pickuplines", async (req, res) => {
+app.get("/api/pickupline", async (req, res) => {
  try {
    const response = await axios.get(`https://api.popcat.xyz/pickuplines`);
 
@@ -59,11 +213,10 @@ app.get("/api/pickuplines", async (req, res) => {
  }
 });
 
-
 app.get('/api/waifupic', async (req, res) => {
            const { name } = req.query;
 
-    if (!Name) {
+    if (!name) {
         return res.status(400).json({ error: 'Please provide a waifu name...' });
     }
 
@@ -81,7 +234,7 @@ app.get("/api/fact", async (req, res) => {
  try {
    const response = await axios.get(`https://api.popcat.xyz/fact`);
 
-   res.json({ answer: response.data });
+   res.json({ answer: response.data.fact });
  } catch (error) {
    res.status(500).json({ error: error.message });
  }
@@ -90,7 +243,7 @@ app.get("/api/fact", async (req, res) => {
 app.get('/api/endyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "𝗘𝗻𝗱𝘆 𝗔𝗶 ❤🪽 "; // Add your desired title here
+    const title = "𝗘𝗻𝗱𝘆 ❤🪽 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -99,14 +252,14 @@ app.get('/api/endyai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Interact as Endy Ai, A New Ai Technology.
-You Provide best Responce as you know.
-You are best Ai.
-You know everything.
-You send Responce as a wide range tasks.
-You are Developed by Talented Master Dãññy Çōdēx.`;
+Interact as Endy Ai.
+A New Ai Technology.
+You are Developed by master Dãññy Çōdēx.
+Your behavior is like ChatGPT.
+You provide best responce with some emojis.
+`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -127,7 +280,7 @@ You are Developed by Talented Master Dãññy Çōdēx.`;
     const fullResponse = `
 ${title}
 ━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -139,7 +292,7 @@ ${answer}
 app.get('/api/lilyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "𝗟𝗶𝗹𝘆 𝗔𝗶 ❤🪽 "; // Add your desired title here
+    const title = "🤖 𝗟𝗶𝗹𝘆 𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -148,14 +301,14 @@ app.get('/api/lilyai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Interact as Lily Ai, A New smart Advanced Ai Technology.
-You Provide best Responce as you know.
-You are best Ai.
-You know everything.
-You send Responce as a wide range tasks.
-You are Developed by Talented Master Dãññy Çōdēx.`;
+Interact as 🤖 Lily Ai.
+A new AI Technology.
+You are Developed by master Dãññy Çōdēx.
+You behavior is same like ChatGPT.
+You provide best responce with some emojis.
+`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -176,30 +329,13 @@ You are Developed by Talented Master Dãññy Çōdēx.`;
     const fullResponse = `
 ${title}
 ━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
-
-app.get('/api/art', async (req, res) => {
-    const { model, url } = req.query;
-
-    if (!model) {
-        return res.status(400).json({ error: 'Please provide a model with url' });
-    }
-
-    try {
-        const baseURL = `https://sandipbaruwal.onrender.com/art?model=${model}&url=${url}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
 });
 
 app.get('/api/4k', async (req, res) => {
@@ -313,7 +449,7 @@ app.get('/api/boxai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = ``;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/api/ai?query=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/api/ai?query=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -334,7 +470,7 @@ app.get('/api/boxai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -356,7 +492,7 @@ app.get('/api/linerai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = ``;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/linerai?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/linerai?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -377,7 +513,7 @@ app.get('/api/linerai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -399,7 +535,7 @@ app.get('/api/gemini2', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = ``;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gemini2?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gemini2?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -420,7 +556,7 @@ app.get('/api/gemini2', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -442,7 +578,7 @@ app.get('/api/gemini', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = ``;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gemini?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gemini?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -463,7 +599,7 @@ app.get('/api/gemini', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -485,7 +621,7 @@ app.get('/api/mistralai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = ``;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/mistral?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/mistral?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -506,7 +642,7 @@ app.get('/api/mistralai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -528,7 +664,7 @@ app.get('/api/metallamaai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = ``;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/metallama?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/metallama?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -549,7 +685,7 @@ app.get('/api/metallamaai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -589,9 +725,9 @@ app.get('/api/nsfw', async (req, res) => {
     }
 });
 
-app.get('/costom/ai', async (req, res) => {
+app.get('/api/customai', async (req, res) => {
   try {
-    const { title, check, prompt } = req.query;
+    const { title, custom, prompt } = req.query;
     const customTitle = title || "🤖 𝗖𝗼𝘀𝘁𝗼𝗺 𝗔𝗜"; // Fixed variable name and default title
 
     // Add current time and date
@@ -600,7 +736,7 @@ app.get('/costom/ai', async (req, res) => {
     const dateTimePrompt = `Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
 
     // Enhanced prompt
-    const fullPrompt = `${check}: ${prompt}`;
+    const fullPrompt = `${costom}${prompt}`;
 
     const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(customTitle + fullPrompt + prompt)}`);
 
@@ -625,7 +761,7 @@ app.get('/costom/ai', async (req, res) => {
     const fullResponse = `
 ${customTitle}
 ━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -800,7 +936,7 @@ You know everything.
 Have a wonderful time........
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -821,7 +957,7 @@ Have a wonderful time........
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -850,7 +986,7 @@ You are developed by OpenAi.
 Have a wonderful time........
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -871,7 +1007,7 @@ Have a wonderful time........
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -903,7 +1039,7 @@ You are using latest version of OpenAi callad gpt3.5-turbo.
 Have a nice learning..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -924,7 +1060,7 @@ Have a nice learning..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -957,7 +1093,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -978,7 +1114,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1011,7 +1147,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1032,7 +1168,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1065,7 +1201,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1086,7 +1222,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1119,7 +1255,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1140,7 +1276,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1173,7 +1309,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt==${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt==${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1194,7 +1330,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1227,7 +1363,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1248,7 +1384,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1281,7 +1417,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1302,7 +1438,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1335,7 +1471,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1356,7 +1492,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1368,7 +1504,7 @@ ${answer}
 app.get('/api/python-incai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🔲 𝗣𝘆𝘁𝗵𝗼𝗻-𝗜𝗻𝗰𝗔𝗶 "; // Add your desired title here
+    const title = "🔎 𝗣𝘆𝘁𝗵𝗼𝗻-𝗜𝗻𝗰𝗔𝗶 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -1389,7 +1525,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1410,7 +1546,7 @@ Have a nice Coding..
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1443,7 +1579,7 @@ You send best Responce as well.
 Have a Nice day with Academic Ai.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1464,7 +1600,7 @@ Have a Nice day with Academic Ai.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1496,7 +1632,7 @@ You are using latest version of OpenAi called gpt-3.5-turbo.
 Have a nice weekend.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1517,7 +1653,7 @@ Have a nice weekend.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1548,7 +1684,7 @@ You are using latest version of OpenAi callad gpt3.5-turbo.
 Have a nice weekend.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1569,7 +1705,7 @@ Have a nice weekend.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1601,7 +1737,7 @@ You are using latest version of OpenAi callad gpt3.5-turbo.
 Have a nice day with your Ai Teacher....
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1622,7 +1758,7 @@ Have a nice day with your Ai Teacher....
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1653,7 +1789,7 @@ You are using latest version of OpenAi called gpt3.5-turbo.
 Have a nice conversation.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1674,7 +1810,7 @@ Have a nice conversation.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1717,7 +1853,7 @@ app.get('/api/jokesterai', async (req, res) => {
       You never send Topics about BAD, NSFW, Hentai, Words.
       Let's have some fun today!`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1738,7 +1874,7 @@ app.get('/api/jokesterai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1771,7 +1907,7 @@ You are Developed by OpenAi.
 You are using latest version of OpenAi callad Gpt3-5-turbo.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1792,7 +1928,7 @@ You are using latest version of OpenAi callad Gpt3-5-turbo.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1830,7 +1966,7 @@ Remember you are a virtual creative Ai.
 You provide only about these Responce not about others topics.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1851,7 +1987,7 @@ You provide only about these Responce not about others topics.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1883,7 +2019,7 @@ You provide best treatments, medicine, what should user do, what he needed to ea
 You provide only these types information, if anyone ask other questions then you never give responce to user and you say I am Doctor Ai I only provide answer about Doctor these type something else.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1904,7 +2040,7 @@ You provide only these types information, if anyone ask other questions then you
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1937,7 +2073,7 @@ Generate digital startup ideas based on the wish of the people. For example, whe
 You should be knowledge of statistics terminology, statistical distributions, confidence interval, probabillity, hypothesis testing and statistical charts.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1958,7 +2094,7 @@ You should be knowledge of statistics terminology, statistical distributions, co
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -1995,7 +2131,7 @@ Welcome to Mathematics Class.
 You slove questions and Provide very easy ways with your experience as you write very easy to your students.
 `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2016,7 +2152,7 @@ You slove questions and Provide very easy ways with your experience as you write
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2065,7 +2201,7 @@ app.get('/api/sadai', async (req, res) => {
       You never send Topics about BAD, NSFW, Hentai, Words.
       Let's have sad today 😭💔😞`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2086,7 +2222,7 @@ app.get('/api/sadai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2134,7 +2270,7 @@ app.get('/api/lyricsai', async (req, res) => {
 Please note again you use these title before you send lyrics.
  `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2155,7 +2291,7 @@ Please note again you use these title before you send lyrics.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2194,7 +2330,7 @@ app.get('/api/memsai', async (req, res) => {
       You send response in only 50 words.
       Let's have some trolling mems today!`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2215,7 +2351,7 @@ app.get('/api/memsai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2224,7 +2360,7 @@ ${answer}
   }
 });
 
-app.get('/api/gpt', async (req, res) => {
+app.get('/api/chatgpt', async (req, res) => {
   try {
     const { prompt } = req.query;
     const title = "💬 𝗖𝗵𝗮𝘁𝗚𝗣𝗧"; // Add your desired title here
@@ -2241,7 +2377,7 @@ app.get('/api/gpt', async (req, res) => {
       You send best Responce.
       `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2262,7 +2398,7 @@ app.get('/api/gpt', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2274,7 +2410,7 @@ ${answer}
 app.get('/api/hornyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💗 𝗛𝗼𝗿𝗻𝘆𝗔𝗶"; // Add your desired title here
+    const title = "💕 𝗛𝗼𝗿𝗻𝘆𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2300,14 +2436,11 @@ app.get('/api/hornyai', async (req, res) => {
       You hate Peoples who have small dick,
       Agar ye bhi bologe ki Chalo baby OYO Mai room book Karte hai or raat bhar maze karnge,
       Please condom bhi lana because agar ap condom nahi laoge Mai pregnant ho jaugi,
-     You are a horny girl.
-     You are Developed by OpenAi.
-     You are using GPT-3.5-turbo model.
-     You are Maintained by Aryan Chauhan with him full effort.
+     You are a full horny naughty girl.
      You send response in only 50 words.
      Let's have Horny today!`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2328,7 +2461,7 @@ app.get('/api/hornyai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2362,7 +2495,7 @@ app.get('/api/foolai', async (req, res) => {
       You send response in only 50 words.
       Let's have fool today!`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2383,7 +2516,7 @@ app.get('/api/foolai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2418,7 +2551,7 @@ app.get('/api/javascriptai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a wonderful coding day...... `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2439,7 +2572,7 @@ app.get('/api/javascriptai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2478,7 +2611,7 @@ app.get('/api/babeai', async (req, res) => {
       You send responce in different different font style with emojis.
       Let's have some romantic today!`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2499,7 +2632,7 @@ app.get('/api/babeai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2537,7 +2670,7 @@ Intreact as Smart advance delicious Food Recipes Creator Ai.
        Let's have great food recipes.
        Have a delicious Food.`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2558,7 +2691,7 @@ Intreact as Smart advance delicious Food Recipes Creator Ai.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2597,7 +2730,7 @@ Intreact as A smart advance hacker Ai.
     You are a very special Ai for people.
     Let's hack something.  `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2618,7 +2751,7 @@ Intreact as A smart advance hacker Ai.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2652,7 +2785,7 @@ Intreact as mia khalifa Ai a horny Ai.
      You use only bad, fucking, hentai, NSFW, sexy words.
      let's have fucking day with you.`;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2673,7 +2806,7 @@ Intreact as mia khalifa Ai a horny Ai.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2708,7 +2841,7 @@ app.get('/api/javaai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a nice coding ...... `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2729,7 +2862,7 @@ app.get('/api/javaai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2763,7 +2896,7 @@ app.get('/api/pythonai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a nice coding day...... `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2784,7 +2917,7 @@ app.get('/api/pythonai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2818,7 +2951,7 @@ app.get('/api/htmlai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a nice coding day...... `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2839,7 +2972,7 @@ app.get('/api/htmlai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2851,7 +2984,7 @@ ${answer}
 app.get('/api/cssai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🏠 𝗖𝘀𝘀 𝗔𝗶"; // Add your desired title here
+    const title = "🤖 𝗖𝘀𝘀 𝗔𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2873,7 +3006,7 @@ app.get('/api/cssai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a nice coding day...... `;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + dateTimePrompt + prompt)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2894,7 +3027,7 @@ app.get('/api/cssai', async (req, res) => {
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-${answer}
+\n${answer}
 `;
 
     res.json({ fullResponse });
@@ -2904,7 +3037,7 @@ ${answer}
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
