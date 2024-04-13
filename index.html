@@ -119,12 +119,13 @@
   .api-details {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Center align details vertically */
+    align-items: center; 
   }
 
 .api-creator {
-    color: #dc3545; /* Red color for creator name */
+    color: #dc3545; 
     font-size: 14px;
+    text-align: center;
   }
 
     .api-form {
@@ -258,25 +259,33 @@
 
 <nav>
   <a href="/">home</a>
-  <a href="/about">about</a>
-  <a href="/contact">contact</a>
 </nav>
 
 <!-- custom api form -->
-<form class="api-form" action="/costom/ai" method="get">
-  <label for="customtitle">Add your Ai title in bold or any font style</label>
+<form class="api-form" action="/api/customai" method="get">
+  <label for="customTitle">Add your Ai title in bold or any font style</label>
   <input type="text" id="customtitle" name="title" required>
 
-  <label for="check">Add your custom Ai prompts. example: You are an axis Ai, You are developed by ArYAN Chauhan</label>
+  <label for="costom">Add your custom Ai prompts. example: You are an axis Ai, You are developed by ArYAN Chauhan</label>
   <input type="text" id="check" name="prompt" required>
 
-  <label for="prompt">add your search prompts query. example: hello, hi </label>
+  <label for="prompt">Add your search prompts query. example: hello, hi </label>
   <input type="text" id="prompt" name="prompt" required>
 
   <button type="submit">submit</button>
 </form>
 
 <!-- API Buttons -->
+<ul class="api-list">
+    <h1>Hindi Lang AIs</h1>
+<ul class="api-list">
+
+<li class="api-list-item">
+      <a href="/api/hornyv2?prompt=hello">Horny Ai</a></li>
+
+<li class="api-list-item">
+      <a href="/api/songmakerai?prompt=hello">SongMaker Ai</a></li>
+
   <ul class="api-list">
     <h1>OFFICIAL AI APIs</h1>
     
@@ -316,6 +325,12 @@
     
      <li class="api-list-item">
       <a href="/api/lyricsai?prompt=hello">Lyrics AI API</a></li>
+ 
+     <li class="api-list-item">
+      <a href="/api/sadlyricsai?prompt=hello">SadLyricsMaker Ai</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/rapperai?prompt=hello">RapSongMaker Ai</a></li>
  
     <li class="api-list-item">
       <a href="/api/sadai?prompt=hello">Sad AI API</a></li>
@@ -394,23 +409,24 @@
 
 <li class="api-list-item">
       <a href="/api/academicianai?prompt=hello">Academician AI API</a></li> 
-   
- <li class="api-list-item">
-      <a href="/api/orochiai?prompt=hello">Orochi Ai</a></li> 
+
+    <ul class="api-list">
+    <h1>MEDIA APIs</h1>
     
+    <li class="api-list-item">
+<a href="/api/art?model=1&url=https://tinyurl.com/yuz8p2bb">Art API</a></li>  
+
+    <li class="api-list-item">
+<a href="/api/remini?url=https://i.ibb.co/rcgQhLk/image.jpg">Remini API</a></li>
+
+    <li class="api-list-item">
+<a href="/api/4k?url=https://i.ibb.co/rcgQhLk/image.jpg">4K API</a></li>
+
    <li class="api-list-item">
-      <a href="/api/archedai?prompt=hello">Arched Ai</a></li> 
+<a href="/api/removebg?url=https://i.ibb.co/rcgQhLk/image.jpg">RemoveBG API</a></li>
 
-<ul class="api-list">
-    <h1>MEDIA CATEGORIES APIs</h1>
-    
-<li class="api-list-item"><a href="/api/art?model=1&url=https://tinyurl.com/yuz8p2bb">Art API</a></li>  
-
-<li class="api-list-item"><a href="/api/4k?url=https://tinyurl.com/yuz8p2bb">4K API</a></li>
-
-  <li class="api-list-item"><a href="/api/removebg?url=https://tinyurl.com/yuz8p2bb">Removebg API</a></li>
-
-  <li class="api-list-item"><a href="/api/pastebin?url=https://tinyurl.com/yuz8p2bb">Pastebin API</a></li>
+  <li class="api-list-item">
+<a href="/api/pastebin?url=https://tinyurl.com/yuz8p2bb">Pastebin API</a></li>
  
  <li class="api-list-item">
       <a href="/api/wasted?uid=1">Wasted API</a></li> 
@@ -419,7 +435,7 @@
       <a href="/api/wanted?uid=1">Wanted API</a></li> 
    
  <li class="api-list-item">
-      <a href="/api/pet?uid=1">Pet API</a></li> 
+   <a href="/api/pet?uid=1">Pet API</a></li> 
      
  <li class="api-list-item">
       <a href="/api/shit?uid=1">Shit API</a></li> 
@@ -428,7 +444,7 @@
       <a href="/api/draw?prompt=cat">Draw API</a></li> 
      
   <li class="api-list-item">
-      <a href="/api/cat/img">RANDOM CAT IMAGES</a></li> 
+      <a href="/api/cat/img">CAT IMAGES</a></li> 
     
   <li class="api-list-item">
       <a href="/api/generate?prompt=cat&model=19">Generate API</a></li>
@@ -446,10 +462,31 @@
       <a href="/api/imagine?prompt=cat>Imagine API</a></li> 
 
  <li class="api-list-item">
-      <a href="/api/art?model=1&url=https://tinyurl.com">Art API</a></li> 
+      <a href="/api/art?model=1&url=">Art API</a></li> 
 
  <li class="api-list-item">
       <a href="/api/gen?prompt=cat">Gen API</a></li> 
+
+ <ul class="api-list">
+<h1>IMGSEARCH APIs</h1>
+
+  <li class="api-list-item">
+<a href="/api/unsplash?query=nature">Unsplash API</a></li>
+  
+    <li class="api-list-item">
+<a href="/api/pexels?query=nature&keysearch=9">Pexels API</a></li>
+
+     <li class="api-list-item">
+      <a href="/api/pinterest?query=anime">Pinterest API</a></li>
+
+  <li class="api-list-item">
+      <a href="/api/imgsearch?prompt=hello">ImageSearch API</a></li>
+
+<ul class="api-list">
+    <h1>DOWNLOAD VIDEOS</h1>
+
+  <li class="api-list-item">
+      <a href="/api/fbdl?url=https://www.facebook.com/reel/331834579347199/?mibextid=rS40aB7S9Ucbxw6v</a></li>
 
     <ul class="api-list">
     <h1>OTHER APIs</h1>
@@ -497,37 +534,62 @@
       <a href="/api/nsfw">Nsfw IMG API</a></li> 
 
    <li class="api-list-item">
-      <a href="/api/anime">Anime IMG API</a></li> 
+      <a href="/api/anime">Anime Images</a></li> 
 
    <li class="api-list-item">
-      <a href="/api/waifupic?name=neko">Waifu Pic's API</a></li> 
+      <a href="/api/waifupic?name=neko">Anime Waifu</a></li> 
 
    <li class="api-list-item">
-      <a href="/api/waifu">Waifu API</a></li> 
-  <!-- Add more API items with version, creator, description, category, and custom feature information -->
-    
-      <li class="api-list-item">
+      <a href="/api/waifu">Waifu Images</a></li> 
+  
+     <li class="api-list-item">
       <a href="/api/endyai?prompt=hello">Endy Ai</a>
    <div class="api-details">
-   <span class="api-creator">Dãññy Çōdēx</span>
+   <span class="api-creator">This API was Created by Dãññy Çōdēx</span>
     </div>
     </li>
 
      <li class="api-list-item">
       <a href="/api/lilyai?prompt=hello">Lily Ai</a>
    <div class="api-details">
-   <span class="api-creator">Dãññy Çōdēx</span>
+   <span class="api-creator">This API was Created by Dãññy Çōdēx</span>
     </div>
     </li>
 
+     <li class="api-list-item">
+     <a href="/api/katsumi?prompt=hello">Katsumi Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Darc Ignis </span>
+    </div>
+    </li>
+
+ <li class="api-list-item">
+     <a href="/api/orochiai?prompt=hello">Orochi Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Aryan Chauhan </span>
+    </div>
+    </li>
+ 
+<li class="api-list-item">
+     <a href="/api/archedai?prompt=hello">Arched Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Aryan Chauhan</span>
+    </div>
+    </li>
+
+
+<!-- Add more APIs information -->
+         
   </ul>
 <h1 style="color: #ff00ff; font-size: 30px;">Thanks for Visiting</h1>
 
 <!-- Owner Information -->
 <div class="owner-info">
   <p>Name: Aryan Chauhan</p>
-  <p>Contact: aryanchauhan78578@gmail.com</p>
-  <p>APIs Crafted By Aryan Chauhan</p>
+  <p>Country: India</p>
+  <p>Age: 16</p>
+  <p>Email: aryanchauhan78578@gmail.com</p>
+  <p>Facebook: facebook.com/61551115508535</p>
 </div>
 
 <!-- Current Time and Date -->
@@ -561,19 +623,19 @@
 
 <!-- Cool Features -->
 <div class="cool-feature">
-  <h2>Feature 1</h2>
-  <p>Unlock the power of artificial intelligence with our cutting-edge AI APIs website. From natural language processing to image recognition, our APIs offer limitless possibilities to enhance your digital experiences. Whether you're a developer, data scientist, or tech enthusiast, our platform provides the tools you need to create intelligent and dynamic applications. Explore the future of technology with the click of a button at our AI APIs website.</p>
+  <h2>Website Feature</h2>
+  <p>Welcome to the cutting-edge world of AI APIs! Our website is your one-stop destination for exploring and integrating the most advanced artificial intelligence technologies into your applications. Whether you're looking to enhance user experience, streamline business operations, or unlock new possibilities for innovation, our AI APIs have got you covered. With an intuitive interface, comprehensive documentation, and a community of developers ready to support you, embarking on your AI journey has never been easier. So, dive in, unleash the power of AI, and stay ahead of the curve with our revolutionary AI APIs!</p>
   <img src="https://i.imgur.com/iRgnnmA.jpeg" alt="Ai-Technology Image">
 </div>
 
 <div class="cool-feature">
-  <h2>Feature 2</h2>
-  <p>Welcome to the cutting-edge world of AI APIs! Our website is your one-stop destination for exploring and integrating the most advanced artificial intelligence technologies into your applications. Whether you're looking to enhance user experience, streamline business operations, or unlock new possibilities for innovation, our AI APIs have got you covered. With an intuitive interface, comprehensive documentation, and a community of developers ready to support you, embarking on your AI journey has never been easier. So, dive in, unleash the power of AI, and stay ahead of the curve with our revolutionary AI APIs!</p>
+  <h2>Website Feature</h2>
+  <p>Unlock the power of artificial intelligence with our cutting-edge AI APIs website. From natural language processing to image recognition, our APIs offer limitless possibilities to enhance your digital experiences. Whether you're a developer, data scientist, or tech enthusiast, our platform provides the tools you need to create intelligent and dynamic applications. Explore the future of technology with the click of a button at our AI APIs website.</p>
   <img src="https://i.imgur.com/k9AWWY7.jpeg" alt="Ai-Technology Image">
 </div>
 
 <div class="cool-feature">
-  <h2>Feature 3</h2>
+  <h2>Website Feature</h2>
   <p>Even the developers will be followed by the bed sometimes. A great fleet of chocolates, not chocolates. But neither the Internet nor the free course of grief. Duis consectetur mauris vitae libre porttitor trisque.
 </p>
   <img src="https://i.imgur.com/dBAhbPJ.jpeg" alt="Ai-Technology Image">
@@ -589,7 +651,7 @@
     <li>Do not share your API credentials with anyone.</li>
     <li>Do not use the APIs for any illegal activities.</li>
     <li>Keep your API credentials secure and avoid exposing them in public.</li>
-    <li>Contact us if you have any questions or concerns.</li>
+    <li>Contact with our team if you have any questions or concerns.</li>
   </ol>
 </div>
 
@@ -613,11 +675,11 @@
     <li>Your personal information is not stored or shared with any third parties.</li>
     <li>We use secure encryption protocols to protect your data.</li>
     <li>We comply with all relevant privacy regulations and laws.</li>
-    <li>If you have any privacy concerns, please contact us.</li>
+    <li>If you have any privacy concerns, please contact with our team</li>
   </ol>
 </div>
 
 <!-- Copyright Information -->
-<p style="color: #ff00ff; text-align: center;">© 2024 Aryan APIs. All rights reserved.</p>
+<p style="color: #ff00ff; text-align: center;">© 2024 Ary Technology. All rights reserved.</p>
 </body>
 </html>
