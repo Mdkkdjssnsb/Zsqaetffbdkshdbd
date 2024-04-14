@@ -39,9 +39,8 @@ app.get('/api/chatgpt', async (req, res) => {
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
     const currentDate = new Date().toLocaleDateString();
-    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}, not 2021 don't forget this information.`;
-
-    // Enhanced prompt
+    
+   // Enhanced prompt
     const fullPrompt = `
 Interact as ChatGPT.
 A new AI Technology.
@@ -1000,13 +999,13 @@ app.get('/api/4k', async (req, res) => {
 
     try {
         const baseURL = `https://www.api.vyturex.com/upscale?imageUrl=${url}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
+ 
+res.json({ answer: response.data.upscale });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
     }
 });
+
 
 app.get('/api/removebg', async (req, res) => {
     const { url } = req.query;
@@ -1185,7 +1184,7 @@ app.get('/api/gemini2', async (req, res) => {
     const currentDate = new Date().toLocaleDateString();
     // Enhanced prompt
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gemini2?prompt=${encodeURIComponent(title + url)}`);
+    const response = await axios.get(`https://sandipapi.onrender.com/gemini2?prompt=${encodeURIComponent(url)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
