@@ -683,14 +683,14 @@ app.get('/api/remini', async (req, res) => {
 });
 
 app.get('/api/art', async (req, res) => {
-           const { url } = req.query;
+           const { url, model } = req.query;
 
     if (!url) {
         return res.status(400).json({ error: 'Please provide a valid image link' });
     }
 
   try {
-              const baseURL = `https://apis-samir.onrender.com/api/art?model=2&imgurl=${link}`;
+              const baseURL = `https://apis-samir.onrender.com/api/art?model=${model}&imgurl=${url}`;
               const response = await axios.get(baseURL, { responseType: 'stream' });
               response.data.pipe(res);
           } catch (error) {
@@ -1426,7 +1426,7 @@ app.get('/api/sdxl', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://ai-tools.replit.app/sdxl?prompt=${prompt}&styles=${model}`;
+        const baseURL = `https://apis-samir.onrender.com/sdxl/generate?prompt=${prompt}&model=${model}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -1460,7 +1460,7 @@ app.get('/api/gen', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://sandipapi.onrender.com/sdxl?prompt=${prompt}&model=${model}`;
+        const baseURL = `https://sandipapi.onrender.com/jeevan?prompt=${prompt}&model=${model}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
