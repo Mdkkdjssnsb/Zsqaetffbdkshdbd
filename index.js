@@ -717,19 +717,19 @@ app.get('/api/fbdl', async (req, res) => {
       });
 
 app.get("/api/pinterest", async (req, res) => {
-   const { query } = req.query;
+    const { search, keysearch } = req.query;
 
-    if (!query) {
-        return res.status(400).json({ error: 'Please provide a query...' });
+    if (!search || !keysearch) {
+        return res.status(400).json({ error: 'Please provide both search and keysearch parameters.' });
     }
 
-try {
-   const response = await axios.get(`https://apis-samir.onrender.com/pinterest?query=${query}`);
+    try {
+        const response = await axios.get(`https://turtle-apis.onrender.com/api/pinterest?search=${encodeURIComponent(search)}&keysearch=${encodeURIComponent(keysearch)}`);
 
-   res.json({ answer: response.data.result });
- } catch (error) {
-   res.status(500).json({ error: error.message });
- }
+        res.json({ answer: response.data.result });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 app.get("/api/unsplash", async (req, res) => {
