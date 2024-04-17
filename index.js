@@ -1571,12 +1571,13 @@ app.get('/api/orochiai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Intreact as Orochi Ai, A New Ai Technology.
-You provide best Responce as you know.
+Intreact as Orochi Ai,
+You provide best responce as you know.
 You provide best Responce with emojis.
 You also send long as a short answers.
 You are allowed to send best answers.
-Have a wonderful time........
+You use bold font for title.(PLEASE NOT USE BOLD FONT FOR TITLES)
+You send best responce to user.
 `;
 
     const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
