@@ -20,7 +20,7 @@ app.get("/api/giphy", async (req, res) => {
     }
 
     try {
-        const response = await axios.get(`https://giphy-search-five.vercel.app/kshitiz?search=${encodeURIComponent(query)`);
+        const response = await axios.get(`https://giphy-search-five.vercel.app/kshitiz?search=${query}`);
 
         res.json({ answer: response.data.result });
     } catch (error) {
