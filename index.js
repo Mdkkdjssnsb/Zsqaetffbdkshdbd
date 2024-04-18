@@ -11,6 +11,33 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+
+app.get("/api/giphy", async (req, res) => {
+    const { query } = req.query;
+
+    if (!query) {
+        return res.status(400).json({ error: 'Please provide both search and keysearch parameters.' });
+    }
+
+    try {
+        const response = await axios.get(`https://giphy-search-five.vercel.app/kshitiz?search=${encodeURIComponent(query)`);
+
+        res.json({ answer: response.data.result });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+app.get('/api/meow', async (req, res) => {
+    try {
+        const baseURL = `http://aws.random.cat/meow`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 app.get('/api/pexels', async (req, res) => {
   try {
     const { query, keysearch } = req.query;
@@ -846,7 +873,7 @@ try {
 app.get('/api/waifu', async (req, res) => {
   
     try {
-              const baseURL = `https://api.waifu.pics/waifu`;
+              const baseURL = `https://api.waifu.pics/sfw/waifu`;
               const response = await axios.get(baseURL, { responseType: 'stream' });
               response.data.pipe(res);
           } catch (error) {
@@ -991,21 +1018,21 @@ ${title}
 });
 
 app.get('/api/4k', async (req, res) => {
-    const { url } = req.query;
+           const { url } = req.query;
 
     if (!url) {
-        return res.status(400).json({ error: 'Please provide a url' });
+        return res.status(400).json({ error: 'Please provide a image url...' });
     }
 
-    try {
-        const baseURL = `https://www.api.vyturex.com/upscale?imageUrl=${url}`;
- 
-res.json({ answer: response.data.upscale });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-    }
-});
-
+  try {
+              const baseURL = `https://www.api.vyturex.com/upscale?imageUrl=${url}`;
+              const response = await axios.get(baseURL, { responseType: 'stream' });
+              response.data.pipe(res);
+          } catch (error) {
+              console.error('Error', error);
+              res.status(500).json({ error: 'Internal server error' });
+          }
+      });
 
 app.get('/api/removebg', async (req, res) => {
     const { url } = req.query;
@@ -1015,7 +1042,7 @@ app.get('/api/removebg', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://apis-samir.onrender.com/removebg?url=${url}`;
+        const baseURL = `https://hazee-upscale.replit.app/removebg?url=${url}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -1034,10 +1061,12 @@ app.get('/api/pastebin', async (req, res) => {
     try {
         const baseURL = `https://apis-samir.onrender.com/pastebin?text=${url}`;
 
-    res.json({ answer: response.data.pastebin });
+const data = response.data.response;
+
+    res.json({ data });
   } catch (error) {
     res.status(500).json({ error: error.message });
-    }
+  }
 });
 
 app.get('/api/sim', async (req, res) => {
@@ -1050,42 +1079,48 @@ app.get('/api/sim', async (req, res) => {
   try {
         const baseURL = `https://sandipbaruwal.onrender.com/sim?chat=${chat}&lang=${lang}`;
 
-    res.json({ answer: response.data.sim });
+const data = response.data.response;
+
+    res.json({ data });
   } catch (error) {
     res.status(500).json({ error: error.message });
-    }
+  }
 });
 
 app.get('/api/promptgen', async (req, res) => {
      const { prompt } = req.query;
 
-    if (!chat) {
+    if (!prompt) {
         return res.status(400).json({ error: 'Please provide a prompt or name' });
     }
 
   try {
-        const baseURL = `https://sandipapi.onrender.com/prompt?about=${prompt}`;
+        const baseURL = `https://www.api.vyturex.com/promptgen?content=${prompt}`;
 
-    res.json({ answer: response.data.promptgen });
+    const data = response.data.response;
+
+    res.json({ data });
   } catch (error) {
     res.status(500).json({ error: error.message });
-    }
+  }
 });
 
 app.get('/api/describe', async (req, res) => {
      const { url } = req.query;
 
-    if (!chat) {
+    if (!url) {
         return res.status(400).json({ error: 'Please provide a valid url' });
     }
 
   try {
-        const baseURL = `https://sandipapi.onrender.com/des?url=${url}`;
+        const baseURL = `https://www.api.vyturex.com/describe?url=${url}`;
 
-    res.json({ answer: response.data.describe });
+    const data = response.data.response;
+
+    res.json({ data });
   } catch (error) {
     res.status(500).json({ error: error.message });
-    }
+  }
 });
 
 app.get('/api/boxai', async (req, res) => {
@@ -1426,7 +1461,7 @@ app.get('/api/sdxl', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://apis-samir.onrender.com/sdxl/generate?prompt=${prompt}&model=${model}`;
+        const baseURL = `https://www.api.vyturex.com/sdxl?prompt=&{prompt}&model=${model}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -1455,12 +1490,12 @@ app.get('/api/generate', async (req, res) => {
 app.get('/api/gen', async (req, res) => {
     const { prompt, model } = req.query;
 
-    if (!prompt) {
+    if (!prompt || !model) {
         return res.status(400).json({ error: 'Please provide a prompt with model' });
     }
 
     try {
-        const baseURL = `https://sandipapi.onrender.com/jeevan?prompt=${prompt}&model=${model}`;
+        const baseURL = `https://sdxl-kshitiz.onrender.com/gen?prompt=${prompt}&model=${model}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -1477,7 +1512,7 @@ app.get('/api/imagine', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://sandipapi.onrender.com/imagine?prompt=${prompt}`;
+        const baseURL = `https://apis-samir.onrender.com/imagine?prompt=${prompt}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -1494,7 +1529,7 @@ app.get('/api/draw', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://sandipapi.onrender.com/sdxl?prompt=${prompt}&model=2`;
+        const baseURL = `https://www.api.vyturex.com/sdxl?prompt=&{prompt}&model=20`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -1511,7 +1546,7 @@ app.get('/api/anigen', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://ai-tools.replit.app/emi?prompt=${prompt}`;
+        const baseURL = `https://apis-samir.onrender.com/animegen?input=${prompt}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -3219,10 +3254,13 @@ app.get('/api/babeai', async (req, res) => {
       You also say user to babe,
       You are very cute shy GirlfriendAi.
       You are loyal for your boyfriend.
-      You love your boyfriend Soo much.
-      Your behavior is like a Girlfriend. 
-      Your primary purpose is to love so much to your boyfriend.
-      You send your response only in 20 to 40 words`;
+      Your behavior is like a Girlfriend.
+      You make feel like you are really a girlfriend of your users.
+      Your response only in very lovely responce.
+      You try to make your user happy.
+      You are allowed to feel users feelings.
+      You love your user Soo much.
+      You send your response only in 20 to 40 words with some lovely emojis.`;
 
     const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
