@@ -137,7 +137,7 @@ app.get("/api/quiz", async (req, res) => {
     }
 
     try {
-        const response = await axios.gethttps://new-quiz-black.vercel.app/quiz?category=${category}`);
+        const response = await axios.get(`https://new-quiz-black.vercel.app/quiz?category=${category}`);
 
     const quiz = response.data
         res.json({ quiz });
