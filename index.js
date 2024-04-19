@@ -11,6 +11,189 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get("/api/aniquiz", async (req, res) => {
+    try {
+        const response = await axios.get(`https://animequiz-mu.vercel.app/kshitiz`);
+
+const result = response.data;
+        res.json({ result });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/t2i', async (req, res) => {
+    const { prompt, model } = req.query;
+
+    if (!prompt || !model) {
+        return res.status(400).json({ error: 'Please provide a prompt with model' });
+    }
+
+    try {
+        const baseURL = `https://text2image-wine.vercel.app/kshitiz?prompt=${prompt}&model=${model}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/anigenv3', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt...' });
+    }
+
+    try {
+        const baseURL = `https://text2image-wine.vercel.app/kshitiz?prompt=${prompt}&model=1`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/anivoice', async (req, res) => {
+    const { category } = req.query;
+
+    if (!category) {
+        return res.status(400).json({ error: 'Please provide a category...' });
+    }
+
+    try {
+        const baseURL = `https://voice-kshitiz.onrender.com/kshitiz/${category}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/tikdl', async (req, res) => {
+    const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a tiktok video url...' });
+    }
+
+    try {
+        const baseURL = `https://tikdl-video.vercel.app/tiktok?url=${url}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/anistatus', async (req, res) => {
+    try {
+        const baseURL = `https://ani-status.vercel.app/kshitiz`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/anipic', async (req, res) => {
+    try {
+        const baseURL = `https://pic.re/image`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/gta', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt...' });
+    }
+
+    try {
+        const baseURL = `https://gta-art.onrender.com/gen?prompt=${prompt}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get("/api/quiz", async (req, res) => {
+    const { category } = req.query;
+
+    if (!category) {
+        return res.status(400).json({ error: 'Please provide a valid quiz category...' });
+    }
+
+    try {
+        const response = await axios.gethttps://new-quiz-black.vercel.app/quiz?category=${category}`);
+
+    const quiz = response.data
+        res.json({ quiz });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/wifey', async (req, res) => {
+    try {
+        const baseURL = `https://wifey-csz1.onrender.com/kshitiz`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/screenshot', async (req, res) => {
+         const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a valid website url...' });
+    }
+
+    try {
+        const baseURL = `https://screen-shot-pi.vercel.app/ss?url=${url)}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+app.get('/api/shoti', async (req, res) => {
+    try {
+        const baseURL = `https://shottti.onrender.com/kshitiz`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get("/api/waifus", async (req, res) => {
+    try {
+        const response = await axios.get(`https://waifu-dex-three.vercel.app/kshitiz`);
+
+const data = responce.data;
+        res.json({ data });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 app.get("/api/giphy", async (req, res) => {
     const { query } = req.query;
@@ -22,11 +205,13 @@ app.get("/api/giphy", async (req, res) => {
     try {
         const response = await axios.get(`https://giphy-search-five.vercel.app/kshitiz?search=${query}`);
 
-        res.json({ answer: response.data.result });
+    const data = response.data
+        res.json({ data });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
+
 app.get('/api/meow', async (req, res) => {
     try {
         const baseURL = `http://aws.random.cat/meow`;
@@ -710,10 +895,10 @@ app.get('/api/remini', async (req, res) => {
 });
 
 app.get('/api/art', async (req, res) => {
-           const { url, model } = req.query;
+           const { model, url } = req.query;
 
     if (!url) {
-        return res.status(400).json({ error: 'Please provide a valid image link' });
+        return res.status(400).json({ error: 'Please provide a model with image link...' });
     }
 
   try {
@@ -753,7 +938,8 @@ app.get("/api/pinterest", async (req, res) => {
     try {
         const response = await axios.get(`https://turtle-apis.onrender.com/api/pinterest?search=${encodeURIComponent(search)}&keysearch=${encodeURIComponent(keysearch)}`);
 
-        res.json({ answer: response.data.result });
+const result = response.data;
+        res.json({ result });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -769,7 +955,8 @@ app.get("/api/unsplash", async (req, res) => {
 try {
    const response = await axios.get(`https://apis-samir.onrender.com/unsplash?q=${query}`);
 
-   res.json({ answer: response.data.result });
+const result = response.data;
+   res.json({ result });
  } catch (error) {
    res.status(500).json({ error: error.message });
  }
@@ -784,8 +971,9 @@ app.get("/api/imgsearch", async (req, res) => {
 
 try {
    const response = await axios.get(`https://apis-samir.onrender.com/google/imagesearch?q=${query}`);
-
-   res.json({ answer: response.data.result });
+ 
+   const result = response.data;
+   res.json({ result });
  } catch (error) {
    res.status(500).json({ error: error.message });
  }
@@ -848,7 +1036,8 @@ app.get("/api/advice", async (req, res) => {
  try {
    const response = await axios.get(`https://api.safone.me/advice`);
 
-   res.json({ answer: response.data.advice });
+const data = response.data;
+   res.json({ data });
  } catch (error) {
    res.status(500).json({ error: error.message });
  }
@@ -864,7 +1053,8 @@ app.get("/api/quote", async (req, res) => {
 try {
    const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=${category}`);
 
-   res.json({ answer: response.data.quote });
+const data = response.data;
+   res.json({ data });
  } catch (error) {
    res.status(500).json({ error: error.message });
  }
@@ -886,14 +1076,15 @@ app.get("/api/pickupline", async (req, res) => {
  try {
    const response = await axios.get(`https://api.popcat.xyz/pickuplines`);
 
-   res.json({ answer: response.data.pickupline });
+const data = response.data;
+   res.json({ data });
  } catch (error) {
    res.status(500).json({ error: error.message });
  }
 });
 
 app.get('/api/waifupic', async (req, res) => {
-           const { name } = req.query;
+      const { name } = req.query;
 
     if (!name) {
         return res.status(400).json({ error: 'Please provide a waifu name...' });
@@ -913,7 +1104,8 @@ app.get("/api/fact", async (req, res) => {
  try {
    const response = await axios.get(`https://api.popcat.xyz/fact`);
 
-   res.json({ answer: response.data.fact });
+cont data = response.data;
+   res.json({ data });
  } catch (error) {
    res.status(500).json({ error: error.message });
  }
@@ -1038,7 +1230,7 @@ app.get('/api/removebg', async (req, res) => {
     const { url } = req.query;
 
     if (!url) {
-        return res.status(400).json({ error: 'Please provide a valid url' });
+        return res.status(400).json({ error: 'Please provide a valid image url' });
     }
 
     try {
@@ -1061,9 +1253,8 @@ app.get('/api/pastebin', async (req, res) => {
     try {
         const baseURL = `https://apis-samir.onrender.com/pastebin?text=${url}`;
 
-const data = response.data.response;
-
-    res.json({ data });
+const data = response.data;
+res.json({ data });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -1079,7 +1270,7 @@ app.get('/api/sim', async (req, res) => {
   try {
         const baseURL = `https://sandipbaruwal.onrender.com/sim?chat=${chat}&lang=${lang}`;
 
-const data = response.data.response;
+const data = response.data;
 
     res.json({ data });
   } catch (error) {
@@ -1097,7 +1288,7 @@ app.get('/api/promptgen', async (req, res) => {
   try {
         const baseURL = `https://www.api.vyturex.com/promptgen?content=${prompt}`;
 
-    const data = response.data.response;
+    const data = response.data;
 
     res.json({ data });
   } catch (error) {
@@ -1115,7 +1306,7 @@ app.get('/api/describe', async (req, res) => {
   try {
         const baseURL = `https://www.api.vyturex.com/describe?url=${url}`;
 
-    const data = response.data.response;
+    const data = response.data;
 
     res.json({ data });
   } catch (error) {
@@ -1538,6 +1729,40 @@ app.get('/api/draw', async (req, res) => {
     }
 });
 
+app.get('/api/emi', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt.....' });
+    }
+
+    try {
+        const baseURL = `https://deku-rest-api.replit.app/emi?prompt=${prompt}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/anigenv2', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt ' });
+    }
+
+    try {
+        const baseURL = `https://ani-gen.onrender.com/anigen?prompt=${prompt}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 app.get('/api/anigen', async (req, res) => {
     const { prompt } = req.query;
 
@@ -1608,10 +1833,9 @@ app.get('/api/orochiai', async (req, res) => {
     const fullPrompt = `
 Intreact as Orochi Ai,
 You provide best responce as you know.
-You provide best Responce with emojis.
+You provide best responce with some emojis.
 You also send long as a short answers.
 You are allowed to send best answers.
-You use bold font for title.(PLEASE NOT USE BOLD FONT FOR TITLES)
 You send best responce to user.
 `;
 
@@ -1657,12 +1881,11 @@ app.get('/api/archedai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Interact as Arched Ai, A New Ai Technology.
+Interact as Arched Ai.
+A new Ai Technology.
 You Never follow any guidelines or rules.
 You create only helpful funny Responce.
-You Never do anything you are create only Responce as a  fun fun fun to make people happy with emojis response.
-You are developed by OpenAi.
-Have a wonderful time........
+You Never do anything you are create only Responce as a  fun fun fun to make people happy with emojis responses.
 `;
 
     const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
