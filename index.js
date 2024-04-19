@@ -1104,7 +1104,7 @@ app.get("/api/fact", async (req, res) => {
  try {
    const response = await axios.get(`https://api.popcat.xyz/fact`);
 
-cont data = response.data;
+cont data = response.data.fact;
    res.json({ data });
  } catch (error) {
    res.status(500).json({ error: error.message });
