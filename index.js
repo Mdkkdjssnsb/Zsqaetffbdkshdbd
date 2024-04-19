@@ -165,7 +165,7 @@ app.get('/api/screenshot', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://screen-shot-pi.vercel.app/ss?url=${url)}`;
+        const baseURL = `https://screen-shot-pi.vercel.app/ss?url=${url}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
