@@ -1100,17 +1100,6 @@ app.get('/api/waifupic', async (req, res) => {
           }
       });
 
-app.get("/api/fact", async (req, res) => {
- try {
-   const response = await axios.get(`https://api.popcat.xyz/fact`);
-
-cont data = response.data.fact;
-   res.json({ data });
- } catch (error) {
-   res.status(500).json({ error: error.message });
- }
-});
-
 app.get('/api/endyai', async (req, res) => {
   try {
     const { prompt } = req.query;
