@@ -11,6 +11,23 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/gpt', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompts.....' });
+    }
+
+    try {
+        const baseURL = `https://fuck-you-man.onrender.com/gpt?prompt=${prompt}`;
+        
+const answer = response.data;
+        res.json({ answer });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.get('/api/dalle3', async (req, res) => {
     const { _U, KievRPSSecAuth, prompt } = req.query;
 
@@ -1624,7 +1641,7 @@ app.get('/api/nsfw', async (req, res) => {
 
 app.get('/api/customai', async (req, res) => {
   try {
-    const { title, custom, prompt } = req.query;
+    const { title, fullPrompt, prompt } = req.query;
     const customTitle = title || "🤖 𝗖𝗼𝘀𝘁𝗼𝗺 𝗔𝗜"; // Fixed variable name and default title
 
     // Add current time and date
