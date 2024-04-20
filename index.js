@@ -11,6 +11,34 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/tempmail/get', async (req, res) => {
+    try {
+        const baseURL = `https://apis-samir.onrender.com/tempmail/get`;
+        
+const response = response.data;
+        res.json({ response });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/tempmail/inbox', async (req, res) => {
+    const { email } = req.query;
+
+    if (!email) {
+        return res.status(400).json({ error: 'Please provide a valid tempmail.....' });
+    }
+
+    try {
+        const baseURL = `https://apis-samir.onrender.com/tempmail/inbox/${email}`;
+        
+const response = response.data;
+        res.json({ response });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.get('/api/gpt', async (req, res) => {
     const { prompt } = req.query;
 
@@ -1410,7 +1438,7 @@ app.get('/api/linerai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = ``;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/linerai?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://apis-samir.onrender.com/liner?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1492,7 +1520,7 @@ app.get('/api/gemini', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = ``;
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gemini?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://apis-samir.onrender.com/Gemini?text=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1650,7 +1678,7 @@ app.get('/api/customai', async (req, res) => {
     const dateTimePrompt = `Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
 
     // Enhanced prompt
-    const fullPrompt = `${costom}${prompt}`;
+    const fullPrompt = `${pro}${prompt}`;
 
     const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(customTitle + fullPrompt + prompt)}`);
 
