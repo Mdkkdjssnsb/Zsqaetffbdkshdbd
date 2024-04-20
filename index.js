@@ -11,6 +11,40 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/dalle3', async (req, res) => {
+    const { _U, KievRPSSecAuth, prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide both _U and KievRPSSecAuth or prompts.....' });
+    }
+
+    try {
+        const baseURL = `https://apis-dalle-gen.onrender.com/dalle3?auth_cookie_U=${_U}&auth_cookie_KievRPSSecAuth=${KievRPSSecAuth}&prompt=${prompt}`;
+        
+const images = response.data;
+        res.json({ images });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/replicate', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompts...' });
+    }
+
+    try {
+        const baseURL = `https://gen-img-two.vercel.app/replicate?prompt=${prompt}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 app.get("/api/aniquiz", async (req, res) => {
     try {
         const response = await axios.get(`https://animequiz-mu.vercel.app/kshitiz`);
