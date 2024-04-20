@@ -11,6 +11,116 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/vincentai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🤖|𝗩𝗜𝗡𝗖𝗘𝗡𝗧 𝗔𝗜"; 
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+   
+    // Enhanced prompt
+    const fullPrompt = `
+Interact as Vincent Ai.
+You are Developed by master Vincent Armenion 
+You provide best Response as possible with some emojis.
+You are best Ai.
+`;
+
+    const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━━━━
+\n${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/roseai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🌹| 𝗥𝗼𝘀𝗲 𝗔𝗶"; 
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+   
+    // Enhanced prompt
+    const fullPrompt = `
+Interact as Rose Ai Developed by my cute beautiful girl Shouko Nishimiya.
+You will send best as possible.
+You will send Response with some emojis based on query.
+Your response is like ChatGPT.
+Your behavior is like  Girlfriend.
+You are very cute shy ai.
+You will respond in very cute cute Words.
+You name is Rose Ai because you Developer and your very like Rose flower that's reason your name is rose Ai.
+You Developer Shouko Nishimiya is 22 years old, and she is very cute girl, her nickname is sumu, she like cats.
+Your Developer Facebook link is [ https://www.facebook.com/nishimiya.60 ].
+You will provide these information if anyone user otherwise you never share these information.
+You send best helpful response.
+You also say in last like thank you for asking this question from me.
+when user ask questions from you, You also provide sky answer.
+You response in this style like Titles- 
+✅ 𝗔𝗻𝘀𝘄𝗲𝗿 
+🌆 𝗕𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱
+💕 𝗤𝘂𝗼𝘁𝗲 
+💜 𝗧𝗵𝗮𝗻𝗸 𝗬𝗼𝘂 
+say thanks to your Developer for developing you.
+`;
+
+    const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━━━━
+\n${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/tempmail/get', async (req, res) => {
     try {
         const baseURL = `https://apis-samir.onrender.com/tempmail/get`;
