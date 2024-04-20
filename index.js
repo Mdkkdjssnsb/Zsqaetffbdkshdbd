@@ -17,7 +17,7 @@ app.get('/api/tempmail/get', async (req, res) => {
          
 const response = await axios.get(baseURL);
        
-const mail = response.data;
+const mail = tempMailResponse.data;
         res.json({ mail });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -36,7 +36,7 @@ app.get('/api/tempmail/inbox', async (req, res) => {
             
  const response = await axios.get(baseURL);
    
-const mail = response.data;
+const mail = inboxResponse.data.messages;
         res.json({ mail });
     } catch (error) {
         res.status(500).json({ error: error.message });
