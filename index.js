@@ -14,7 +14,9 @@ const requestTimestamps = [];
 app.get('/api/tempmail/get', async (req, res) => {
     try {
         const baseURL = `https://apis-samir.onrender.com/tempmail/get`;
-        
+         
+const response = await axios.get(baseURL);
+       
 const response = response.data;
         res.json({ response });
     } catch (error) {
@@ -31,7 +33,9 @@ app.get('/api/tempmail/inbox', async (req, res) => {
 
     try {
         const baseURL = `https://apis-samir.onrender.com/tempmail/inbox/${email}`;
-        
+            
+ const response = await axios.get(baseURL);
+   
 const response = response.data;
         res.json({ response });
     } catch (error) {
@@ -48,7 +52,9 @@ app.get('/api/gpt', async (req, res) => {
 
     try {
         const baseURL = `https://fuck-you-man.onrender.com/gpt?prompt=${prompt}`;
-        
+      
+const response = await axios.get(baseURL);
+
 const answer = response.data;
         res.json({ answer });
     } catch (error) {
@@ -65,7 +71,9 @@ app.get('/api/dalle3', async (req, res) => {
 
     try {
         const baseURL = `https://apis-dalle-gen.onrender.com/dalle3?auth_cookie_U=${_U}&auth_cookie_KievRPSSecAuth=${KievRPSSecAuth}&prompt=${prompt}`;
-        
+           
+ const response = await axios.get(baseURL);
+   
 const images = response.data;
         res.json({ images });
     } catch (error) {
@@ -1320,6 +1328,8 @@ app.get('/api/pastebin', async (req, res) => {
 
     try {
         const baseURL = `https://apis-samir.onrender.com/pastebin?text=${url}`;
+        
+const response = await axios.get(baseURL);
 
 const data = response.data;
 res.json({ data });
@@ -1337,6 +1347,8 @@ app.get('/api/sim', async (req, res) => {
 
   try {
         const baseURL = `https://sandipbaruwal.onrender.com/sim?chat=${chat}&lang=${lang}`;
+        
+const response = await axios.get(baseURL);
 
 const data = response.data;
 
@@ -1356,6 +1368,8 @@ app.get('/api/promptgen', async (req, res) => {
   try {
         const baseURL = `https://www.api.vyturex.com/promptgen?content=${prompt}`;
 
+ const response = await axios.get(baseURL);
+
     const data = response.data;
 
     res.json({ data });
@@ -1373,6 +1387,8 @@ app.get('/api/describe', async (req, res) => {
 
   try {
         const baseURL = `https://www.api.vyturex.com/describe?url=${url}`;
+        
+const response = await axios.get(baseURL);
 
     const data = response.data;
 
