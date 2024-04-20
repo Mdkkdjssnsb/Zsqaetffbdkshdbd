@@ -1669,7 +1669,7 @@ app.get('/api/nsfw', async (req, res) => {
 
 app.get('/api/customai', async (req, res) => {
   try {
-    const { title, fullPrompt, prompt } = req.query;
+    const { title, pro, prompt } = req.query;
     const customTitle = title || "🤖 𝗖𝗼𝘀𝘁𝗼𝗺 𝗔𝗜"; // Fixed variable name and default title
 
     // Add current time and date
