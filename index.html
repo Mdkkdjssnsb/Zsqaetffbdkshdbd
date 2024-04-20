@@ -274,16 +274,17 @@
 
 <!-- custom api form -->
 <form class="api-form" action="/api/customai" method="get">
-  <label for="costomTitle">𝗔𝗜 𝗧𝗜𝗧𝗟𝗘</label>
-  <input type="text" id="title" name="title" required>
 
-  <label for="fullPrompt">𝗖𝗢𝗦𝗧𝗢𝗠 𝗣𝗥𝗢𝗠𝗣𝗧</label>
-  <input type="text" id="pro" name="custom" required>
+<label for="customtitle">𝗔𝗜 𝗡𝗔𝗠𝗘</label>
+  <input type="text" id="customtitle" name="title" required>
 
-<label for="fullPrompt">𝗤𝗨𝗘𝗥𝗬</label>
-  <input type="text" id="prompt" name="prompt">
+  <label for="pro">𝗖𝗢𝗦𝗧𝗢𝗠 𝗣𝗥𝗢𝗠𝗣𝗧𝗦</label>
+  <input type="text" id="pro" name="prompt" required>
 
-<button type="submit">submit</button>
+  <label for="prompt">𝗣𝗥𝗢𝗠𝗣𝗧</label>
+  <input type="text" id="prompt" name="prompt" required>
+
+  <button type="submit">submit</button>
 </form>
 
 <div class="cool-feature">
@@ -613,7 +614,13 @@
 
     <ul class="api-list">
     <h1>OTHER APIs</h1>
-    
+  
+   <li class="api-list-item">
+      <a href="/api/tempmail/get">Tempmail Get</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/tempmail/inbox?email=example@gmail.com">Tempmail Inbox</a></li> 
+
  <li class="api-list-item">
       <a href="/api/quiz?category=math">Quiz API</a></li> 
  
