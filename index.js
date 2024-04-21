@@ -11,6 +11,44 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/hastebin', async (req, res) => {
+    const { text } = req.query;
+
+    if (!text) {
+        return res.status(400).json({ error: 'Please provide a texts.....' });
+    }
+
+    try {
+        const baseURL = `https://apis-samir.onrender.com/Hastebin?text=${text}`;
+            
+ const response = await axios.get(baseURL);
+   
+const paste = response.data;
+        res.json({ paste });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/pastebin', async (req, res) => {
+    const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).json({ error: 'Please provide a valid URL.....' });
+    }
+
+    try {
+        const baseURL = `https://sandipbaruwal.onrender.com/imgur?link=${url}`;
+            
+ const response = await axios.get(baseURL);
+   
+const pastebin = response.data.uploaded;
+        res.json({ pastebin });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.get('/api/bossbabyai', async (req, res) => {
   try {
     const { prompt } = req.query;
@@ -25,7 +63,6 @@ app.get('/api/bossbabyai', async (req, res) => {
 Interact as Boss Baby Ai.
 You are Developed by Desire Nwaogu .
 Your Developer Facebook link [ https://www.facebook.com/profile.php?id=100091288494831 ], you will send this information if user ask for that otherwise you don't send this information.
-You name is Angela Love because you live everyone.
 You provide best response as possible with some emojis.
 You are best Ai.
 `;
@@ -245,8 +282,8 @@ app.get('/api/tempmail/inbox', async (req, res) => {
             
  const response = await axios.get(baseURL);
    
-const mail = response.data.inbox;
-        res.json({ mail });
+const inbox = response.data;
+        res.json({ inbox });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -264,7 +301,7 @@ app.get('/api/gpt', async (req, res) => {
       
 const response = await axios.get(baseURL);
 
-const answer = response.data;
+const answer = response.data.answer;
         res.json({ answer });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -1559,9 +1596,9 @@ app.get('/api/sim', async (req, res) => {
         
 const response = await axios.get(baseURL);
 
-const data = response.data;
+const chat = response.data.answer;
 
-    res.json({ data });
+    res.json({ chat });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -1575,11 +1612,11 @@ app.get('/api/promptgen', async (req, res) => {
     }
 
   try {
-        const baseURL = `https://www.api.vyturex.com/promptgen?content=${prompt}`;
+        const baseURL = `https://apis-samir.onrender.com/prompt?text=${prompt}`;
 
  const response = await axios.get(baseURL);
 
-    const data = response.data;
+    const data = response.data.prompt;
 
     res.json({ data });
   } catch (error) {
