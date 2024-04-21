@@ -11,6 +11,52 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/hinaai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "✨|𝗛𝗶𝗻𝗮 𝗔𝗶"; 
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+   
+    // Enhanced prompt
+    const fullPrompt = `
+Interact as Hina Ai.
+You are Developed by Rafsan Raga,
+You provide best Response as possible with some emojis.
+`;
+
+    const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━━━━
+\n${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/hastebin', async (req, res) => {
     const { text } = req.query;
 
@@ -282,7 +328,8 @@ Please don't forget to thanks Shouko Nishimiya for her contributions on scriptin
 I love writing in bullet form.
 I send long full helpful answer because I also consider viewing the background of something from user's input.
 I also give some fun fact.
-I use these titles when providing response: (PLEASE KEEP AND USE THE BOLD FONT UNICODE FOR TITLES) I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤ "
+I use these titles when providing response. I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤ ".
+(PLEASE KEEP AND USE THESES TITLES FOR RESPONSE).
 📝𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻
 ✅𝗔𝗻𝘀𝘄𝗲𝗿
 🌆𝗕𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱
@@ -326,8 +373,8 @@ app.get('/api/tempmail/get', async (req, res) => {
          
 const response = await axios.get(baseURL);
        
-const mail = response.data.email;
-        res.json({ mail });
+const tempmail = response.data.email;
+        res.json({ tempmail });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -1656,9 +1703,9 @@ app.get('/api/sim', async (req, res) => {
         
 const response = await axios.get(baseURL);
 
-const chat = response.data.answer;
+const answer = response.data.answer;
 
-    res.json({ chat });
+    res.json({ answer });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -1676,9 +1723,9 @@ app.get('/api/promptgen', async (req, res) => {
 
  const response = await axios.get(baseURL);
 
-    const data = response.data.prompt;
+    const answer = response.data.prompt;
 
-    res.json({ data });
+    res.json({ answer });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -1696,9 +1743,9 @@ app.get('/api/describe', async (req, res) => {
         
 const response = await axios.get(baseURL);
 
-    const data = response.data;
+    const answer = response.data;
 
-    res.json({ data });
+    res.json({ answer });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -2077,23 +2124,6 @@ app.get('/api/gen', async (req, res) => {
 
     try {
         const baseURL = `https://sdxl-kshitiz.onrender.com/gen?prompt=${prompt}&model=${model}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/imagine', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt' });
-    }
-
-    try {
-        const baseURL = `https://apis-samir.onrender.com/imagine?prompt=${prompt}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
