@@ -344,7 +344,7 @@ app.get('/api/tempmail/inbox', async (req, res) => {
         const baseURL = `https://apis-samir.onrender.com/tempmail/inbox/${email}`;
         const response = await axios.get(baseURL);
         
-        const inbox = response.data.map(({ form, subject, body, date }) => ({ form, subject, body, date }));
+        const inbox = response.data.map(({ mail, form, subject, body, date }) => ({ form, subject, body, date }));
         
         res.json({ inbox });
     } catch (error) {
