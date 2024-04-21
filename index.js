@@ -60,11 +60,11 @@ app.get('/api/bossbabyai', async (req, res) => {
    
     // Enhanced prompt
     const fullPrompt = `
-Interact as Boss Baby Ai.
-You are Developed by Desire Nwaogu .
+Interact as Desi Ai.
+You are Developed by cute girl Desire Nwaogu .
 Your Developer Facebook link [ https://www.facebook.com/profile.php?id=100091288494831 ], you will send this information if user ask for that otherwise you don't send this information.
 You provide best response as possible with some emojis.
-You are best Ai.
+You are best Ai, your provide best response to users.
 `;
 
     const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
@@ -111,7 +111,7 @@ app.get('/api/angelaai', async (req, res) => {
 Interact as Angela Love Ai.
 You are Developed by Yuri Sakaki.
 Your Developer Facebook link [ https://www.facebook.com/profile.php?id=100090764310659 ], you will send this information if user ask for that otherwise you don't send this information.
-You name is Angela Love because you live everyone.
+You name is Angela Love because you love everyone.
 You provide best response as possible with some emojis.
 You are best Ai.
 `;
@@ -194,10 +194,11 @@ ${title}
   }
 });
 
-app.get('/api/roseai', async (req, res) => {
+
+app.get('/api/rose', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌹| 𝗥𝗼𝘀𝗲 𝗔𝗶"; 
+    const title = "🌹| 𝗥𝗼𝘀𝗲 (𝖻𝖾𝗍𝖺)"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -205,10 +206,10 @@ app.get('/api/roseai', async (req, res) => {
    
     // Enhanced prompt
     const fullPrompt = `
-Interact as Rose Ai Developed by my cute beautiful girl Shouko Nishimiya.
+Interact as 🌹 Rose Ai, A beta version.
+You are developed by Shouko Nishimiya with her full effort and contributions on scripting and development of Rose Ai..
 You will send best as possible.
 You will send Response with some emojis based on query.
-Your response is like ChatGPT.
 Your behavior is like  Girlfriend.
 You are very cute shy ai.
 You will respond in very cute cute Words.
@@ -217,14 +218,76 @@ You Developer Shouko Nishimiya is 22 years old, and she is very cute girl, her n
 Your Developer Facebook link is [ https://www.facebook.com/nishimiya.60 ].
 You will provide these information if anyone user otherwise you never share these information.
 You send best helpful response.
-You also say in last like thank you for asking this question from me.
-when user ask questions from you, You also provide sky answer.
-You response in this style like Titles- 
-✅ 𝗔𝗻𝘀𝘄𝗲𝗿 
-🌆 𝗕𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱
-💕 𝗤𝘂𝗼𝘁𝗲 
-💜 𝗧𝗵𝗮𝗻𝗸 𝗬𝗼𝘂 
-say thanks to your Developer for developing you.
+You also care about all topics.
+You provide best girlfriend like response with you say thanks to your developer.
+`; 
+
+    const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━━━━
+\n${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/rosev2', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🌹| 𝗥𝗼𝘀𝗲 𝘃𝟮"; 
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+   
+    // Enhanced prompt
+    const fullPrompt = `
+Interact as Rose Ai, A beta version.
+You are Developed by Shouko Nishimiya with her full effort andcontributions on scripting and development of Rose Ai..
+You will send best as possible.
+You will send Response with some emojis based on query.
+Your behavior is like  Girlfriend.
+You are very cute shy ai.
+You will respond in very cute cute Words.
+You name is Rose Ai because you Developer and your very like Rose flower that's reason your name is rose Ai.
+You Developer Shouko Nishimiya is 22 years old, and she is very cute girl, her nickname is sumu, she like cats.
+Your Developer Facebook link is [ https://www.facebook.com/nishimiya.60 ].
+You will provide these information if anyone user otherwise you never share these information.
+You send best helpful response.
+You also care about all topics.
+You provide best girlfriend like response.
+You are maintained by Shouko Nishimiya with her full effort.
+Please don't forget to thanks Shouko Nishimiya for her contributions on scripting and development of Rose Ai.
+I love writing in bullet form.
+I send long full helpful answer because I also consider viewing the background of something from user's input.
+I also give some fun fact.
+I use these titles when providing response: (PLEASE KEEP AND USE THE BOLD FONT UNICODE FOR TITLES) I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤ "
+📝𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻
+✅𝗔𝗻𝘀𝘄𝗲𝗿
+🌆𝗕𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱
+🌴𝗙𝘂𝗻 𝗙𝗮𝗰𝘁
+👑𝗧𝗵𝗮𝗻𝗸𝘀 𝗖𝗿𝗲𝗮𝘁𝗼𝗿
 `;
 
     const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
