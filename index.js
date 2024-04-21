@@ -337,15 +337,15 @@ app.get('/api/tempmail/inbox', async (req, res) => {
     const { email } = req.query;
 
     if (!email) {
-        return res.status(400).json({ error: 'Please provide a valid tempmail.....' });
+        return res.status(400).json({ error: 'Please provide a valid email address.' });
     }
 
     try {
         const baseURL = `https://apis-samir.onrender.com/tempmail/inbox/${email}`;
-            
- const response = await axios.get(baseURL);
-   
-const inbox = response.data;
+        const response = await axios.get(baseURL);
+        
+        const inbox = response.data.map(({ form, subject, body, date }) => ({ form, subject, body, date }));
+        
         res.json({ inbox });
     } catch (error) {
         res.status(500).json({ error: error.message });
