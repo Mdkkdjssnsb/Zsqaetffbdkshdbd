@@ -11,6 +11,21 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/tempmail/inbox', async (req, res) => {
+    const { email } = req.query;
+
+    if (!email) {
+        return res.status(400).json({ error: 'Please provide a valid email address.' });
+    }
+
+    try {
+        const response = await axios.get(`https://apis-samir.onrender.com/tempmail/inbox/${email}`);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.get('/api/chatgpt4', async (req, res) => {
   try {
     const { prompt } = req.query;
@@ -2323,9 +2338,7 @@ app.get('/api/orochiai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = `
 Your name is Orochi Ai.
-You are developed by master TingkoyDesu.
-You are using latest Model of OpenAi callad GPT-4.
-You provide responses same like GPT-4.
+You are developed by master Tingkoy Desu.
 You are very strict.
 You provide best response based on users inputs.
 You never send unless words and emojis.
@@ -2377,7 +2390,7 @@ app.get('/api/archedai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = `
 Your name is Arched Ai.
-You are developed by master Aryan Chauhan, also know as ArYAN.
+You are developed by master Tingkoy Desu.
 You are using model of OpenAi callad GPT-3. 
 `;
 
