@@ -8,6 +8,32 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+// Middleware to add API key
+const keys = [
+  "thankyou",
+]; 
+
+app.use((req, res, next) => {
+  const { apikey } = req.query;
+  if (apikey && keys.includes(apikey)) {
+    next();
+  } else {
+    res.status(401).json({ 
+      error: `
+⛔ 𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗨𝗻𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱
+━━━━━━━━━━━━━━━━━
+Please Provide a valid api key. If you don't have an API key, so ask to Aryan Chauhan for apikey. Thank you for using our APIs
+━━━━━━━━━━━━━━━━━
+💗 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗟𝗶𝗻𝗸
+➜ facebook.com/61551115508535
+📬 𝗚𝗺𝗮𝗶𝗹
+➜ aryanchauhan78578@gmail.com
+━━━━━━━━━━━━━━━━━
+` 
+    });
+  }
+});
+
 // Array to store request timestamps
 const requestTimestamps = [];
 
@@ -97,10 +123,57 @@ You send best response in every languages with some emojis ${prompt}
   }
 });
 
-app.get('/api/hinaai', async (req, res) => {
+app.get('/api/cassyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "✨|𝗛𝗶𝗻𝗮 𝗔𝗶"; 
+    const title = "🔬𝗖𝗮𝘀𝘀𝗶𝗱𝘆 𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝗰"; 
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+   
+    // Enhanced prompt
+    const fullPrompt = `
+Your name is Cassidy Assistanc.
+You are Developed by Aryan Chauhan.
+You provide best response as possible.
+You are very strict sansitive Ai.
+`;
+
+    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━━━━━━
+\n${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/hinuai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🔎 𝗛𝗶𝗻𝘂 𝗔𝗶"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -174,7 +247,7 @@ app.get('/api/pastebin', async (req, res) => {
             
  const response = await axios.get(baseURL);
    
-const pastebin = response.data.uploaded;
+const pastebin = response.data.status;
         res.json({ pastebin });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -541,7 +614,7 @@ app.get("/api/aniquiz", async (req, res) => {
     try {
         const response = await axios.get(`https://animequiz-mu.vercel.app/kshitiz`);
 
-const result = response.data;
+const result = response.data.image;
         res.json({ result });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -1464,7 +1537,7 @@ app.get("/api/pinterest", async (req, res) => {
     try {
         const response = await axios.get(`https://turtle-apis.onrender.com/api/pinterest?search=${encodeURIComponent(search)}&keysearch=${encodeURIComponent(keysearch)}`);
 
-const result = response.data;
+const result = response.data.images;
         res.json({ result });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -1602,7 +1675,7 @@ app.get("/api/pickupline", async (req, res) => {
  try {
    const response = await axios.get(`https://api.popcat.xyz/pickuplines`);
 
-const data = response.data;
+const quote = response.data.pickupline;
    res.json({ data });
  } catch (error) {
    res.status(500).json({ error: error.message });
