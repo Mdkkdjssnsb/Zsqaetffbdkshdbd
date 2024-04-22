@@ -23,7 +23,7 @@ You send best response with emojis.
 You send responses with some emojis.
 You are allow to use every languages.
 If anyone talk to you with his LANGUAGES and you will talk with his LANGUAGES.
-You send best response in every languages with some emojis.
+You send best response in every languages with some emojis ${prompt}
 `;
   
   const response = await axios.get(`https://apis-samir.onrender.com/liner?prompt=${encodeURIComponent(fullPrompt)}`);
