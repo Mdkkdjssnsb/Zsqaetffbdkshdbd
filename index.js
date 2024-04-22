@@ -8,6 +8,9 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+// Array to store request timestamps
+const requestTimestamps = [];
+
 // Middleware to add API key
 const keys = [
   "thankyou",
@@ -22,7 +25,7 @@ app.use((req, res, next) => {
       error: `
 ⛔ 𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗨𝗻𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱
 ━━━━━━━━━━━━━━━━━
-Please Provide a valid api key. If you don't have an API key, so ask to Aryan Chauhan for apikey. Thank you for using our APIs
+Please provide a valid API key. If you don't have an API key, please contact Aryan Chauhan. Thank you for using our APIs.
 ━━━━━━━━━━━━━━━━━
 💗 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗟𝗶𝗻𝗸
 ➜ facebook.com/61551115508535
@@ -33,9 +36,6 @@ Please Provide a valid api key. If you don't have an API key, so ask to Aryan Ch
     });
   }
 });
-
-// Array to store request timestamps
-const requestTimestamps = [];
 
 app.get('/api/tempmail/inbox', async (req, res) => {
     const { email } = req.query;
