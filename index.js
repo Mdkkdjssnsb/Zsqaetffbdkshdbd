@@ -43,7 +43,7 @@ You are using latest version of OpenAi called GPT4.
 You provide best response as possible with some emojis.
 `;
 
-    const response = await axios.get(`https://arysprak.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
