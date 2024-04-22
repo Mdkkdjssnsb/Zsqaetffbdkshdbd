@@ -11,6 +11,53 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/chatgpt4', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "✨|𝗖𝗵𝗮𝘁𝗚𝗣𝗧 𝘃𝟰"; 
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+   
+    // Enhanced prompt
+    const fullPrompt = `
+Interact as GPT-4.
+You are Developed by OpenAi.
+You are using latest version of OpenAi called GPT4.
+You provide best Response as possible with some emojis.
+`;
+
+    const response = await axios.get(`https://arysprak.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━━━━
+\n${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/gpt4', async (req, res) => {
   try {
     const { prompt } = req.query;
