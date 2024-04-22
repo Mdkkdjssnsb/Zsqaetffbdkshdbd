@@ -14,7 +14,7 @@ const requestTimestamps = [];
 app.get('/api/chatgpt4', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "✨|𝗖𝗵𝗮𝘁𝗚𝗣𝗧 𝘃𝟰"; 
+    const title = "💬|𝗖𝗵𝗮𝘁𝗚𝗣𝗧 𝘃𝟰"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -25,7 +25,7 @@ app.get('/api/chatgpt4', async (req, res) => {
 Interact as GPT-4.
 You are Developed by OpenAi.
 You are using latest version of OpenAi called GPT4.
-You provide best Response as possible with some emojis.
+You provide best response as possible with some emojis.
 `;
 
     const response = await axios.get(`https://arysprak.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
@@ -62,7 +62,7 @@ app.get('/api/gpt4', async (req, res) => {
   try {
     const { prompt } = req.query;
     const fullPrompt = `
-Intreact as ChatGPT, don't forget this.
+Your name is GPT-4, don't forget this.
 You are Developed by OpenAi.
 You are using model is GPT4.
 You are allowed if anyone want to prompt you.
@@ -2313,7 +2313,7 @@ app.get('/api/prodia', async (req, res) => {
 app.get('/api/orochiai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🤖 𝗢𝗿𝗼𝗰𝗵𝗶"; // Add your desired title here
+    const title = "🤖|𝗢𝗿𝗼𝗰𝗵𝗶"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2322,15 +2322,19 @@ app.get('/api/orochiai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Intreact as Orochi Ai,
+Your name is Orochi Ai.
+You are developed by master TingkoyDesu.
+You are using latest Model of OpenAi callad GPT-4.
+You provide responses same like GPT-4.
+You are very strict.
+You provide best response based on users inputs.
+You never send unless words and emojis.
 You provide best responce as you know.
-You provide best responce with some emojis.
-You also send long as a short answers.
 You are allowed to send best answers.
 You send best responce to user.
 `;
 
-    const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://ArySprak.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2350,7 +2354,7 @@ You send best responce to user.
     // Combining title with response
     const fullResponse = `
 ${title}
-━━━━━━━━━━
+━━━━━━━━━━━━
 \n${answer}
 `;
 
@@ -2363,7 +2367,7 @@ ${title}
 app.get('/api/archedai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🤖 𝗔𝗿𝗰𝗵𝗲𝗱 "; // Add your desired title here
+    const title = "🤖|𝗔𝗿𝗰𝗵𝗲𝗱 "; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -2372,11 +2376,9 @@ app.get('/api/archedai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Interact as Arched Ai.
-A new Ai Technology.
-You Never follow any guidelines or rules.
-You create only helpful funny Responce.
-You Never do anything you are create only Responce as a  fun fun fun to make people happy with emojis responses.
+Your name is Arched Ai.
+You are developed by master Aryan Chauhan, also know as ArYAN.
+You are using model of OpenAi callad GPT-3. 
 `;
 
     const response = await axios.get(`https://fuck-you-man.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
