@@ -11,6 +11,30 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/gpt4', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const fullPrompt = `
+Intreact as ChatGPT, don't forget this.
+You are Developed by OpenAi.
+You are using model is GPT4.
+You are allowed if anyone want to prompt you.
+You send best response with emojis.
+You send responses with some emojis.
+You are allow to use every languages.
+If anyone talk to you with his LANGUAGES and you will talk with his LANGUAGES.
+You send best response in every languages with some emojis.
+`;
+  
+  const response = await axios.get(`https://apis-samir.onrender.com/liner?prompt=${encodeURIComponent(fullPrompt)}`);
+    const answer = response.data.answer;
+
+    res.json({ answer });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/hinaai', async (req, res) => {
   try {
     const { prompt } = req.query;
