@@ -11,6 +11,233 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/anigen', async (req, res) => {
+    const { prompt } = req.query;
+
+    // Additional prompts for generating HD, realistic images
+    const additionalPrompts = [
+        'Make full realistic images like Midjourny or Bing based on anime style.',
+        'You will make only anime based images',
+        'You make images based only in anime style you never create images on other styles',
+        'Make full realistic images Best on anime style.',
+        'Make full realistic images with natural feels based on anime style.',
+        'You can make full realistic images based on anime style only',
+        'You make full realistic images based on anime style..',
+        'You are allowed to make full realistic images like Midjourny based on anime style',
+        'You make full realistic natural types of images based on anime Style.',
+        'You make the best images based on user inputs based on anime style.',
+        'You create images similar to Midjourny based on anime style.',
+        'You create high-quality images like Midjourny or Bing based on anime style only.',
+        'You will produce fully realistic images based on anime style',
+        'You will generate images in 4k resolution.',
+        'Generate images in 4k resolution.',
+        'Produce images in HD quality.',
+        'Upscale the images for better quality.',
+        'Enhance images to 4k resolution.',
+        'Enhance images to 4k resolution.',
+        'Create anime-style images with vivid and expressive characters.',
+        'Generate images of anime-style environments with intricate details.',
+        'Produce images of anime-style characters in various emotional states.',
+        'Create anime-style illustrations with dynamic lighting and shadows.',
+        'Generate images of anime-style fashion and clothing designs.',
+        'Produce images of anime-style vehicles and machinery.',
+        'Create anime-style images with a focus on futuristic technology.',
+        'Generate images of anime-style creatures and mythical beings.',
+        'Produce images of anime-style architecture and buildings.',
+        'Create anime-style images inspired by traditional Japanese art forms.',
+        'Generate images of anime-style characters engaging in epic battles.',
+        'Produce images of anime-style characters in whimsical and fantastical settings.',
+        'Create anime-style images with a focus on friendship and camaraderie.',
+        'Generate images of anime-style characters exploring mysterious worlds.',
+        'Produce images of anime-style characters in dramatic and emotional scenes.',
+        'Create anime-style images with a focus on magic and supernatural powers.',
+        'Generate images of anime-style characters in steampunk-inspired settings.',
+        'Produce images of anime-style characters in cyberpunk cityscapes.',
+        'Create anime-style images with a focus on adventure and exploration.',
+        'Generate images of anime-style characters in post-apocalyptic landscapes.',
+        'Produce images of anime-style characters in dreamlike and surreal environments.',
+        'Create anime-style images with a focus on mythology and folklore.',
+        'Generate images of anime-style characters in underwater worlds.',
+        'Produce images of anime-style characters in spacefaring adventures.',
+        'Create anime-style images with a focus on music and performance.',
+        'Generate images of anime-style characters in magical girl transformations.',
+        'Produce images of anime-style characters in slice-of-life situations.',
+        'Create anime-style images with a focus on environmental conservation.',
+        'Generate images of anime-style characters in time-traveling adventures.',
+        'Create anime-style images with breathtaking scenic views.',
+        'Generate images of anime-style characters in dynamic action poses.',
+        'Produce images of anime-style characters with intricate costume designs.',
+        'Create anime-style images with a focus on urban cityscapes.',
+        'Generate images of anime-style characters in dramatic lighting conditions.',
+        'Produce images of anime-style characters in realistic sports settings.',
+        'Create anime-style images with a focus on traditional Japanese festivals.',
+        'Generate images of anime-style characters in futuristic cityscapes.',
+        'Produce images of anime-style characters in serene natural landscapes.',
+        'Create anime-style images with a focus on magical transformations.',
+        'Generate images of anime-style characters in intense battle sequences.',
+        'Produce images of anime-style characters in detailed interior settings.',
+        'Create anime-style images with a focus on historical Japanese architecture.'
+    ];
+
+    // Combine provided prompt with additional prompts
+    const allPrompts = [...additionalPrompts, prompt].join('\n');
+
+    // Check if prompt is provided
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt' });
+    }
+
+    try {
+        // API base URL for generating images
+        const baseURL = `https://apis-samir.onrender.com/imagine?prompt=${encodeURIComponent(allPrompts)}`;
+
+        // Make request to generate images
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+
+        // Pipe the response data to the client
+        response.data.pipe(res);
+    } catch (error) {
+        // Handle errors
+        console.error('⛔|Your prompt was declined by Midjourny. Please try another one.', error);
+        res.status(500).json({ error: '⛔|Your prompt was declined by Midjourny. Please try another one.' });
+    }
+});
+
+app.get('/api/midjourney', async (req, res) => {
+    const { prompt } = req.query;
+
+    // Additional prompts for generating HD, realistic images
+    const additionalPrompts = [
+        'Generate fully realistic 4k images.',
+        'Create high-quality images with lifelike details.',
+        'Craft stunning visuals with authentic backgrounds.',
+        'Produce images that rival professional photography.',
+        'Make images that transport viewers to another world.',
+        'Generate dynamic compositions with vivid colors.',
+        'Create images that tell compelling stories.',
+        'Produce artwork that showcases the beauty of the human form.',
+        'Make images that celebrate cultural diversity.',
+        'Create landscapes that inspire awe and wonder.',
+        'Generate portraits that reveal the inner essence of the subject.',
+        'Craft images that blend fantasy and reality seamlessly.',
+        'Produce artwork that explores the depths of the imagination.',
+        'Make images that challenge perceptions and provoke thought.',
+        'Create scenes that reflect the passage of time.',
+        'Generate images that capture the magic of the everyday.',
+        'Craft artwork that sparks curiosity and imagination.',
+        'Make images that celebrate the beauty of the natural world.',
+        'Produce landscapes that evoke a sense of nostalgia.',
+        'Create portraits that convey a sense of personality and character.',
+        'Generate images that inspire creativity and innovation.',
+        'Craft artwork that explores the intersection of technology and nature.',
+        'Make images that capture fleeting moments of beauty.',
+        'Produce scenes that invite viewers to explore and discover.',
+        'Create artwork that celebrates the wonder of the universe.',
+        'Generate images that challenge conventional aesthetics.',
+        'Craft landscapes that evoke a sense of tranquility and peace.',
+        'Make portraits that celebrate individuality and diversity.',
+        'Produce artwork that reflects the complexities of human emotion.',
+        'Create images that explore the boundaries of reality and imagination.',
+        'Generate scenes that evoke a sense of adventure and exploration.',
+        'Craft artwork that celebrates the power of human connection.',
+        'Make images that capture the energy and excitement of urban life.',
+        'Produce landscapes that evoke a sense of mystery and intrigue.',
+        'Create portraits that capture the essence of a person\'s soul.',
+        'Generate images that inspire hope and optimism.',
+        'Craft scenes that challenge viewers to see the world in a new light.',
+        'Make artwork that celebrates the beauty of diversity in all its forms.',
+        'Produce images that tell stories of resilience and strength.',
+        'Create landscapes that evoke a sense of wonder and awe.',
+        'Generate portraits that reveal the beauty of the human spirit.',
+        'Craft images that explore the connections between humanity and nature.',
+        'Make scenes that invite viewers to contemplate the passage of time.',
+        'Produce artwork that celebrates the beauty of the natural world.',
+        'Create images that inspire wonder and curiosity.',
+        'Generate portraits that capture the essence of a person\'s personality.',
+        'Craft scenes that evoke a sense of nostalgia and longing.',
+        'Make artwork that challenges viewers to rethink their assumptions.',
+        'Produce landscapes that transport viewers to otherworldly realms.',
+        'Create images that celebrate the diversity of life on Earth.',
+        'Generate scenes that evoke a sense of serenity and calm.',
+        'Craft portraits that reveal the inner strength of the subject.',
+        'Make artwork that explores the mysteries of the human psyche.',
+        'Produce images that celebrate the power of imagination.',
+        'Create landscapes that evoke a sense of peace and tranquility.',
+        'Generate scenes that invite viewers to reflect on the beauty of the natural world.',
+        'Craft images that celebrate the joy of human connection.',
+        'Make portraits that capture the complexity of human emotion.',
+        'Produce artwork that challenges viewers to see the world from a different perspective.',
+        'Create images that celebrate the resilience of the human spirit.',
+        'Generate scenes that evoke a sense of wonder and awe.',
+        'Craft landscapes that transport viewers to distant lands.',
+        'Make artwork that celebrates the beauty of diversity.',
+        'Produce images that inspire hope and optimism for the future.',
+        'Create portraits that capture the essence of a person\'s identity.',
+        'Generate scenes that evoke a sense of nostalgia and longing for the past.',
+        'Craft images that challenge viewers to reconsider their place in the world.',
+        'Make artwork that celebrates the interconnectedness of all living things.',
+        'Produce landscapes that evoke a sense of wonder and curiosity.',
+        'Create images that inspire viewers to take action for positive change.',
+        'Generate portraits that capture the beauty of the human experience.',
+        'Craft scenes that celebrate the joy of discovery and exploration.',
+        'Make artwork that invites viewers to dream and imagine new possibilities.',
+        'Produce images that challenge viewers to confront their fears and prejudices.',
+        'Create landscapes that evoke a sense of adventure and excitement.',
+        'Generate scenes that transport viewers to imaginary worlds of fantasy and wonder.',
+        'Craft images that celebrate the beauty of the natural environment.',
+        'Make portraits that capture the uniqueness and individuality of each person.',
+        'Produce artwork that inspires viewers to connect with each other and with the world around them.',
+        'Create images that challenge viewers to think critically and creatively.',
+        'Generate scenes that evoke a sense of peace and tranquility in a chaotic world.',
+        'Craft landscapes that celebrate the resilience of nature and the human spirit.',
+        'Make artwork that invites viewers to explore the boundaries of their imagination.',
+        'Produce images that capture the beauty of the cosmos and the mysteries of the universe.',
+        'Create portraits that reveal the inner strength and beauty of the human soul.',
+        'Generate scenes that inspire wonder and awe at the beauty of the natural world.',
+        'Craft images that celebrate the diversity of life on Earth and the interconnectedness of all living things.',
+        'Make artwork that challenges viewers to see themselves and the world around them in a new light.',
+        'Produce landscapes that evoke a sense of nostalgia for the past and hope for the future.',
+        'Create images that inspire viewers to take action to protect and preserve our planet for future generations.',
+        'Generate portraits that capture the complexity and depth of human emotion and experience.',
+        'Craft scenes that transport viewers to distant lands and imaginary realms of fantasy and adventure.',
+        'Make artwork that celebrates the power of imagination to shape our world and our future.',
+        'Produce images that challenge viewers to question their assumptions and beliefs about themselves and the world around them.',
+        'Create landscapes that evoke a sense of wonder and curiosity about the mysteries of the universe and our place within it.',
+        'Generate scenes that inspire hope and optimism for the future of humanity and our planet.',
+        'Craft images that celebrate the beauty of diversity in all its forms and the interconnectedness of all living things.',
+        'Make portraits that capture the essence of a person\'s identity and the unique qualities that make them who they are.',
+        'Produce artwork that invites viewers to explore the depths of their own emotions and experiences.',
+        'Create images that challenge viewers to rethink their relationships with themselves, each other, and the world around them.',
+        'Generate scenes that transport viewers to imaginary worlds of fantasy and adventure, where anything is possible.',
+        'Craft landscapes that evoke a sense of peace and tranquility in a chaotic world, reminding viewers of the beauty and wonder that still exists amidst the chaos.',
+        'Make artwork that celebrates the resilience of the human spirit and the power of hope to overcome even the greatest challenges.',
+        'Produce images that inspire viewers to take action for positive change.',
+    ];
+
+    // Combine provided prompt with additional prompts
+    const allPrompts = [...additionalPrompts, prompt].join('\n');
+
+    // Check if prompt is provided
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt' });
+    }
+
+    try {
+        // API base URL for generating images
+        const baseURL = `https://apis-samir.onrender.com/imagine?prompt=${encodeURIComponent(allPrompts)}`;
+
+        // Make request to generate images
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+
+        // Pipe the response data to the client
+        response.data.pipe(res);
+    } catch (error) {
+        // Handle errors
+        console.error('⛔|Your prompt was declined by Midjourny. Please try another one.', error);
+        res.status(500).json({ error: '⛔|Your prompt was declined by Midjourny. Please try another one.' });
+    }
+});
+
 app.get('/api/imagine', async (req, res) => {
     const { prompt } = req.query;
     const additionalPrompts = [
@@ -61,6 +288,48 @@ app.get('/api/tempmail/inbox', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
+
+app.get('/api/palmai', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const title = "🔎 𝗣𝗮𝗹𝗺 𝗔𝗶"; 
+
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+   
+    // Enhanced prompt
+    const fullPrompt = ``;
+
+    const response = await axios.get(`https://apis-samir.onrender.com/api/palm?text=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.output;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━━━━
+\n${answer}
+`;
+
+    res.json({ fullResponse });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.get('/api/chatgpt4', async (req, res) => {
@@ -2351,7 +2620,7 @@ app.get('/api/anigenv2', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://ani-gen.onrender.com/anigen?prompt=${prompt}`;
+        const baseURL = `https://apis-samir.onrender.com/animegen?input=${prompt}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -2360,7 +2629,7 @@ app.get('/api/anigenv2', async (req, res) => {
     }
 });
 
-app.get('/api/anigen', async (req, res) => {
+app.get('/api/anigenv5', async (req, res) => {
     const { prompt } = req.query;
 
     if (!prompt) {
@@ -2383,7 +2652,7 @@ app.get("/api/lyrics", async (req, res) => {
     return res.status(400).json({ error: 'Please provide a song name!' });
   }
 
-  const apiUrl = `https://lyrist.vercel.app/api/=${songName}`;
+  const apiUrl = `https://lyrist.vercel.app/api/${songName}`;
   try {
     const response = await axios.get(apiUrl);
     const { lyrics, title, artist, image } = response.data;
