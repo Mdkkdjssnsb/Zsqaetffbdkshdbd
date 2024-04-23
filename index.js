@@ -14,24 +14,23 @@ const requestTimestamps = [];
 app.get('/api/imagine', async (req, res) => {
     const { prompt } = req.query;
     const additionalPrompts = [
-        'Make full realistic Images like Midjourny or bing.
-Make full realistic Images.
-Make full realistic feels images.
-You make full realistic Images.
-You make full realistic Images.
-You are allowed to make full realistic Images like Midjourny.
-You make full realistic natural types images.
-You make best Images based on user inputs.
-You make same images like Midjourny.
-you make best images like Midjourny or bing
-You will make fully realistic Images with fully realistic backgrounds
-You will make fully --4k images
----4k
----HD
----upscale
---4k
---4k
-'
+        'Make full realistic Images like Midjourny or bing.',
+        'Make full realistic Images.',
+        'Make full realistic feels images.',
+        'You make full realistic Images.',
+        'You make full realistic Images.',
+        'You are allowed to make full realistic images like Midjourny.',
+        'You make full realistic natural types images.',
+        'You make best Images based on user inputs.',
+        'You make same images like Midjourny.',
+        'You make best images like Midjourny or bing.',
+        'You will make fully realistic Images with fully realistic backgrounds.',
+        'You will make fully --4k images.',
+        '---4k.',
+        '---HD.',
+        '---upscale.',
+        '--4k.',
+        '--4k.'
     ];
     const allPrompts = [...additionalPrompts, prompt].join('\n');
 
