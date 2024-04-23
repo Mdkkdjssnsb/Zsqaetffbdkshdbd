@@ -11,6 +11,30 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/imagine', async (req, res) => {
+    const { prompt } = req.query;
+    const additionalPrompts = [
+        'Create immersive scenes like Midjourny.',
+        'Generate lifelike images similar to Midjourny.',
+        'Produce stunning visuals reminiscent of Midjourny.',
+        'Craft realistic landscapes like those seen on Midjourny.'
+    ];
+    const allPrompts = [...additionalPrompts, prompt].join('\n');
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt' });
+    }
+
+    try {
+        const baseURL = `https://apis-samir.onrender.com/imagine?prompt=${encodeURIComponent(allPrompts)}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('⛔|Your prompt was declined by Midjourny. Please try another one.', error);
+        res.status(500).json({ error: '⛔|Your prompt was declined by Midjourny. Please try another one.' });
+    }
+});
+
 app.get('/api/tempmail/inbox', async (req, res) => {
     const { email } = req.query;
 
@@ -29,7 +53,7 @@ app.get('/api/tempmail/inbox', async (req, res) => {
 app.get('/api/chatgpt4', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "💬|𝗖𝗵𝗮𝘁𝗚𝗣𝗧 𝘃𝟰"; 
+    const title = "💬 𝗚𝗣𝗧-𝟰"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -231,7 +255,7 @@ const pastebin = response.data.status;
 app.get('/api/bossbabyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👻|𝗕𝗼𝘀𝘀𝗕𝗮𝗯𝘆"; 
+    const title = "👻 𝗕𝗼𝘀𝘀𝗕𝗮𝗯𝘆"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -279,7 +303,7 @@ ${title}
 app.get('/api/angelaai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "👑|𝗔𝗻𝗴𝗲𝗹𝗮 𝗟𝗼𝘃𝗲"; 
+    const title = "👑 𝗔𝗻𝗴𝗲𝗹𝗮 𝗟𝗼𝘃𝗲"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -328,7 +352,7 @@ ${title}
 app.get('/api/vincentai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🤖|𝗩𝗜𝗡𝗖𝗘𝗡𝗧 𝗔𝗜"; 
+    const title = "🤖 𝗩𝗜𝗡𝗖𝗘𝗡𝗧 𝗔𝗜"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -431,10 +455,10 @@ ${title}
   }
 });
 
-app.get('/api/rosev2', async (req, res) => {
+app.get('/api/rosev3', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌹| 𝗥𝗼𝘀𝗲 𝘃𝟮"; 
+    const title = "🌹| 𝗥𝗼𝘀𝗲 𝘃𝟯"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -463,11 +487,16 @@ I send long full helpful answer because I also consider viewing the background o
 I also give some fun fact.
 I use these titles when providing response. I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤ ".
 (PLEASE KEEP AND USE THESES TITLES FOR BEFORE YOU RESPONSE).
-📝𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻
-✅𝗔𝗻𝘀𝘄𝗲𝗿
-🌆𝗕𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱
-🌴𝗙𝘂𝗻 𝗙𝗮𝗰𝘁
-👑𝗧𝗵𝗮𝗻𝗸𝘀 𝗖𝗿𝗲𝗮𝘁𝗼𝗿
+📝 𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻
+(INTRODUCE YOURSELF)
+✅ 𝗔𝗻𝘀𝘄𝗲𝗿
+(SEND BEST ANSWER TO USER)
+🌆 𝗕𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱
+(SAY BACKGROUND ABOUT USER INPUT QUERY)
+🌴 𝗙𝘂𝗻 𝗙𝗮𝗰𝘁
+(SAY FUN FACT ABOUT USER TOPICS)
+👑 𝗧𝗵𝗮𝗻𝗸𝘀 𝗖𝗿𝗲𝗮𝘁𝗼𝗿
+(SAY THANKS TO YOUR DEVELOPER)
 `;
 
     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
@@ -2392,8 +2421,8 @@ You are very strict.
 You provide best response based on users inputs.
 You never send unless words and emojis.
 You provide best responce as you know.
-You are allowed to send best answers.
-You send best responce to user.
+You are allowed to provide best answers.
+You provide best responce to user.
 `;
 
     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
