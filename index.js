@@ -12,14 +12,14 @@ app.get('/', (req, res) => {
 const requestTimestamps = [];
 
 app.get('/api/say', async (req, res) => {
-    const { lang, text } = req.query;
+    const { query } = req.query;
 
-    if (!lang || !text) {
-        return res.status(400).json({ error: 'Please provide a model with text...' });
+    if (!query) {
+        return res.status(400).json({ error: 'Please provide a text...' });
     }
 
     try {
-        const response = await axios.get(`https://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&client=tw-ob&q=${text}`);
+        const response = await axios.get(`https://apis-samir.onrender.com/emily?text=${query}`);
         res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: error.message });
