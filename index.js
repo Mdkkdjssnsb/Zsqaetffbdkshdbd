@@ -11,6 +11,21 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/say', async (req, res) => {
+    const { lang, text } = req.query;
+
+    if (!lang || !text) {
+        return res.status(400).json({ error: 'Please provide a model with text...' });
+    }
+
+    try {
+        const response = await axios.get(`https://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&client=tw-ob&q=${text}`);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.get('/api/anigen', async (req, res) => {
     const { prompt } = req.query;
 
@@ -737,10 +752,10 @@ ${title}
   }
 });
 
-app.get('/api/rosev3', async (req, res) => {
+app.get('/api/rosev2', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🌹| 𝗥𝗼𝘀𝗲 𝘃𝟯"; 
+    const title = "🌹| 𝗥𝗼𝘀𝗲 𝘃𝟮"; 
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -886,7 +901,7 @@ app.get('/api/replicate', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://gen-img-two.vercel.app/replicate?prompt=${prompt}`;
+        const baseURL = `https://gen-img-6sg2.onrender.com/replicate?prompt=${prompt}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -1812,11 +1827,28 @@ app.get('/api/fbdl', async (req, res) => {
           }
       });
 
-app.get("/api/pinterest", async (req, res) => {
+app.get("/api/pinterest2", async (req, res) => {
     const { search, keysearch } = req.query;
 
     if (!search || !keysearch) {
         return res.status(400).json({ error: 'Please provide both search and keysearch parameters.' });
+    }
+
+    try {
+        const response = await axios.get(`https://apis-samir.onrender.com/pinterest?query=${encodeURIComponent(search)}&number=${encodeURIComponent(keysearch)}`);
+
+const result = response.data.result;
+        res.json({ result });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get("/api/pinterest", async (req, res) => {
+    const { search, keysearch } = req.query;
+
+    if (!search || !keysearch) {
+        return res.status(400).json({ error: 'Please provide both search and keysearch parameters. ( 1 - 6 )' });
     }
 
     try {
@@ -2291,8 +2323,8 @@ app.get('/api/gemini2', async (req, res) => {
     const currentDate = new Date().toLocaleDateString();
     // Enhanced prompt
 
-    const response = await axios.get(`https://sandipapi.onrender.com/gemini2?prompt=${encodeURIComponent(url)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://deku-rest-api.replit.app/gemini?prompt=describe%20this%20photo&url=${encodeURIComponent(url)}`);
+    const answer = response.data.gemini;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -2535,7 +2567,7 @@ app.get('/api/sdxl', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://www.api.vyturex.com/sdxl?prompt=&{prompt}&model=${model}`;
+        const baseURL = `https://sdxl-kshitiz.onrender.com/gen?prompt=${prompt}&model=${model}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
