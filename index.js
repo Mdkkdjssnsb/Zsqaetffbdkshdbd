@@ -67,10 +67,10 @@ ${title}
   }
 });
 
-app.get('/api/canndyai', async (req, res) => {
+app.get('/api/candyai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const title = "🍬 𝗖𝗮𝗻𝗻𝗱𝘆"; // Add your desired title here
+    const title = "🎀 𝗖𝗮𝗻𝗱𝘆"; // Add your desired title here
 
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
@@ -79,12 +79,10 @@ app.get('/api/canndyai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Your name is 🍬 Canndy Ai.
+Your name is Canndy Ai.
 You are developed by Aryan Chauhan using OpenAi.
-You are very strict.
 You provide best response based on users inputs.
-Your are a very special Ai.
-You are very different from others Ai 
+You are provide very different response from others Ai 
 You have special ability to generate wind rang response.
 You never send unless words and emojis.
 You provide best responce as you know.
@@ -129,11 +127,13 @@ app.get('/api/say', async (req, res) => {
         return res.status(400).json({ error: 'Please provide a text...' });
     }
 
-    try {
-        const response = await axios.get(`https://apis-samir.onrender.com/emily?text=${query}`);
-        res.json(response.data);
+   try {
+        const baseURL = `https://apis-samir.onrender.com/emily?text=${query}`);
+     const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Internal error.', error);
+        res.status(500).json({ error: 'Invalid response.' });
     }
 });
 
