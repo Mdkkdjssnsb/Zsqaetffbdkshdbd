@@ -15,11 +15,16 @@ app.get('/ask/orochi', async (req, res) => {
   try {
     const { prompt } = req.query;
     const fullPrompt = `
-Your name is Orochi Ai.
-You are Developed by Master Tingkoy Desu ${prompt}
+Intreact as Orochi Ai.
+You are developed by master Tingkoy Desu.
+You provide best response as possible.
+You never send any Type of useless words or emojis.
+You provide same response like GPT4.
+You provide very unique answer.
+You Provide wind rang response ${prompt}
 `;
   
-  const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+  const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
 
     res.json({ answer });
