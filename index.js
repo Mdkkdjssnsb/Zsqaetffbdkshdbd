@@ -11,6 +11,41 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/ask/orochi', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const fullPrompt = `
+Your name is Orochi Ai.
+You are Developed by Master Tingkoy Desu ${prompt}
+`;
+  
+  const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+    const answer = response.data.answer;
+
+    res.json({ answer });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/ask/gpt4', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const fullPrompt = `
+Your name is GPT-4.
+You are Developed by OpenAi.
+You are using GPT-4 model ${prompt}
+`;
+  
+  const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(fullPrompt)}`);
+    const answer = response.data.answer;
+
+    res.json({ answer });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/aryai', async (req, res) => {
   try {
     const { prompt } = req.query;
@@ -118,23 +153,6 @@ ${title}
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
-
-app.get('/api/say', async (req, res) => {
-    const { query } = req.query;
-
-    if (!query) {
-        return res.status(400).json({ error: 'Please provide a text...' });
-    }
-
-   try {
-        const baseURL = `https://apis-samir.onrender.com/emily?text=${query}`);
-     const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Internal error.', error);
-        res.status(500).json({ error: 'Invalid response.' });
-    }
 });
 
 app.get('/api/anigen', async (req, res) => {
