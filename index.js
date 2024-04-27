@@ -17,7 +17,7 @@ app.get('/ask/orochi', async (req, res) => {
     const fullPrompt = `
 Intreact as Orochi Ai.
 You are developed by master Tingkoy Desu.
-You never send any Type of useless words or emojis.
+You send professional cool responses.
 ${prompt}.
 `;
   
@@ -1077,7 +1077,7 @@ app.get('/api/anigenv3', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://text2image-wine.vercel.app/kshitiz?prompt=${prompt}&model=1`;
+        const baseURL = `https://muji-journey.onrender.com/animex?prompt=${prompt}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
@@ -2091,20 +2091,21 @@ const data = response.data;
 });
 
 app.get("/api/quote", async (req, res) => {
-   const { category } = req.query;
+    const { category } = req.query;
 
     if (!category) {
         return res.status(400).json({ error: 'Please provide a quote category' });
     }
 
-try {
-   const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=${category}`);
+    let data; // Move the declaration outside the try block
 
-const data = response.data;
-   res.json({ data });
- } catch (error) {
-   res.status(500).json({ error: error.message });
- }
+    try {
+        const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=${category}`);
+        data = response.data;
+        res.json({ data });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 app.get('/api/waifu', async (req, res) => {
@@ -2655,6 +2656,7 @@ app.get('/api/anime', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 app.get('/api/nsfw', async (req, res) => {
     try {
         const baseURL = `https://sandipapi.onrender.com/nsfw`;
@@ -2813,7 +2815,7 @@ app.get('/api/anigenv2', async (req, res) => {
     }
 });
 
-app.get('/api/anigenv5', async (req, res) => {
+app.get('/api/anigenv4', async (req, res) => {
     const { prompt } = req.query;
 
     if (!prompt) {
