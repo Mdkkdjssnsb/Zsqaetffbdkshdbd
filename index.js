@@ -43,7 +43,7 @@ app.get('/ask/orochi', async (req, res) => {
        ${prompt}.
     `;
   
-    const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(fullPrompt)}`);
+    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
 
     res.json({ answer });
