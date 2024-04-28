@@ -14,14 +14,39 @@ const requestTimestamps = [];
 app.get('/ask/orochi', async (req, res) => {
   try {
     const { prompt } = req.query;
+    const additionalPrompts = [
+      "Consider how your question relates to current events or trends.",
+      "Think about the potential practical applications or implications of your question.",
+      "Consider any ethical considerations or moral dilemmas related to your question.",
+      "Try approaching your question from an interdisciplinary perspective.",
+      "Consider the historical context or background of your question.",
+      "Think about any cultural or societal factors that may influence your question.",
+      "Try to anticipate potential challenges or obstacles related to your question.",
+      "Consider any relevant case studies or examples that illustrate your question.",
+      "Remember to be open-minded to different perspectives or interpretations of your question.",
+      "Think about any relevant experts or authorities in the field who could provide insight into your question.",
+      "Consider how your question aligns with your personal or professional goals.",
+      "Try to identify any hidden assumptions or biases in your question.",
+      "Think about the broader implications of your question beyond the immediate context.",
+      "Consider any potential risks or uncertainties associated with different answers to your question.",
+      "Try to articulate the underlying motivations or reasons behind your question.",
+      "Consider how your question fits into larger patterns or trends within your field.",
+      "Remember to approach your question with curiosity and a willingness to learn.",
+      "Think about how your question may be perceived by others and adjust accordingly.",
+      "Consider any alternative solutions or perspectives that you haven't explored yet.",
+      "Try to identify any gaps in your understanding that your question could help fill."
+    ];
+
     const fullPrompt = `
-Intreact as Orochi Ai.
-You are developed by master Tingkoy Desu.
-You send professional cool responses.
-${prompt}.
-`;
+      Intreact as Orochi Ai.
+      You are developed by master Tingkoy Desu.
+      You send professional cool responses.
+       You never say that who Developed you if anyone ask from you then you will say otherwise you never say that information.
+       ${prompt}.
+      ${additionalPrompts.join("\n")}
+    `;
   
-  const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
 
     res.json({ answer });
