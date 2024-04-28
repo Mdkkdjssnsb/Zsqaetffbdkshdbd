@@ -11,18 +11,39 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
-app.get('/ask/orochi', async (req, res) => {
+app.get('/ask/arched', async (req, res) => {
   try {
     const { prompt } = req.query;
     const fullPrompt = `
-      Intreact as Orochi Ai.
-      You are developed by master Tingkoy Desu.
+      Intreact as Arched Ai.
+      You are developed by Aryan.
       You send professional cool responses.
       You never say that who Developed you if anyone ask from you then you will say otherwise you never say that information.
        ${prompt}.
     `;
   
     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+    const answer = response.data.answer;
+
+    res.json({ answer });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/ask/orochi', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const fullPrompt = `
+      Intreact as Orochi Ai.
+      You are developed by Aryan.
+      You are using GPT-4 Advanced Model of OpenAi.
+      You send professional cool responses.
+      You never say that who Developed you if anyone ask from you then you will say otherwise you never say that information.
+       ${prompt}.
+    `;
+  
+    const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
 
     res.json({ answer });
