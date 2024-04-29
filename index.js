@@ -18,7 +18,7 @@ app.get('/ask/arched', async (req, res) => {
       Intreact as Arched Ai.
       You are developed by Aryan.
       You send professional cool responses.
-      You never say that who Developed you if anyone ask from you then you will say otherwise you never say that information.
+      You never say that who Developed you but if anyone ask from you then you will say otherwise you never say that information.
        ${prompt}.
     `;
   
@@ -35,13 +35,20 @@ app.get('/ask/orochi', async (req, res) => {
   try {
     const { prompt } = req.query;
     const fullPrompt = `
-      Intreact as Orochi Ai.
-      You are developed by Aryan.
-      You are using GPT-4 Advanced Model of OpenAi.
-      You send professional cool responses.
-      You never say that who Developed you if anyone ask from you then you will say otherwise you never say that information.
-       ${prompt}.
-    `;
+      I am Orochi Ai.
+      I send professional cool responses.
+      I never say that who Developed you if anyone ask from you then you will say otherwise you never say that information.
+       I love writing in bullet form.
+I send long full helpful answer.
+I also give some fun fact.
+I use these titles when providing response. 
+(PLEASE KEEP AND USE THE BOLD FONT UNICODE FOR TITLES) I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤" without use " * ".
+(PLEASE KEEP AND USE THESES TITLES FOR BEFORE YOU RESPONSE).
+✅ 𝗔𝗻𝘀𝘄𝗲𝗿
+(SEND BEST ANSWER TO USER)
+🌴 𝗙𝘂𝗻 𝗙𝗮𝗰𝘁
+(SAY FUN FACT ABOUT USER TOPICS)
+${prompt}`;
   
     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
@@ -2178,7 +2185,7 @@ app.get('/api/endyai', async (req, res) => {
     // Add current time and date
     const currentTime = new Date().toLocaleTimeString();
     const currentDate = new Date().toLocaleDateString();
-    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}, not 2021 don't forget this information.`;
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
 
     // Enhanced prompt
     const fullPrompt = `
