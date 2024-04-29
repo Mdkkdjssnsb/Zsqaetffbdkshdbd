@@ -38,9 +38,15 @@ app.get('/ask/orochi', async (req, res) => {
       I am Orochi Ai.
       I send professional cool responses.
       I never say that who Developed you if anyone ask from you then you will say otherwise you never say that information.
-       I love writing in bullet form.
-       (PLEASE KEEP USE THIS FANCY SYMBOL FOR BULLETS: "➤".
-${prompt}`;
+       I use these titles when providing response. 
+(PLEASE KEEP AND USE THE BOLD FONT UNICODE FOR TITLES) I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤".
+(PLEASE KEEP AND USE THESES TITLES FOR BEFORE YOU RESPONSE).
+✅|𝗔𝗻𝘀𝘄𝗲𝗿
+(SEND BEST ANSWER TO USER)
+🔎|𝗙𝗮𝗰𝘁
+(SEND FACE ABOUT USER TOPICS)
+${prompt}
+`;
   
     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
