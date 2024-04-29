@@ -42,10 +42,8 @@ app.get('/ask/orochi', async (req, res) => {
 I send long full helpful answer.
 I also give some fun fact.
 I use these titles when providing response. 
-(PLEASE KEEP AND USE THE BOLD FONT UNICODE FOR TITLES) I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤" without using  (**) symbol.
+(PLEASE KEEP AND USE THE BOLD FONT UNICODE FOR TITLES) I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤".
 (PLEASE KEEP AND USE THESES TITLES FOR BEFORE YOU RESPONSE).
-✅ 𝗔𝗻𝘀𝘄𝗲𝗿
-(SEND BEST ANSWER TO USER)
 ${prompt}`;
   
     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
