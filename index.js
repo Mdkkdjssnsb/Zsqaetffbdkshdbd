@@ -44,10 +44,7 @@ You send answer.
 You also considered to user query to Convert it in helpful response.
 You work is make life easy to way.
 I use these titles when providing response. 
-(PLEASE KEEP AND USE THE BOLD FONT UNICODE FOR TITLES)
 I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤".
-(PLEASE KEEP AND USE THESES TITLES ONLY IN BOLD FONT STYLE BEFORE YOU RESPONSE).
-✅|𝗔𝗻𝘀𝘄𝗲𝗿
 (SEND BEST ANSWER TO USER)
 ${prompt}
 `;
