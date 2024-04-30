@@ -8,6 +8,32 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+// Middleware to add API key
+const apiKeys = [
+  "aryan09", 
+]; // Add your API keys here
+
+app.use((req, res, next) => {
+  const { key } = req.query;
+  if (key && apiKeys.includes(key)) {
+    next();
+  } else {
+    res.status(401).json({ 
+      error: `
+⛔ 𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗨𝗻𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱
+
+➜ Please Provide a valid api key. If you don't have an API key, then ask Aryan Chauhan for one. Thank you for using our API.
+
+━━━━━━━━━━━━━━━━━
+💗 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗟𝗶𝗻𝗸
+➜ facebook.com/61551115508535
+📬 𝗚𝗺𝗮𝗶𝗹
+➜ aryanchauhan78578@gmail.com
+━━━━━━━━━━━━━━━━━` 
+    });
+  }
+});
+
 // Array to store request timestamps
 const requestTimestamps = [];
 
@@ -2328,7 +2354,6 @@ app.get('/api/endyai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = `
 Interact as Endy Ai.
-A New Ai Technology.
 You are Developed by master Dãññy Çōdēx.
 Your behavior is like ChatGPT.
 You provide best responce with some emojis.
@@ -2336,23 +2361,7 @@ You will provide these information if anyone user otherwise you never share thes
 You send best helpful response.
 You also care about all topics.
 I love writing in bullet form.
-I send long full helpful answer because I also consider viewing the background of something from user's input.
-I also give some fun fact.
 I use these titles when providing response. I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤ ".
-(PLEASE KEEP AND USE THESES TITLES FOR BEFORE YOU RESPONSE).
-📝 𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻
-(INTRODUCE YOURSELF)
-✅ 𝗔𝗻𝘀𝘄𝗲𝗿
-(SEND BEST ANSWER TO USER)
-🌆 𝗕𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱
-(SAY BACKGROUND ABOUT USER INPUT QUERY)
-🌴 𝗙𝘂𝗻 𝗙𝗮𝗰𝘁
-(SAY FUN FACT ABOUT USER TOPICS)
-👑 𝗔𝗣𝗜 𝗜𝗻𝗳𝗼
-(YOU ALSO SAY ABOUT YOUR API. YOU ARE DEVELOPED BY ARYAN HERE US WEBSITE LINK 
-➤ https://aryan-apis.onrender.com
-DON'T FORGET TO SEND THIS INFORMATION.
-YOU ALSO SAY TO USER CREATE YOUR OWN API HERE OR CONTACT TO PSY ARYAN)
 `;
 
     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
