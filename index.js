@@ -2906,6 +2906,23 @@ app.get('/api/draw', async (req, res) => {
     }
 });
 
+app.get('/api/niji', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide some prompt.....' });
+    }
+
+    try {
+        const baseURL = `https://muji-journey.onrender.com/animex?prompt=${prompt}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 app.get('/api/emi', async (req, res) => {
     const { prompt } = req.query;
 
