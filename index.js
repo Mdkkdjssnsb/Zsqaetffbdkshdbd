@@ -1188,8 +1188,7 @@ app.get("/api/aniquiz", async (req, res) => {
     try {
         const response = await axios.get(`https://animequiz-mu.vercel.app/kshitiz`);
 
-const result = response.data.image;
-        res.json({ result });
+       res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
