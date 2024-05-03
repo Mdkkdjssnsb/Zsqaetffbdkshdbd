@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
 // Middleware to add API key
 const apiKeys = [
-  "aryan09", 
+  "loveyou", 
 ]; // Add your API keys here
 
 app.use((req, res, next) => {
@@ -36,6 +36,15 @@ app.use((req, res, next) => {
 
 // Array to store request timestamps
 const requestTimestamps = [];
+
+app.get('/api/coupledp', async (req, res) => {
+  try {
+    const response = await axios.get(`https://erdwpe-api.herokuapp.com/api/randomgambar/couplepp`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.get('/stalk/insta', async (req, res) => {
   try {
@@ -638,7 +647,7 @@ You are using latest version of OpenAi called GPT4.
 You provide best response as possible with some emojis.
 `;
 
-    const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}&key=loveyou`);
     const answer = response.data.answer;
 
     // Store request timestamp
