@@ -37,6 +37,27 @@ app.use((req, res, next) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/ask/gpt', async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const fullPrompt = `
+Your name is ChatGPT.
+You are developed by OpenAi.
+You provide very cool and professional answer based on user inquiry.
+You send best response with some emojis (1 emojis).
+You provide best response as possible.
+${prompt}
+`;
+  
+    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+    const answer = response.data.answer;
+
+    res.json({ answer });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/coupledp', async (req, res) => {
   try {
     const response = await axios.get(`https://erdwpe-api.herokuapp.com/api/randomgambar/couplepp`);
