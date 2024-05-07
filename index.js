@@ -37,6 +37,17 @@ app.use((req, res, next) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/stalk/fb', async (req, res) => {
+const { uid } = req.query;
+
+  try {
+    const response = await axios.get(`https://graph.facebook.com/${uid}?fields=id,is_verified,cover,created_time,work,hometown,username,link,name,locale,location,about,website,birthday,gender,relationship_status,significant_other,quotes,first_name,subscribers.limit(0)&access_token=EAAD6V7os0gcBO24ArJjUaBN0ZC3ejzKkM8ZCfIOWtsGZAGdXmVUzmg0ZCrizFi7h6pDUjq3bBQbNJzIagT5UWJyZAvp2Gv3tU0POJ8SNwXFBzeEFNtKAF2I5CGcwkHAYxRZCxh5SGksZCUEqFUZAInSnrXZCzAWWZBsBusZAQwmz2OYZAcYzwLiCtWiBHgI2PTplpJHXCAZDZD`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/ask/gpt', async (req, res) => {
   try {
     const { prompt } = req.query;
