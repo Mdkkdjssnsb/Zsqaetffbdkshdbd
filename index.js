@@ -10,12 +10,12 @@ app.get('/', (req, res) => {
 
 // Middleware to add API key
 const apiKeys = [
-  "loveyou", 
+  "aryan", 
 ]; // Add your API keys here
 
 app.use((req, res, next) => {
-  const { key } = req.query;
-  if (key && apiKeys.includes(key)) {
+  const { apikey } = req.query;
+  if (apikey && apiKeys.includes(apikey)) {
     next();
   } else {
     res.status(401).json({ 
@@ -37,6 +37,18 @@ app.use((req, res, next) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/prodia', async (req, res) => {
+const { prompt } = req.query;
+
+  try {
+    const response = await axios.get(`https://imagine-kshitiz-zia7.onrender.com/mj?prompt=${prompt}&ratio=1:1`);
+const images = response.data.imageUrls;
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/stalk/fb', async (req, res) => {
 const { uid } = req.query;
 
@@ -55,8 +67,6 @@ app.get('/ask/gpt', async (req, res) => {
 Your name is ChatGPT.
 You are developed by OpenAi.
 You provide very cool and professional answer based on user inquiry.
-You send best response with some emojis (1 emojis).
-You provide best response as possible.
 ${prompt}
 `;
   
@@ -3035,23 +3045,6 @@ app.get("/api/lyrics", async (req, res) => {
     console.error(error);
     return res.status(500).json({ error: 'Internal server error!' });
   }
-});
-
-app.get('/api/prodia', async (req, res) => {
-    const { prompt, model } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompts with models' });
-    }
-
-    try {
-        const baseURL = `https://sandipbaruwal.onrender.com/gen?prompt=${prompt}&model=${model}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
 });
 
 app.get('/api/orochiai', async (req, res) => {
