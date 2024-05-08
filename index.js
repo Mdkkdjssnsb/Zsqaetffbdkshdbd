@@ -43,7 +43,7 @@ const { prompt } = req.query;
   try {
     const response = await axios.get(`https://imagine-kshitiz-zia7.onrender.com/mj?prompt=${prompt}&ratio=1:1`);
 const images = response.data.imageUrls;
-    res.json(response.data);
+    res.json(images);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
