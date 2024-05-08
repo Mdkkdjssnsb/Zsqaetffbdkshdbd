@@ -2469,12 +2469,15 @@ app.get('/api/removebg', async (req, res) => {
 
     try {
         const baseURL = `https://hazee-upscale.replit.app/removebg?url=${url}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
+      
+const response = await axios.get(baseURL);
+
+const removebg = response.data.hazebg;
+
+    res.json({ removebg });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.get('/api/pastebin', async (req, res) => {
@@ -2548,7 +2551,7 @@ app.get('/api/describe', async (req, res) => {
         
 const response = await axios.get(baseURL);
 
-    const answer = response.data;
+   const answer = response.data.message;
 
     res.json({ answer });
   } catch (error) {
