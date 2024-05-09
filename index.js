@@ -42,7 +42,7 @@ const { url } = req.query;
 
   try {
     const response = await axios.get(`https://sandipbaruwal.onrender.com/imgur?link=${url}`);
-const pastebin = response.data.uploaded;
+const pastebin = response.data;
     res.json(pastebin);
   } catch (error) {
     res.status(500).json({ error: error.message });
