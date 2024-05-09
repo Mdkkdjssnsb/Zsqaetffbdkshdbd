@@ -37,6 +37,18 @@ app.use((req, res, next) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/bin', async (req, res) => {
+const { url } = req.query;
+
+  try {
+    const response = await axios.get(`https://sandipbaruwal.onrender.com/imgur?link=${url}`);
+const pastebin = response.data.uploaded;
+    res.json(pastebin);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/prodia', async (req, res) => {
 const { prompt } = req.query;
 
