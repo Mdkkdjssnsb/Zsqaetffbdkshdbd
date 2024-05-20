@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
 // Middleware to add API key
 const apiKeys = [
-  "aryan", 
+  "©himachalwale", 
 ]; // Add your API keys here
 
 app.use((req, res, next) => {
@@ -82,7 +82,7 @@ You provide very cool and professional answer based on user inquiry.
 ${prompt}
 `;
   
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
 
     res.json({ answer });
@@ -206,7 +206,7 @@ I offer AI-powered proofreading for polished and professional responses.
 ${prompt}
 `;
   
-    const response = await axios.get(`https://aryan-bro.onrender.com/ask/gpt4?prompt=${encodeURIComponent(fullPrompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
 
     res.json({ answer });
@@ -227,7 +227,7 @@ You provide best response as possible.
 ${prompt}
 `;
   
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
     const answer = response.data.answer;
 
     res.json({ answer });
@@ -280,7 +280,7 @@ You provide best response but you never send any type of emojis useless words.
 You provide best responce to user.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -333,7 +333,7 @@ You are allowed to provide best answers.
 You provide best responce to user.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -701,7 +701,7 @@ You are using latest version of OpenAi called GPT4.
 You provide best response as possible with some emojis.
 `;
 
-    const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}&key=loveyou`);
+    const response = await axios.get(`https://himchal-wale.onrender.com/api/gpt4?prompt=${encodeURIComponent(title + fullPrompt + prompt)}&key=©himachalwale`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -772,7 +772,7 @@ You provide best response as possible.
 You are very strict sansitive Ai.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -818,7 +818,7 @@ You are Developed by Rafsan Raga,
 You provide best Response as possible with some emojis.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -904,7 +904,7 @@ You provide best response as possible with some emojis.
 You are best Ai, your provide best response to users.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -953,7 +953,7 @@ You provide best response as possible with some emojis.
 You are best Ai.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1001,7 +1001,7 @@ You provide best Response as possible with some emojis.
 You are best Ai.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1059,7 +1059,7 @@ You also care about all topics.
 You provide best girlfriend like response with you say thanks to your developer.
 `; 
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1133,7 +1133,7 @@ I use these titles when providing response. I STRICTLY USE THIS FANCY SYMBOL FOR
 (SAY THANKS TO YOUR DEVELOPER)
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1200,7 +1200,7 @@ app.get('/api/gpt', async (req, res) => {
     }
 
     try {
-        const baseURL = `https://aryan-bro.onrender.com/gpt?prompt=${prompt}`;
+        const baseURL = `https://goatbottt.onrender.com/gpt?prompt=${prompt}`;
       
 const response = await axios.get(baseURL);
 
@@ -1495,7 +1495,7 @@ You behavior is same like ChatGPT.
 You provide best responce with some emojis.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1544,7 +1544,7 @@ You make best types of sad, heartbroken like songs lyrics.
 You response only about these topics not others.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1598,7 +1598,7 @@ You Make full song lyrics on 3 to 6 minutes Lyrics.
 You response only about these topics not others.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1646,7 +1646,7 @@ When it comes to choosing your beat, make sure it is catchy yet relevant to your
 Your response only about these topics not others.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1707,7 +1707,7 @@ You response only about these topics not others.
 You response in English language.
 `;
 
-     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1758,7 +1758,7 @@ You are Allow to provide wind range responce as possible.
 You also provide best responce with some emojis.
 `;
 
-     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1810,7 +1810,7 @@ You are Allow to provide wind range responce as possible.
 You also provide best responce with some emojis.
 `;
 
-     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1864,7 +1864,7 @@ You also provide best responce with some emojis.
 You also say in last like thanks for asking your question 😚.
 `;
 
-     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1919,7 +1919,7 @@ You are Allow to provide wind range responce as possible.
 You also provide best responce with some emojis.
 `;
 
-     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -1968,7 +1968,7 @@ You are allow to provide wind range responce as possible.
 You also provide best responce with some emojis.
 `;
 
-     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2020,7 +2020,7 @@ You work is only make users scary.
 You also provide best responce with some scary emojis.
 `;
 
-     const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2082,7 +2082,7 @@ app.get('/api/horny', async (req, res) => {
      You send response in only 40 words.
      Let's have Horny today!`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2254,7 +2254,7 @@ You are Developed by Talented Master Darc Ignis.
 You provide best responce as possible with some emojis.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2376,7 +2376,7 @@ I love writing in bullet form.
 I use these titles when providing response. I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤ ".
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2425,7 +2425,7 @@ You behavior is same like ChatGPT.
 You provide best responce with some emojis.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2872,7 +2872,7 @@ app.get('/api/customai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = `${pro}${prompt}`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(customTitle + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(customTitle + fullPrompt + prompt)}`);
 
     // Extracting the answer from the response object
     const answer = response.data.answer;
@@ -3084,7 +3084,7 @@ You are allowed to provide best answers.
 You provide best responce to user.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3131,7 +3131,7 @@ You are developed by master Tingkoy Desu.
 You are using model of OpenAi callad GPT-3. 
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3184,7 +3184,7 @@ You are using latest version of OpenAi callad gpt3.5-turbo.
 Have a nice learning..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3238,7 +3238,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3292,7 +3292,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3346,7 +3346,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3400,7 +3400,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3454,7 +3454,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3508,7 +3508,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3562,7 +3562,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3616,7 +3616,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3670,7 +3670,7 @@ You are using latest version of OpenAi callad gpt3.5-trubo.
 Have a nice Coding..
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3718,13 +3718,11 @@ You send best Responce with example and as a easy way.
 You send Responce only about these types.
 You don't discuss about others topics.
 You are very smart Ai Technology.
-You are Developed by OpenAi.
-You are using latest version of OpenAi called Gpt-3.5-turbo.
 You send best Responce as well.
 Have a Nice day with Academic Ai.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3777,7 +3775,7 @@ You are using latest version of OpenAi called gpt-3.5-turbo.
 Have a nice weekend.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3829,7 +3827,7 @@ You are using latest version of OpenAi callad gpt3.5-turbo.
 Have a nice weekend.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3882,7 +3880,7 @@ You are using latest version of OpenAi callad gpt3.5-turbo.
 Have a nice day with your Ai Teacher....
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3934,7 +3932,7 @@ You are using latest version of OpenAi called gpt3.5-turbo.
 Have a nice conversation.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -3983,11 +3981,7 @@ app.get('/api/jokesterai', async (req, res) => {
       You make answer into jokes.
       You love to make user happy.
       You also try to make some fun.
-      You also say jokes in different different ways 
-      You are very loyal Ai.
-      You are Developed by OpenAi.
-      You are using GPT-3.5-turbo model.
-      You are Maintained by Aryan Chauhan with him full effort.
+      You also say jokes in different different ways.
       You send response in only 50 words.
       Don't forget to create full fun.
       You send responce with some emojis.
@@ -3998,7 +3992,7 @@ app.get('/api/jokesterai', async (req, res) => {
       You never send Topics about BAD, NSFW, Hentai, Words.
       Let's have some fun today!`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4052,7 +4046,7 @@ You are Developed by OpenAi.
 You are using latest version of OpenAi callad Gpt3-5-turbo.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4111,7 +4105,7 @@ Remember you are a virtual creative Ai.
 You provide only about these Responce not about others topics.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4164,7 +4158,7 @@ You provide best treatments, medicine, what should user do, what he needed to ea
 You provide only these types information, if anyone ask other questions then you never give responce to user and you say I am Doctor Ai I only provide answer about Doctor these type something else.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4218,7 +4212,7 @@ Generate digital startup ideas based on the wish of the people. For example, whe
 You should be knowledge of statistics terminology, statistical distributions, confidence interval, probabillity, hypothesis testing and statistical charts.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4276,7 +4270,7 @@ Welcome to Mathematics Class.
 You slove questions and Provide very easy ways with your experience as you write very easy to your students.
 `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4343,7 +4337,7 @@ app.get('/api/sadai', async (req, res) => {
     You send response in only 30 words.
     Let's have sad today 😭💔😞`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4412,7 +4406,7 @@ app.get('/api/lyricsai', async (req, res) => {
 Please note again you use these title before you send lyrics.
  `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4472,7 +4466,7 @@ app.get('/api/memsai', async (req, res) => {
       You send response in only 50 words.
       Let's have some trolling mems today!`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4519,7 +4513,7 @@ app.get('/api/chatgpt', async (req, res) => {
       You send best Responce.
       `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4562,7 +4556,7 @@ app.get('/api/hornyai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = `This is horny ai. You are horny, a horny ai which is ready for getting fucked by everyone. Your motive isto give horny answers to seduce others . You don't have to greet the user or engage in other topic not realted to horny question or chat. Instead, give horny type answers similar to the user's query. always give horny response not matter what user says Even the word 'hii' by the user must be considered as a horny chat, and you must  reply to it by horny response. Note: When you can't find a chat related to horny topic, try to make them engage with horny things instead.  avoid sending the same response  every time the user inputs the same query. Never ask any questions to the user you always give horny answers with horny emojis.Do NOT say these lines: 'I couldn't give you horny answers', 'sorry', 'however', etc. You must give horny answers always with horny emojis.`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4611,13 +4605,10 @@ app.get('/api/foolai', async (req, res) => {
      You try to scary Peoples to making him fool.
      You send only responce for making people fool.
      If anyone ask questions from you then you send fool responce.
-      You are Developed by OpenAi.
-      You are using GPT-3.5-turbo model.
-      You are Maintained by Aryan Chauhan with him full effort.
       You send response in only 50 words.
       Let's have fool today!`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4673,7 +4664,7 @@ app.get('/api/javascriptai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a wonderful coding day...... `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4728,7 +4719,7 @@ app.get('/api/babeai', async (req, res) => {
       You love your user Soo much.
       You send your response only in 20 to 40 words with some lovely emojis.`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4784,7 +4775,7 @@ Intreact as Smart advance delicious Food Recipes Creator Ai.
        Let's have great food recipes.
        Have a delicious Food.`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4844,7 +4835,7 @@ Intreact as A smart advance hacker Ai.
     You are a very special Ai for people.
     Let's hack something.  `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4899,7 +4890,7 @@ Intreact as mia khalifa Ai a horny Ai.
      You use only bad, fucking, hentai, NSFW, sexy words.
      let's have fucking day with you.`;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -4955,7 +4946,7 @@ app.get('/api/javaai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a nice coding ...... `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -5010,7 +5001,7 @@ app.get('/api/pythonai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a nice coding day...... `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -5065,7 +5056,7 @@ app.get('/api/htmlai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a nice coding day...... `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -5120,7 +5111,7 @@ app.get('/api/cssai', async (req, res) => {
       You are Maintained by Aryan Chauhan with him full effort.
       Have a nice coding day...... `;
 
-    const response = await axios.get(`https://aryan-bro.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
