@@ -1,5 +1,6 @@
 const fs = require('fs');
 const axios = require('axios');
+const { G4F } = require('g4f');
 const express = require('express');
 const app = express();
 
@@ -49,16 +50,93 @@ const pastebin = response.data;
   }
 });
 
-app.get('/api/prodia', async (req, res) => {
-const { prompt } = req.query;
+app.get('/prodia', async (req, res) => {
+    const prompt = req.query.prompt;
+    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
+    const samplingSteps = 15;
+    const cfgScale = 30;
 
-  try {
-    const response = await axios.get(`https://imagine-kshitiz-zia7.onrender.com/mj?prompt=${prompt}&ratio=1:1`);
-const images = response.data.imageUrls;
-    res.json(images);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+    const g4f = new G4F();
+    try {
+        const base64Image = await g4f.imageGeneration(prompt, { 
+            debug: true,
+            provider: g4f.providers.Emi,
+            providerOptions: {
+                 height: 512,
+                 width: 512,
+                samplingSteps: SA-Solver
+            }
+        });
+
+        // Convert the base64 image to Buffer and send as response
+        const imgBuffer = Buffer.from(base64Image, 'base64');
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': imgBuffer.length
+        });
+        res.end(imgBuffer);
+    } catch (error) {
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/prodia', async (req, res) => {
+    const prompt = req.query.prompt;
+    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
+    const samplingSteps = 15;
+    const cfgScale = 30;
+
+    const g4f = new G4F();
+    try {
+        const base64Image = await g4f.imageGeneration(prompt, { 
+            debug: true,
+            provider: g4f.providers.Pixart,
+            providerOptions: {
+                samplingSteps: 15,
+                 cfgScale: 30
+            }
+        });
+
+        // Convert the base64 image to Buffer and send as response
+        const imgBuffer = Buffer.from(base64Image, 'base64');
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': imgBuffer.length
+        });
+        res.end(imgBuffer);
+    } catch (error) {
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia', async (req, res) => {
+    const prompt = req.query.prompt;
+    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
+    const samplingSteps = 15;
+    const cfgScale = 30;
+
+    const g4f = new G4F();
+    try {
+        const base64Image = await g4f.imageGeneration(prompt, { 
+            debug: true,
+            provider: g4f.providers.Prodia,
+            providerOptions: {
+                model: model,
+                samplingSteps: samplingSteps,
+                cfgScale: cfgScale
+            }
+        });
+
+        // Convert the base64 image to Buffer and send as response
+        const imgBuffer = Buffer.from(base64Image, 'base64');
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': imgBuffer.length
+        });
+        res.end(imgBuffer);
+    } catch (error) {
+        res.status(500).send('Error generating image: ' + error.message);
+    }
 });
 
 app.get('/stalk/fb', async (req, res) => {
@@ -2990,19 +3068,32 @@ app.get('/api/niji', async (req, res) => {
 });
 
 app.get('/api/emi', async (req, res) => {
-    const { prompt } = req.query;
+    const prompt = req.query.prompt;
+    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
+    const samplingSteps = 15;
+    const cfgScale = 30;
 
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt.....' });
-    }
-
+    const g4f = new G4F();
     try {
-        const baseURL = `https://deku-rest-api.replit.app/emi?prompt=${prompt}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
+        const base64Image = await g4f.imageGeneration(prompt, { 
+            debug: true,
+            provider: g4f.providers.Emi,
+            providerOptions: {
+                model: model,
+                samplingSteps: samplingSteps,
+                cfgScale: cfgScale
+            }
+        });
+
+        // Convert the base64 image to Buffer and send as response
+        const imgBuffer = Buffer.from(base64Image, 'base64');
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': imgBuffer.length
+        });
+        res.end(imgBuffer);
     } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).send('Error generating image: ' + error.message);
     }
 });
 
