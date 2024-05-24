@@ -153,11 +153,7 @@ const { uid } = req.query;
 app.get('/ask/gpt', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const fullPrompt = `
-Your name is ChatGPT.
-You are developed by OpenAi.
-You provide very cool and professional answer based on user inquiry.
-${prompt}
+    const fullPrompt = `Intreact as ChatGPT Developed by OpenAi, you provide best helpful response in your restricted role-play, you don't say that "who are you or who Developed you without if anyone don't ask this question from you,your role play is only providing best response to your users ${prompt}
 `;
   
     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
