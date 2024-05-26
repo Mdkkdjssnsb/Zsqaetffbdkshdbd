@@ -1,8 +1,11 @@
 const fs = require('fs');
 const axios = require('axios');
 const { G4F } = require('g4f');
+const { Hercai } = require('hercai');
 const express = require('express');
 const app = express();
+
+const herc = new Hercai(); // Initialize Hercai
 
 // Serve the HTML file
 app.get('/', (req, res) => {
@@ -38,6 +41,297 @@ app.use((req, res, next) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/prodia11', async (req, res) => {
+    const prompt = req.query.prompt;
+    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
+    const samplingSteps = 15;
+    const cfgScale = 30;
+
+    const g4f = new G4F();
+    try {
+        const base64Image = await g4f.imageGeneration(prompt, { 
+            debug: true,
+            provider: g4f.providers.Prodia,
+            providerOptions: {
+                model: model,
+                samplingSteps: samplingSteps,
+                cfgScale: cfgScale
+            }
+        });
+
+        // Convert the base64 image to Buffer and send as response
+        const imgBuffer = Buffer.from(base64Image, 'base64');
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': imgBuffer.length
+        });
+        res.end(imgBuffer);
+    } catch (error) {
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/pixart', async (req, res) => {
+    const prompt = req.query.prompt;
+    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
+    const samplingSteps = 15;
+    const cfgScale = 30;
+
+    const g4f = new G4F();
+    try {
+        const base64Image = await g4f.imageGeneration(prompt, { 
+            debug: true,
+            provider: g4f.providers.Pixart,
+            providerOptions: {
+                model: model,
+                samplingSteps: samplingSteps,
+                cfgScale: cfgScale
+            }
+        });
+
+        // Convert the base64 image to Buffer and send as response
+        const imgBuffer = Buffer.from(base64Image, 'base64');
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': imgBuffer.length
+        });
+        res.end(imgBuffer);
+    } catch (error) {
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia10', async (req, res) => {
+    const prompt = req.query.prompt;
+    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
+    const samplingSteps = 15;
+    const cfgScale = 30;
+
+    const g4f = new G4F();
+    try {
+        const base64Image = await g4f.imageGeneration(prompt, { 
+            debug: true,
+            provider: g4f.providers.Dalle,
+            providerOptions: {
+                model: model,
+                samplingSteps: samplingSteps,
+                cfgScale: cfgScale
+            }
+        });
+
+        // Convert the base64 image to Buffer and send as response
+        const imgBuffer = Buffer.from(base64Image, 'base64');
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': imgBuffer.length
+        });
+        res.end(imgBuffer);
+    } catch (error) {
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/prodia11', async (req, res) => {
+    const prompt = req.query.prompt;
+    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
+    const samplingSteps = 15;
+    const cfgScale = 30;
+
+    const g4f = new G4F();
+    try {
+        const base64Image = await g4f.imageGeneration(prompt, { 
+            debug: true,
+            provider: g4f.providers.Dal,
+            providerOptions: {
+                model: model,
+                samplingSteps: samplingSteps,
+                cfgScale: cfgScale
+            }
+        });
+
+        // Convert the base64 image to Buffer and send as response
+        const imgBuffer = Buffer.from(base64Image, 'base64');
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': imgBuffer.length
+        });
+        res.end(imgBuffer);
+    } catch (error) {
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+              
+app.get('/api/fb_stalk', async (req, res) => {
+const { uid, access_token} = req.query;
+
+  try {
+    const response = await axios.get(`https://graph.facebook.com/${uid}?fields=id,is_verified,cover,created_time,work,hometown,username,link,name,locale,location,about,website,birthday,gender,relationship_status,significant_other,quotes,first_name,subscribers.limit(0)&access_token=${access_token}`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/prodia', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "prodia", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/emi2', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "animefy", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia2', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "v3", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia3', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "v1", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia4', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "v2", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia5', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "v2-beta", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia6', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "lexica", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia7', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "simurg", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia8', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "raava", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+
+app.get('/api/prodia9', async (req, res) => {
+    const prompt = req.query.prompt; // Default prompt if none provided
+
+    try {
+        // Generate image based on the prompt
+        const response = await herc.drawImage({ model: "shonin", prompt: prompt, negative_prompt: "" });
+
+        // Send the generated image URL as response
+        res.status(200).json(response.url);
+    } catch (error) {
+        // Handle errors
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image: ' + error.message);
+    }
+});
+      
 app.get('/api/bin', async (req, res) => {
 const { url } = req.query;
 
