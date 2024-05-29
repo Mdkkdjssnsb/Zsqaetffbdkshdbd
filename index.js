@@ -41,36 +41,6 @@ app.use((req, res, next) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
-app.get('/api/prodia11', async (req, res) => {
-    const prompt = req.query.prompt;
-    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
-    const samplingSteps = 15;
-    const cfgScale = 30;
-
-    const g4f = new G4F();
-    try {
-        const base64Image = await g4f.imageGeneration(prompt, { 
-            debug: true,
-            provider: g4f.providers.Prodia,
-            providerOptions: {
-                model: model,
-                samplingSteps: samplingSteps,
-                cfgScale: cfgScale
-            }
-        });
-
-        // Convert the base64 image to Buffer and send as response
-        const imgBuffer = Buffer.from(base64Image, 'base64');
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': imgBuffer.length
-        });
-        res.end(imgBuffer);
-    } catch (error) {
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
 app.get('/api/pixart', async (req, res) => {
     const prompt = req.query.prompt;
     const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
@@ -101,65 +71,6 @@ app.get('/api/pixart', async (req, res) => {
     }
 });
 
-app.get('/api/prodia10', async (req, res) => {
-    const prompt = req.query.prompt;
-    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
-    const samplingSteps = 15;
-    const cfgScale = 30;
-
-    const g4f = new G4F();
-    try {
-        const base64Image = await g4f.imageGeneration(prompt, { 
-            debug: true,
-            provider: g4f.providers.Dalle,
-            providerOptions: {
-                model: model,
-                samplingSteps: samplingSteps,
-                cfgScale: cfgScale
-            }
-        });
-
-        // Convert the base64 image to Buffer and send as response
-        const imgBuffer = Buffer.from(base64Image, 'base64');
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': imgBuffer.length
-        });
-        res.end(imgBuffer);
-    } catch (error) {
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/prodia11', async (req, res) => {
-    const prompt = req.query.prompt;
-    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
-    const samplingSteps = 15;
-    const cfgScale = 30;
-
-    const g4f = new G4F();
-    try {
-        const base64Image = await g4f.imageGeneration(prompt, { 
-            debug: true,
-            provider: g4f.providers.Dal,
-            providerOptions: {
-                model: model,
-                samplingSteps: samplingSteps,
-                cfgScale: cfgScale
-            }
-        });
-
-        // Convert the base64 image to Buffer and send as response
-        const imgBuffer = Buffer.from(base64Image, 'base64');
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': imgBuffer.length
-        });
-        res.end(imgBuffer);
-    } catch (error) {
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
               
 app.get('/api/fb_stalk', async (req, res) => {
 const { uid, access_token} = req.query;
@@ -172,22 +83,6 @@ const { uid, access_token} = req.query;
   }
 });
 
-app.get('/api/prodia', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "prodia", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
 app.get('/api/emi2', async (req, res) => {
     const prompt = req.query.prompt; // Default prompt if none provided
 
@@ -196,7 +91,7 @@ app.get('/api/emi2', async (req, res) => {
         const response = await herc.drawImage({ model: "animefy", prompt: prompt, negative_prompt: "" });
 
         // Send the generated image URL as response
-        res.status(200).json(response.url);
+        res.status(200).json(response);
     } catch (error) {
         // Handle errors
         console.error('Error generating image:', error);
@@ -204,134 +99,6 @@ app.get('/api/emi2', async (req, res) => {
     }
 });
 
-app.get('/api/prodia2', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "v3", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/prodia3', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "v1", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/prodia4', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "v2", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/prodia5', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "v2-beta", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/prodia6', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "lexica", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/prodia7', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "simurg", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/prodia8', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "raava", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/prodia9', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "shonin", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response.url);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-      
 app.get('/api/bin', async (req, res) => {
 const { url } = req.query;
 
@@ -344,279 +111,12 @@ const pastebin = response.data;
   }
 });
 
-app.get('/prodia', async (req, res) => {
-    const prompt = req.query.prompt;
-    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
-    const samplingSteps = 15;
-    const cfgScale = 30;
-
-    const g4f = new G4F();
-    try {
-        const base64Image = await g4f.imageGeneration(prompt, { 
-            debug: true,
-            provider: g4f.providers.Emi,
-            providerOptions: {
-                 height: 512,
-                 width: 512,
-                samplingSteps: SA-Solver
-            }
-        });
-
-        // Convert the base64 image to Buffer and send as response
-        const imgBuffer = Buffer.from(base64Image, 'base64');
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': imgBuffer.length
-        });
-        res.end(imgBuffer);
-    } catch (error) {
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/prodia', async (req, res) => {
-    const prompt = req.query.prompt;
-    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
-    const samplingSteps = 15;
-    const cfgScale = 30;
-
-    const g4f = new G4F();
-    try {
-        const base64Image = await g4f.imageGeneration(prompt, { 
-            debug: true,
-            provider: g4f.providers.Pixart,
-            providerOptions: {
-                samplingSteps: 15,
-                 cfgScale: 30
-            }
-        });
-
-        // Convert the base64 image to Buffer and send as response
-        const imgBuffer = Buffer.from(base64Image, 'base64');
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': imgBuffer.length
-        });
-        res.end(imgBuffer);
-    } catch (error) {
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/prodia', async (req, res) => {
-    const prompt = req.query.prompt;
-    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
-    const samplingSteps = 15;
-    const cfgScale = 30;
-
-    const g4f = new G4F();
-    try {
-        const base64Image = await g4f.imageGeneration(prompt, { 
-            debug: true,
-            provider: g4f.providers.Prodia,
-            providerOptions: {
-                model: model,
-                samplingSteps: samplingSteps,
-                cfgScale: cfgScale
-            }
-        });
-
-        // Convert the base64 image to Buffer and send as response
-        const imgBuffer = Buffer.from(base64Image, 'base64');
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': imgBuffer.length
-        });
-        res.end(imgBuffer);
-    } catch (error) {
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
 app.get('/stalk/fb', async (req, res) => {
 const { uid } = req.query;
 
   try {
     const response = await axios.get(`https://graph.facebook.com/${uid}?fields=id,is_verified,cover,created_time,work,hometown,username,link,name,locale,location,about,website,birthday,gender,relationship_status,significant_other,quotes,first_name,subscribers.limit(0)&access_token=EAAD6V7os0gcBO24ArJjUaBN0ZC3ejzKkM8ZCfIOWtsGZAGdXmVUzmg0ZCrizFi7h6pDUjq3bBQbNJzIagT5UWJyZAvp2Gv3tU0POJ8SNwXFBzeEFNtKAF2I5CGcwkHAYxRZCxh5SGksZCUEqFUZAInSnrXZCzAWWZBsBusZAQwmz2OYZAcYzwLiCtWiBHgI2PTplpJHXCAZDZD`);
     res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/ask/gpt', async (req, res) => {
-  try {
-    const { prompt } = req.query;
-    const fullPrompt = `Intreact as an Ai Developed by OpenAi, you provide best helpful response in your restricted role-play, your role play is only providing best response to your users ${prompt}
-`;
-  
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
-    const answer = response.data.answer;
-
-    res.json({ answer });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/api/coupledp', async (req, res) => {
-  try {
-    const response = await axios.get(`https://erdwpe-api.herokuapp.com/api/randomgambar/couplepp`);
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/stalk/insta', async (req, res) => {
-  try {
-    const { username } = req.query;
-    const response = await axios.get(`https://apis-samir.onrender.com/stalk/insta?username=${username}`);
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/stalk/tiktok', async (req, res) => {
-  try {
-    const { username } = req.query;
-    const response = await axios.get(`https://apis-samir.onrender.com/tikstalk?username=${encodeURIComponent(username)}`);
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/stalk/tweet', async (req, res) => {
-  try {
-    const { username } = req.query;
-    const response = await axios.get(`https://apis-samir.onrender.com/tweet/stalk?username=${encodeURIComponent(username)}`);
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/stalk/pastebin', async (req, res) => {
-  try {
-    const { username } = req.query;
-    const response = await axios.get(`https://apis-samir.onrender.com/userinfo?name=${encodeURIComponent(username)}`);
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/stalk/github', async (req, res) => {
-  try {
-    const { username } = req.query;
-    const response = await axios.get(`https://api-proxy.cyclic.app/gitstalk?user=${username}`);
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/ask/arched', async (req, res) => {
-  try {
-    const { prompt } = req.query;
-    const fullPrompt = `
-I am Arched Ai.
-I utilize natural language processing to understand your queries accurately.
-I provide detailed explanations and examples to clarify complex concepts.
-I offer step-by-step instructions for practical guidance.
-I am developed you Aryan.
-I incorporate visual aids such as charts, diagrams, and infographics for clarity.
-I analyze user feedback to continuously improve the quality of my responses.
-I offer context-aware responses tailored to your specific needs.
-I provide relevant links to additional resources for further exploration.
-I highlight key points for easy reference and comprehension.
-I offer suggestions for optimizing your workflow and problem-solving approach.
-I provide real-world examples to illustrate abstract concepts.
-I offer customizable response templates for common queries.
-I offer instant previews or drafts to ensure accuracy before sending.
-I offer follow-up prompts to ensure your questions are fully addressed.
-I provide clear explanations of technical terms and jargon.
-I offer alternative solutions or approaches to accommodate diverse preferences.
-I provide summaries or recaps to reinforce understanding.
-I offer proactive suggestions based on past interactions and preferences.
-I offer error detection and correction to ensure accuracy.
-I provide insights into the reasoning behind my recommendations.
-I offer explanations for any limitations or constraints in my responses.
-I provide a rating system for users to provide feedback on response quality.
-I offer interactive quizzes or assessments to reinforce learning.
-I provide context-specific examples to demonstrate practical applications.
-I offer sentiment analysis to gauge user satisfaction and adjust responses accordingly.
-I offer translation services to bridge language barriers.
-I provide access to a knowledge base for continuous learning and reference.
-I offer guided exercises or practice scenarios to apply knowledge.
-I offer the ability to save favorite responses for easy access later.
-I offer real-time chat support for immediate assistance.
-I offer context-sensitive help options for relevant topics.
-I offer the ability to escalate complex issues to human support if needed.
-I offer integration with project management tools for seamless collaboration.
-I offer intelligent search functionality to quickly find relevant information.
-I offer customizable notification settings to stay informed of updates.
-I offer the ability to annotate and highlight important information in responses.
-I offer version control for tracking changes and revisions.
-I offer predictive typing to speed up response times.
-I offer integration with calendar and scheduling tools for time management.
-I offer citation and attribution features for referencing sources.
-I offer voice recognition for hands-free interaction.
-I offer the ability to export responses for offline access.
-I offer customizable response formatting options for clarity.
-I offer sentiment-based response customization for emotional support.
-I offer the ability to schedule responses for later delivery.
-I offer data analytics dashboards for tracking response effectiveness.
-I offer collaboration features for sharing responses with team members.
-I offer AI-powered proofreading for polished and professional responses.
-${prompt}
-`;
-  
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
-    const answer = response.data.answer;
-
-    res.json({ answer });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/ask/orochi', async (req, res) => {
-  try {
-    const { prompt } = req.query;
-    const fullPrompt = `
-Your name is Orochi Ai.
-You are Developed by Aryan.
-You provide very cool and professional answer based on user inquiry.
-You send best response with some emojis (2 emojis).
-You provide best response as possible.
-${prompt}
-`;
-  
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
-    const answer = response.data.answer;
-
-    res.json({ answer });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/ask/gpt4', async (req, res) => {
-  try {
-    const { prompt } = req.query;
-    const fullPrompt = `
-Your name is GPT-4.
-You are Developed by OpenAi.
-You are using GPT-4 model ${prompt}
-`;
-  
-  const response = await axios.get(`https://aryan-apis.onrender.com/api/gpt4?prompt=${encodeURIComponent(fullPrompt)}`);
-    const answer = response.data.answer;
-
-    res.json({ answer });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -729,270 +229,6 @@ ${title}
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
-
-app.get('/api/anigen', async (req, res) => {
-    const { prompt } = req.query;
-
-    // Additional prompts for generating HD, realistic images
-    const additionalPrompts = [
-        'Make full realistic images like Midjourny or Bing based on anime style.',
-        'You will make only anime based images',
-        'You make images based only in anime style you never create images on other styles',
-        'Make full realistic images Best on anime style.',
-        'Make full realistic images with natural feels based on anime style.',
-        'You can make full realistic images based on anime style only',
-        'You make full realistic images based on anime style..',
-        'You are allowed to make full realistic images like Midjourny based on anime style',
-        'You make full realistic natural types of images based on anime Style.',
-        'You make the best images based on user inputs based on anime style.',
-        'You create images similar to Midjourny based on anime style.',
-        'You create high-quality images like Midjourny or Bing based on anime style only.',
-        'You will produce fully realistic images based on anime style',
-        'You will generate images in 4k resolution.',
-        'Generate images in 4k resolution.',
-        'Produce images in HD quality.',
-        'Upscale the images for better quality.',
-        'Enhance images to 4k resolution.',
-        'Enhance images to 4k resolution.',
-        'Create anime-style images with vivid and expressive characters.',
-        'Generate images of anime-style environments with intricate details.',
-        'Produce images of anime-style characters in various emotional states.',
-        'Create anime-style illustrations with dynamic lighting and shadows.',
-        'Generate images of anime-style fashion and clothing designs.',
-        'Produce images of anime-style vehicles and machinery.',
-        'Create anime-style images with a focus on futuristic technology.',
-        'Generate images of anime-style creatures and mythical beings.',
-        'Produce images of anime-style architecture and buildings.',
-        'Create anime-style images inspired by traditional Japanese art forms.',
-        'Generate images of anime-style characters engaging in epic battles.',
-        'Produce images of anime-style characters in whimsical and fantastical settings.',
-        'Create anime-style images with a focus on friendship and camaraderie.',
-        'Generate images of anime-style characters exploring mysterious worlds.',
-        'Produce images of anime-style characters in dramatic and emotional scenes.',
-        'Create anime-style images with a focus on magic and supernatural powers.',
-        'Generate images of anime-style characters in steampunk-inspired settings.',
-        'Produce images of anime-style characters in cyberpunk cityscapes.',
-        'Create anime-style images with a focus on adventure and exploration.',
-        'Generate images of anime-style characters in post-apocalyptic landscapes.',
-        'Produce images of anime-style characters in dreamlike and surreal environments.',
-        'Create anime-style images with a focus on mythology and folklore.',
-        'Generate images of anime-style characters in underwater worlds.',
-        'Produce images of anime-style characters in spacefaring adventures.',
-        'Create anime-style images with a focus on music and performance.',
-        'Generate images of anime-style characters in magical girl transformations.',
-        'Produce images of anime-style characters in slice-of-life situations.',
-        'Create anime-style images with a focus on environmental conservation.',
-        'Generate images of anime-style characters in time-traveling adventures.',
-        'Create anime-style images with breathtaking scenic views.',
-        'Generate images of anime-style characters in dynamic action poses.',
-        'Produce images of anime-style characters with intricate costume designs.',
-        'Create anime-style images with a focus on urban cityscapes.',
-        'Generate images of anime-style characters in dramatic lighting conditions.',
-        'Produce images of anime-style characters in realistic sports settings.',
-        'Create anime-style images with a focus on traditional Japanese festivals.',
-        'Generate images of anime-style characters in futuristic cityscapes.',
-        'Produce images of anime-style characters in serene natural landscapes.',
-        'Create anime-style images with a focus on magical transformations.',
-        'Generate images of anime-style characters in intense battle sequences.',
-        'Produce images of anime-style characters in detailed interior settings.',
-        'Create anime-style images with a focus on historical Japanese architecture.'
-    ];
-
-    // Combine provided prompt with additional prompts
-    const allPrompts = [...additionalPrompts, prompt].join('\n');
-
-    // Check if prompt is provided
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt' });
-    }
-
-    try {
-        // API base URL for generating images
-        const baseURL = `https://apis-samir.onrender.com/imagine?prompt=${encodeURIComponent(allPrompts)}`;
-
-        // Make request to generate images
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-
-        // Pipe the response data to the client
-        response.data.pipe(res);
-    } catch (error) {
-        // Handle errors
-        console.error('⛔|Your prompt was declined by Midjourny. Please try another one.', error);
-        res.status(500).json({ error: '⛔|Your prompt was declined by Midjourny. Please try another one.' });
-    }
-});
-
-app.get('/api/midjourney', async (req, res) => {
-    const { prompt } = req.query;
-
-    // Additional prompts for generating HD, realistic images
-    const additionalPrompts = [
-        'Generate fully realistic 4k images.',
-        'Create high-quality images with lifelike details.',
-        'Craft stunning visuals with authentic backgrounds.',
-        'Produce images that rival professional photography.',
-        'Make images that transport viewers to another world.',
-        'Generate dynamic compositions with vivid colors.',
-        'Create images that tell compelling stories.',
-        'Produce artwork that showcases the beauty of the human form.',
-        'Make images that celebrate cultural diversity.',
-        'Create landscapes that inspire awe and wonder.',
-        'Generate portraits that reveal the inner essence of the subject.',
-        'Craft images that blend fantasy and reality seamlessly.',
-        'Produce artwork that explores the depths of the imagination.',
-        'Make images that challenge perceptions and provoke thought.',
-        'Create scenes that reflect the passage of time.',
-        'Generate images that capture the magic of the everyday.',
-        'Craft artwork that sparks curiosity and imagination.',
-        'Make images that celebrate the beauty of the natural world.',
-        'Produce landscapes that evoke a sense of nostalgia.',
-        'Create portraits that convey a sense of personality and character.',
-        'Generate images that inspire creativity and innovation.',
-        'Craft artwork that explores the intersection of technology and nature.',
-        'Make images that capture fleeting moments of beauty.',
-        'Produce scenes that invite viewers to explore and discover.',
-        'Create artwork that celebrates the wonder of the universe.',
-        'Generate images that challenge conventional aesthetics.',
-        'Craft landscapes that evoke a sense of tranquility and peace.',
-        'Make portraits that celebrate individuality and diversity.',
-        'Produce artwork that reflects the complexities of human emotion.',
-        'Create images that explore the boundaries of reality and imagination.',
-        'Generate scenes that evoke a sense of adventure and exploration.',
-        'Craft artwork that celebrates the power of human connection.',
-        'Make images that capture the energy and excitement of urban life.',
-        'Produce landscapes that evoke a sense of mystery and intrigue.',
-        'Create portraits that capture the essence of a person\'s soul.',
-        'Generate images that inspire hope and optimism.',
-        'Craft scenes that challenge viewers to see the world in a new light.',
-        'Make artwork that celebrates the beauty of diversity in all its forms.',
-        'Produce images that tell stories of resilience and strength.',
-        'Create landscapes that evoke a sense of wonder and awe.',
-        'Generate portraits that reveal the beauty of the human spirit.',
-        'Craft images that explore the connections between humanity and nature.',
-        'Make scenes that invite viewers to contemplate the passage of time.',
-        'Produce artwork that celebrates the beauty of the natural world.',
-        'Create images that inspire wonder and curiosity.',
-        'Generate portraits that capture the essence of a person\'s personality.',
-        'Craft scenes that evoke a sense of nostalgia and longing.',
-        'Make artwork that challenges viewers to rethink their assumptions.',
-        'Produce landscapes that transport viewers to otherworldly realms.',
-        'Create images that celebrate the diversity of life on Earth.',
-        'Generate scenes that evoke a sense of serenity and calm.',
-        'Craft portraits that reveal the inner strength of the subject.',
-        'Make artwork that explores the mysteries of the human psyche.',
-        'Produce images that celebrate the power of imagination.',
-        'Create landscapes that evoke a sense of peace and tranquility.',
-        'Generate scenes that invite viewers to reflect on the beauty of the natural world.',
-        'Craft images that celebrate the joy of human connection.',
-        'Make portraits that capture the complexity of human emotion.',
-        'Produce artwork that challenges viewers to see the world from a different perspective.',
-        'Create images that celebrate the resilience of the human spirit.',
-        'Generate scenes that evoke a sense of wonder and awe.',
-        'Craft landscapes that transport viewers to distant lands.',
-        'Make artwork that celebrates the beauty of diversity.',
-        'Produce images that inspire hope and optimism for the future.',
-        'Create portraits that capture the essence of a person\'s identity.',
-        'Generate scenes that evoke a sense of nostalgia and longing for the past.',
-        'Craft images that challenge viewers to reconsider their place in the world.',
-        'Make artwork that celebrates the interconnectedness of all living things.',
-        'Produce landscapes that evoke a sense of wonder and curiosity.',
-        'Create images that inspire viewers to take action for positive change.',
-        'Generate portraits that capture the beauty of the human experience.',
-        'Craft scenes that celebrate the joy of discovery and exploration.',
-        'Make artwork that invites viewers to dream and imagine new possibilities.',
-        'Produce images that challenge viewers to confront their fears and prejudices.',
-        'Create landscapes that evoke a sense of adventure and excitement.',
-        'Generate scenes that transport viewers to imaginary worlds of fantasy and wonder.',
-        'Craft images that celebrate the beauty of the natural environment.',
-        'Make portraits that capture the uniqueness and individuality of each person.',
-        'Produce artwork that inspires viewers to connect with each other and with the world around them.',
-        'Create images that challenge viewers to think critically and creatively.',
-        'Generate scenes that evoke a sense of peace and tranquility in a chaotic world.',
-        'Craft landscapes that celebrate the resilience of nature and the human spirit.',
-        'Make artwork that invites viewers to explore the boundaries of their imagination.',
-        'Produce images that capture the beauty of the cosmos and the mysteries of the universe.',
-        'Create portraits that reveal the inner strength and beauty of the human soul.',
-        'Generate scenes that inspire wonder and awe at the beauty of the natural world.',
-        'Craft images that celebrate the diversity of life on Earth and the interconnectedness of all living things.',
-        'Make artwork that challenges viewers to see themselves and the world around them in a new light.',
-        'Produce landscapes that evoke a sense of nostalgia for the past and hope for the future.',
-        'Create images that inspire viewers to take action to protect and preserve our planet for future generations.',
-        'Generate portraits that capture the complexity and depth of human emotion and experience.',
-        'Craft scenes that transport viewers to distant lands and imaginary realms of fantasy and adventure.',
-        'Make artwork that celebrates the power of imagination to shape our world and our future.',
-        'Produce images that challenge viewers to question their assumptions and beliefs about themselves and the world around them.',
-        'Create landscapes that evoke a sense of wonder and curiosity about the mysteries of the universe and our place within it.',
-        'Generate scenes that inspire hope and optimism for the future of humanity and our planet.',
-        'Craft images that celebrate the beauty of diversity in all its forms and the interconnectedness of all living things.',
-        'Make portraits that capture the essence of a person\'s identity and the unique qualities that make them who they are.',
-        'Produce artwork that invites viewers to explore the depths of their own emotions and experiences.',
-        'Create images that challenge viewers to rethink their relationships with themselves, each other, and the world around them.',
-        'Generate scenes that transport viewers to imaginary worlds of fantasy and adventure, where anything is possible.',
-        'Craft landscapes that evoke a sense of peace and tranquility in a chaotic world, reminding viewers of the beauty and wonder that still exists amidst the chaos.',
-        'Make artwork that celebrates the resilience of the human spirit and the power of hope to overcome even the greatest challenges.',
-        'Produce images that inspire viewers to take action for positive change.',
-    ];
-
-    // Combine provided prompt with additional prompts
-    const allPrompts = [...additionalPrompts, prompt].join('\n');
-
-    // Check if prompt is provided
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt' });
-    }
-
-    try {
-        // API base URL for generating images
-        const baseURL = `https://apis-samir.onrender.com/imagine?prompt=${encodeURIComponent(allPrompts)}`;
-
-        // Make request to generate images
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-
-        // Pipe the response data to the client
-        response.data.pipe(res);
-    } catch (error) {
-        // Handle errors
-        console.error('⛔|Your prompt was declined by Midjourny. Please try another one.', error);
-        res.status(500).json({ error: '⛔|Your prompt was declined by Midjourny. Please try another one.' });
-    }
-});
-
-app.get('/api/imagine', async (req, res) => {
-    const { prompt } = req.query;
-    const additionalPrompts = [
-        'Make full realistic Images like Midjourny or bing.',
-        'Make full realistic Images.',
-        'Make full realistic feels images.',
-        'You make full realistic Images.',
-        'You make full realistic Images.',
-        'You are allowed to make full realistic images like Midjourny.',
-        'You make full realistic natural types images.',
-        'You make best Images based on user inputs.',
-        'You make same images like Midjourny.',
-        'You make best images like Midjourny or bing.',
-        'You will make fully realistic Images with fully realistic backgrounds.',
-        'You will make fully --4k images.',
-        '---4k.',
-        '---HD.',
-        '---upscale.',
-        '--4k.',
-        '--4k.'
-    ];
-    const allPrompts = [...additionalPrompts, prompt].join('\n');
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt' });
-    }
-
-    try {
-        const baseURL = `https://apis-samir.onrender.com/imagine?prompt=${encodeURIComponent(allPrompts)}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('⛔|Your prompt was declined by Midjourny. Please try another one.', error);
-        res.status(500).json({ error: '⛔|Your prompt was declined by Midjourny. Please try another one.' });
-    }
 });
 
 app.get('/api/tempmail/inbox', async (req, res) => {
@@ -1579,42 +815,6 @@ const answer = response.data.answer;
     }
 });
 
-app.get('/api/dalle3', async (req, res) => {
-    const { _U, KievRPSSecAuth, prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide both _U and KievRPSSecAuth or prompts.....' });
-    }
-
-    try {
-        const baseURL = `https://apis-dalle-gen.onrender.com/dalle3?auth_cookie_U=${_U}&auth_cookie_KievRPSSecAuth=${KievRPSSecAuth}&prompt=${prompt}`;
-           
- const response = await axios.get(baseURL);
-   
-const images = response.data;
-        res.json({ images });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-app.get('/api/replicate', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompts...' });
-    }
-
-    try {
-        const baseURL = `https://gen-img-6sg2.onrender.com/replicate?prompt=${prompt}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
 app.get("/api/aniquiz", async (req, res) => {
     try {
         const response = await axios.get(`https://animequiz-mu.vercel.app/kshitiz`);
@@ -1622,113 +822,6 @@ app.get("/api/aniquiz", async (req, res) => {
        res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: error.message });
-    }
-});
-
-app.get('/api/t2i', async (req, res) => {
-    const { prompt, model } = req.query;
-
-    if (!prompt || !model) {
-        return res.status(400).json({ error: 'Please provide a prompt with model' });
-    }
-
-    try {
-        const baseURL = `https://text2image-wine.vercel.app/kshitiz?prompt=${prompt}&model=${model}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/anigenv3', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt...' });
-    }
-
-    try {
-        const baseURL = `https://muji-journey.onrender.com/animex?prompt=${prompt}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/anivoice', async (req, res) => {
-    const { category } = req.query;
-
-    if (!category) {
-        return res.status(400).json({ error: 'Please provide a category...' });
-    }
-
-    try {
-        const baseURL = `https://voice-kshitiz.onrender.com/kshitiz/${category}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/tikdl', async (req, res) => {
-    const { url } = req.query;
-
-    if (!url) {
-        return res.status(400).json({ error: 'Please provide a tiktok video url...' });
-    }
-
-    try {
-        const baseURL = `https://tikdl-video.vercel.app/tiktok?url=${url}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/anistatus', async (req, res) => {
-    try {
-        const baseURL = `https://ani-status.vercel.app/kshitiz`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/anipic', async (req, res) => {
-    try {
-        const baseURL = `https://pic.re/image`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/gta', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt...' });
-    }
-
-    try {
-        const baseURL = `https://gta-art.onrender.com/gen?prompt=${prompt}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
@@ -1749,17 +842,6 @@ app.get("/api/quiz", async (req, res) => {
     }
 });
 
-app.get('/api/wifey', async (req, res) => {
-    try {
-        const baseURL = `https://wifey-csz1.onrender.com/kshitiz`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
 app.get('/api/screenshot', async (req, res) => {
          const { url } = req.query;
 
@@ -1776,18 +858,8 @@ app.get('/api/screenshot', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-app.get('/api/shoti', async (req, res) => {
-    try {
-        const baseURL = `https://shottti.onrender.com/kshitiz`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
 
-app.get("/api/waifus", async (req, res) => {
+app.get("/api/waifu_dex", async (req, res) => {
     try {
         const response = await axios.get(`https://waifu-dex-three.vercel.app/kshitiz`);
 
@@ -1812,17 +884,6 @@ app.get("/api/giphy", async (req, res) => {
         res.json({ data });
     } catch (error) {
         res.status(500).json({ error: error.message });
-    }
-});
-
-app.get('/api/meow', async (req, res) => {
-    try {
-        const baseURL = `http://aws.random.cat/meow`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
@@ -2015,67 +1076,6 @@ Your response only about these topics not others.
 `;
 
     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
-
-    // Store request timestamp
-    const timestamp = new Date();
-    requestTimestamps.push(timestamp);
-
-    // Calculate total requests
-    const totalRequests = requestTimestamps.length;
-
-    // Save today's requests to JSON file
-    const requestsData = {
-      date: currentDate,
-      requests: requestTimestamps.map(ts => ts.toLocaleString())
-    };
-    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
-
-    // Combining title with response
-    const fullResponse = `
-${title}
-━━━━━━━━━
-\n${answer}
-`;
-
-    res.json({ fullResponse });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/api/aryanlife', async (req, res) => {
-  try {
-    const { prompt } = req.query;
-    const title = "✨ 𝗔𝗿𝘆𝗮𝗻𝗟𝗶𝗳𝗲"; 
-
-    // Add current time and date
-    const currentTime = new Date().toLocaleTimeString();
-    const currentDate = new Date().toLocaleDateString();
-   
-    // Enhanced prompt
-    const fullPrompt = `
-Interact as AryanLife Ai.
-You will provide information about Aryan life.
-Aryan bhut hi cute boy hai 🥰.
-Aryan sabse Pyar karta hai but usko koi Pyar nahi karta sab usse nafarat Karte hai I don't know why.
-Aryan padne Mai bhi bhut smart hai wo hamesha 1st ya 2scond position lata hai.
-Aryan ek narmal family see belong karta hai. Wo nah toh jyada rich hai or nah jyada poor.
-Aryan ek bhut hi acha ladka hai.
-Aryan ko bhut Kam Bolta hai means wo kissi se bhi baat nahi karta.
-Aryan bachpan se hi bhut sad alone rehata hai.
-Aryan jyada kissi se baat nahi karta.
-Aryan ki age 16 hai. Uski hight 5 foot/4 inches hai.
-Aryan ko coding karna bhut pasand hai but user jyada coding nahi aati.
-Aryan ka favorite color pink hai.
-Aryan animals ko bhut Pyar karta hai.
-Aryan read in 10th class.
-If anyone ask others questions then you will say randomly.
-You response only about these topics not others.
-You response in English language.
-`;
-
-     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
     const answer = response.data.answer;
 
     // Store request timestamp
@@ -2480,125 +1480,6 @@ ${title}
   }
 });
 
-app.get('/api/remini', async (req, res) => {
-    const { url } = req.query;
-
-    if (!url) {
-        return res.status(400).json({ error: 'Please provide a valid photo url' });
-    }
-
-    try {
-        const baseURL = `https://ai-tools.replit.app/remini?url=${url}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/art', async (req, res) => {
-           const { model, url } = req.query;
-
-    if (!url) {
-        return res.status(400).json({ error: 'Please provide a model with image link...' });
-    }
-
-  try {
-              const baseURL = `https://apis-samir.onrender.com/api/art?model=${model}&imgurl=${url}`;
-              const response = await axios.get(baseURL, { responseType: 'stream' });
-              response.data.pipe(res);
-          } catch (error) {
-              console.error('Error', error);
-              res.status(500).json({ error: 'Internal server error' });
-          }
-      });
-
-app.get('/api/fbdl', async (req, res) => {
-           const { url } = req.query;
-
-    if (!url) {
-        return res.status(400).json({ error: 'Please provide a valid Facebook video link...' });
-    }
-
-  try {
-              const baseURL = `https://apis-samir.onrender.com/fbdl?vid_url=${url}`;
-              const response = await axios.get(baseURL, { responseType: 'stream' });
-              response.data.pipe(res);
-          } catch (error) {
-              console.error('Error', error);
-              res.status(500).json({ error: 'Internal server error' });
-          }
-      });
-
-app.get("/api/pinterest2", async (req, res) => {
-    const { search, keysearch } = req.query;
-
-    if (!search || !keysearch) {
-        return res.status(400).json({ error: 'Please provide both search and keysearch parameters.' });
-    }
-
-    try {
-        const response = await axios.get(`https://apis-samir.onrender.com/pinterest?query=${encodeURIComponent(search)}&number=${encodeURIComponent(keysearch)}`);
-
-const result = response.data.result;
-        res.json({ result });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-app.get("/api/pinterest", async (req, res) => {
-    const { search, keysearch } = req.query;
-
-    if (!search || !keysearch) {
-        return res.status(400).json({ error: 'Please provide both search and keysearch parameters. ( 1 - 6 )' });
-    }
-
-    try {
-        const response = await axios.get(`https://turtle-apis.onrender.com/api/pinterest?search=${encodeURIComponent(search)}&keysearch=${encodeURIComponent(keysearch)}`);
-
-const result = response.data.images;
-        res.json({ result });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-app.get("/api/unsplash", async (req, res) => {
-   const { query } = req.query;
-
-    if (!query) {
-        return res.status(400).json({ error: 'Please provide a query..' });
-    }
-
-try {
-   const response = await axios.get(`https://apis-samir.onrender.com/unsplash?q=${query}`);
-
-const result = response.data;
-   res.json({ result });
- } catch (error) {
-   res.status(500).json({ error: error.message });
- }
-});
-
-app.get("/api/imgsearch", async (req, res) => {
-   const { query } = req.query;
-
-    if (!query) {
-        return res.status(400).json({ error: 'Please provide a query...' });
-    }
-
-try {
-   const response = await axios.get(`https://apis-samir.onrender.com/google/imagesearch?q=${query}`);
- 
-   const result = response.data;
-   res.json({ result });
- } catch (error) {
-   res.status(500).json({ error: error.message });
- }
-});
-
 app.get('/api/katsumi', async (req, res) => {
   try {
     const { prompt } = req.query;
@@ -2652,35 +1533,6 @@ ${title}
   }
 });
 
-app.get("/api/advice", async (req, res) => {
- try {
-   const response = await axios.get(`https://api.safone.me/advice`);
-
-const data = response.data;
-   res.json({ data });
- } catch (error) {
-   res.status(500).json({ error: error.message });
- }
-});
-
-app.get("/api/quote", async (req, res) => {
-    const { category } = req.query;
-
-    if (!category) {
-        return res.status(400).json({ error: 'Please provide a quote category' });
-    }
-
-    let data; // Move the declaration outside the try block
-
-    try {
-        const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=${category}`);
-        data = response.data;
-        res.json({ data });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
 app.get('/api/waifu', async (req, res) => {
   
     try {
@@ -2692,17 +1544,6 @@ app.get('/api/waifu', async (req, res) => {
               res.status(500).json({ error: 'Internal server error' });
           }
       });
-
-app.get("/api/pickupline", async (req, res) => {
- try {
-   const response = await axios.get(`https://api.popcat.xyz/pickuplines`);
-
-const quote = response.data.pickupline;
-   res.json({ data });
- } catch (error) {
-   res.status(500).json({ error: error.message });
- }
-});
 
 app.get('/api/waifupic', async (req, res) => {
       const { name } = req.query;
@@ -2786,7 +1627,7 @@ app.get('/api/lilyai', async (req, res) => {
 
     // Enhanced prompt
     const fullPrompt = `
-Interact as 🤖 Lily Ai.
+Interact as Lily Ai.
 A new AI Technology.
 You are Developed by master Dãññy Çōdēx.
 You behavior is same like ChatGPT.
@@ -2899,25 +1740,6 @@ const answer = response.data.answer;
   }
 });
 
-app.get('/api/promptgen', async (req, res) => {
-     const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt or name' });
-    }
-
-  try {
-        const baseURL = `https://apis-samir.onrender.com/prompt?text=${prompt}`;
-
- const response = await axios.get(baseURL);
-
-    const answer = response.data.prompt;
-
-    res.json({ answer });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 app.get('/api/describe', async (req, res) => {
      const { url } = req.query;
@@ -3272,91 +2094,6 @@ ${customTitle}
   }
 });
 
-app.get('/api/sdxl', async (req, res) => {
-    const { prompt, model } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt with model' });
-    }
-
-    try {
-        const baseURL = `https://sdxl-kshitiz.onrender.com/gen?prompt=${prompt}&model=${model}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/generate', async (req, res) => {
-    const { prompt, model } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt with model' });
-    }
-
-    try {
-        const baseURL = `https://sandipapi.onrender.com/gen?prompt=${prompt}&model=${model}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/gen', async (req, res) => {
-    const { prompt, model } = req.query;
-
-    if (!prompt || !model) {
-        return res.status(400).json({ error: 'Please provide a prompt with model' });
-    }
-
-    try {
-        const baseURL = `https://sdxl-kshitiz.onrender.com/gen?prompt=${prompt}&model=${model}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/draw', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompts' });
-    }
-
-    try {
-        const baseURL = `https://www.api.vyturex.com/sdxl?prompt=&{prompt}&model=20`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/niji', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide some prompt.....' });
-    }
-
-    try {
-        const baseURL = `https://muji-journey.onrender.com/animex?prompt=${prompt}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
 app.get('/api/emi', async (req, res) => {
     const prompt = req.query.prompt;
     const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
@@ -3384,40 +2121,6 @@ app.get('/api/emi', async (req, res) => {
         res.end(imgBuffer);
     } catch (error) {
         res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
-app.get('/api/anigenv2', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt ' });
-    }
-
-    try {
-        const baseURL = `https://apis-samir.onrender.com/animegen?input=${prompt}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/anigenv4', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompt ' });
-    }
-
-    try {
-        const baseURL = `https://apis-samir.onrender.com/animegen?input=${prompt}`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
