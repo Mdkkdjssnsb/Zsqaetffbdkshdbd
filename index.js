@@ -2,6 +2,7 @@ const fs = require('fs');
 const axios = require('axios');
 const { G4F } = require('g4f');
 const { gpt } = require('gpti');
+const { search } = require('pinterest-dl');
 const { Hercai } = require('hercai');
 const { RsnChat } = require("rsnchat");
 const { imagine } = require('@shuddho11288/sdxl-imagine');
@@ -43,6 +44,22 @@ app.use((req, res, next) => {
 
 // Array to store request timestamps
 const requestTimestamps = [];
+
+app.get('/api/pinterest', async (req, res) => {
+    const query = req.query.query; // Get the search query from the query parameters
+    const limits = parseInt(req.query.limits) || 10; // Get the search limit from the query parameters, default to 10
+
+    if (!query || !limits) {
+        return res.status(400).send('Please provide a search query with search limits for example /pinterest?query=cat&limits=10');
+    }
+
+    try {
+        const data = await search(query);
+        res.json(data.slice(0, limits)); // Limit the number of results
+    } catch (error) {
+        res.status(500).send('Error processing the search query.');
+    }
+});
 
 app.get('/api/gpt', (req, res) => {
   // Extract the prompt and model from the query parameters
