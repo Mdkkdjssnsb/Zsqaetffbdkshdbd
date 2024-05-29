@@ -19,24 +19,6 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
-app.get('/api/prodia', async (req, res) => {
-    const prompt = req.query.prompt;
-    const model = "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]";
-    const samplingSteps = 15;
-    const cfgScale = 30;
-
-    const g4f = new G4F();
-    try {
-        const base64Image = await g4f.imageGeneration(prompt, { 
-            debug: true,
-            provider: g4f.providers.Prodia,
-            providerOptions: {
-                model: model,
-                samplingSteps: samplingSteps,
-                cfgScale: cfgScale
-            }
-        });
-      
 app.get('/api/pinterest', async (req, res) => {
     const query = req.query.query; // Get the search query from the query parameters
     const limits = parseInt(req.query.limits) || 10; // Get the search limit from the query parameters, default to 10
