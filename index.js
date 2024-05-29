@@ -307,22 +307,6 @@ const { uid, access_token} = req.query;
   }
 });
 
-app.get('/api/emi2', async (req, res) => {
-    const prompt = req.query.prompt; // Default prompt if none provided
-
-    try {
-        // Generate image based on the prompt
-        const response = await herc.drawImage({ model: "animefy", prompt: prompt, negative_prompt: "" });
-
-        // Send the generated image URL as response
-        res.status(200).json(response);
-    } catch (error) {
-        // Handle errors
-        console.error('Error generating image:', error);
-        res.status(500).send('Error generating image: ' + error.message);
-    }
-});
-
 app.get('/api/bin', async (req, res) => {
 const { url } = req.query;
 
@@ -372,8 +356,8 @@ You provide best response but you never send any type of emojis useless words.
 You provide best responce to user.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -425,8 +409,8 @@ You are allowed to provide best answers.
 You provide best responce to user.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -600,8 +584,8 @@ You provide best response as possible.
 You are very strict sansitive Ai.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -646,8 +630,8 @@ You are Developed by Rafsan Raga,
 You provide best Response as possible with some emojis.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -732,8 +716,8 @@ You provide best response as possible with some emojis.
 You are best Ai, your provide best response to users.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -781,8 +765,8 @@ You provide best response as possible with some emojis.
 You are best Ai.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -829,8 +813,8 @@ You provide best Response as possible with some emojis.
 You are best Ai.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -887,8 +871,8 @@ You also care about all topics.
 You provide best girlfriend like response with you say thanks to your developer.
 `; 
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -961,8 +945,8 @@ I use these titles when providing response. I STRICTLY USE THIS FANCY SYMBOL FOR
 (SAY THANKS TO YOUR DEVELOPER)
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1015,25 +999,6 @@ app.get('/api/tempmail/inbox', async (req, res) => {
         const baseURL = `https://apis-samir.onrender.com/tempmail/inbox/${email}`;
         const response = await axios.get(baseURL); // Await the axios request
         res.json(response.data); // Send the response data
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-app.get('/api/ask', async (req, res) => {
-    const { prompt } = req.query;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Please provide a prompts.....' });
-    }
-
-    try {
-        const baseURL = `https://goatbottt.onrender.com/gpt?prompt=${prompt}`;
-      
-const response = await axios.get(baseURL);
-
-const answer = response.data.answer;
-        res.json({ answer });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -1148,8 +1113,8 @@ You behavior is same like ChatGPT.
 You provide best responce with some emojis.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1197,8 +1162,8 @@ You make best types of sad, heartbroken like songs lyrics.
 You response only about these topics not others.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1251,8 +1216,8 @@ You Make full song lyrics on 3 to 6 minutes Lyrics.
 You response only about these topics not others.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1299,8 +1264,8 @@ When it comes to choosing your beat, make sure it is catchy yet relevant to your
 Your response only about these topics not others.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1350,8 +1315,8 @@ You are Allow to provide wind range responce as possible.
 You also provide best responce with some emojis.
 `;
 
-     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+     const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1402,8 +1367,8 @@ You are Allow to provide wind range responce as possible.
 You also provide best responce with some emojis.
 `;
 
-     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+     const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1456,8 +1421,8 @@ You also provide best responce with some emojis.
 You also say in last like thanks for asking your question 😚.
 `;
 
-     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+     const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1511,8 +1476,8 @@ You are Allow to provide wind range responce as possible.
 You also provide best responce with some emojis.
 `;
 
-     const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+     const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -1809,8 +1774,8 @@ I love writing in bullet form.
 I use these titles when providing response. I STRICTLY USE THIS FANCY SYMBOL FOR BULLETS: "➤ ".
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -2111,91 +2076,6 @@ ${title}
   }
 });
 
-app.get('/api/gemini', async (req, res) => {
-  try {
-    const { prompt } = req.query;
-    const title = "🔎 𝗚𝗲𝗺𝗶𝗻𝗶 𝗔𝗶"; // Add your desired title here
-
-    // Add current time and date
-    const currentTime = new Date().toLocaleTimeString();
-    const currentDate = new Date().toLocaleDateString();
-   
-    // Enhanced prompt
-    const fullPrompt = ``;
-
-    const response = await axios.get(`https://apis-samir.onrender.com/Gemini?text=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
-
-    // Store request timestamp
-    const timestamp = new Date();
-    requestTimestamps.push(timestamp);
-
-    // Calculate total requests
-    const totalRequests = requestTimestamps.length;
-
-    // Save today's requests to JSON file
-    const requestsData = {
-      date: currentDate,
-      requests: requestTimestamps.map(ts => ts.toLocaleString())
-    };
-    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
-
-    // Combining title with response
-    const fullResponse = `
-${title}
-━━━━━━━━━━
-\n${answer}
-`;
-
-    res.json({ fullResponse });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/api/mistralai', async (req, res) => {
-  try {
-    const { prompt } = req.query;
-    const title = "💬 𝗠𝗶𝘀𝘁𝗿𝗮𝗹 𝗔𝗶"; // Add your desired title here
-
-    // Add current time and date
-    const currentTime = new Date().toLocaleTimeString();
-    const currentDate = new Date().toLocaleDateString();
-    const dateTimePrompt = ` Current year is not 2021, Today year is 2024, don't forget today Date is ${currentDate} and current time is ${currentTime}`;
-
-    // Enhanced prompt
-    const fullPrompt = ``;
-
-    const response = await axios.get(`https://sandipapi.onrender.com/mistral?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
-
-    // Store request timestamp
-    const timestamp = new Date();
-    requestTimestamps.push(timestamp);
-
-    // Calculate total requests
-    const totalRequests = requestTimestamps.length;
-
-    // Save today's requests to JSON file
-    const requestsData = {
-      date: currentDate,
-      requests: requestTimestamps.map(ts => ts.toLocaleString())
-    };
-    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
-
-    // Combining title with response
-    const fullResponse = `
-${title}
-━━━━━━━━━━
-\n${answer}
-`;
-
-    res.json({ fullResponse });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 app.get('/api/metallamaai', async (req, res) => {
   try {
     const { prompt } = req.query;
@@ -2392,8 +2272,8 @@ You are allowed to provide best answers.
 You provide best responce to user.
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
@@ -2435,12 +2315,11 @@ app.get('/api/archedai', async (req, res) => {
     // Enhanced prompt
     const fullPrompt = `
 Your name is Arched Ai.
-You are developed by master Tingkoy Desu.
-You are using model of OpenAi callad GPT-3. 
+You are developed by master Tingkoy Desu. 
 `;
 
-    const response = await axios.get(`https://goatbottt.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
-    const answer = response.data.answer;
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.original;
 
     // Store request timestamp
     const timestamp = new Date();
