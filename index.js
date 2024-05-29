@@ -208,6 +208,14 @@ app.get('/api/pixart', async (req, res) => {
     }
 });
 
+app.get('/api/shoti', async (req, res) => {
+try {
+    const response = await axios.get(`https://shoti-srv2-itslibyzxy0.koyeb.app/api/v1/request-f`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
               
 app.get('/api/fb_stalk', async (req, res) => {
 const { uid, access_token} = req.query;
