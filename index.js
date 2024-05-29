@@ -1,10 +1,13 @@
 const fs = require('fs');
 const axios = require('axios');
 const { G4F } = require('g4f');
+const { gpt } = require('gpti');
 const { Hercai } = require('hercai');
+const { RsnChat } = require("rsnchat");
+const { imagine } = require('@shuddho11288/sdxl-imagine');
 const express = require('express');
 const app = express();
-
+const rsnchat = new RsnChat("rsnai_ykZc1pfP2VnLLog34eFgWZI1");
 const herc = new Hercai(); // Initialize Hercai
 
 // Serve the HTML file
@@ -40,6 +43,227 @@ app.use((req, res, next) => {
 
 // Array to store request timestamps
 const requestTimestamps = [];
+
+app.get('/api/gpt', (req, res) => {
+  // Extract the prompt and model from the query parameters
+  const prompt = req.query.prompt;
+  const model = req.query.model; // Default to davinci if model is not provided
+
+  // Call the gpt method of gpti with the provided options
+  gpt.v1({
+    messages: [{ role: "user", content: prompt }],
+    prompt: "",
+    model: model,
+    markdown: true
+  }, (err, data) => {
+    if (err != null) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.send(data);
+    }
+  });
+});
+
+app.get('/api/gptweb', (req, res) => {
+    const prompt = req.query.prompt;
+
+    if (!prompt) {
+        return res.status(400).send('Query parameter "prompt" is required');
+    }
+
+    gpt.web({
+        prompt: prompt,
+        markdown: true
+    }, (err, data) => {
+        if (err != null) {
+            console.error(err);
+            return res.status(500).send('Error processing the request');
+        } else {
+            res.json(data);
+        }
+    });
+});
+
+app.get('/api/bard', (req, res) => {
+  // Extract the query from the request
+  const prompt = req.query.prompt;
+
+  // Call the bard method of rsnchat with the provided query
+  rsnchat.bard(prompt).then((response) => {
+    // Send the response message back to the client
+    res.send(response.message);
+  }).catch((error) => {
+    // Handle any errors
+    console.error("An error occurred:", error);
+    res.status(500).send('Internal Server Error');
+  });
+});
+
+app.get('/api/gemini', (req, res) => {
+  // Extract the question from the query parameters
+  const prompt = req.query.prompt;
+
+  // Call the gemini method of rsnchat with the provided question
+  rsnchat.gemini(prompt).then((response) => {
+    // Send the response message back to the client
+    res.send(response.message);
+  }).catch((error) => {
+    // Handle any errors
+    console.error("An error occurred:", error);
+    res.status(500).send('Internal Server Error');
+  });
+});
+
+app.get('/api/mixtral', (req, res) => {
+  // Extract the message from the query parameters
+  const prompt = req.query.prompt || 'Hello, what is your name?';
+
+  // Call the mixtral method of rsnchat with the provided message
+  rsnchat.mixtral(prompt).then((response) => {
+    // Send the response message back to the client
+    res.send(response.message);
+  }).catch((error) => {
+    // Handle any errors
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  });
+});
+
+app.get('/api/gen', (req, res) => {
+    const query = req.query.q;
+
+    if (!query) {
+        return res.status(400).send('Query parameter "q" is required');
+    }
+
+    imagine(query).then(data => {
+        res.json(data);
+    }).catch(err => {
+        console.error(err);
+        res.status(500).send('Error processing the request');
+    });
+});
+
+app.get('/api/bing', (req, res) => {
+    const prompt = req.query.prompt;
+
+    if (!prompt) {
+        return res.status(400).send('Query parameter "prompt" is required');
+    }
+
+    bing({
+        messages: [
+            {
+                role: "user",
+                content: prompt
+            }
+        ],
+        conversation_style: "Balanced",
+        markdown: true,
+        stream: false,
+    }, (err, data) => {
+        if (err != null) {
+            console.error(err);
+            return res.status(500).send('Error processing the request');
+        } else {
+            res.json(data);
+        }
+    });
+});
+
+const models = [
+  "3Guofeng3_v34.safetensors [50f420de]",
+  "absolutereality_V16.safetensors [37db0fc3]",
+  "absolutereality_v181.safetensors [3d9d4d2b]",
+  "amIReal_V41.safetensors [0a8a2e61]",
+  "analog-diffusion-1.0.ckpt [9ca13f02]",
+  "anythingv3_0-pruned.ckpt [2700c435]",
+  "anything-v4.5-pruned.ckpt [65745d25]",
+  "anythingV5_PrtRE.safetensors [893e49b9]",
+  "AOM3A3_orangemixs.safetensors [9600da17]",
+  "blazing_drive_v10g.safetensors [ca1c1eab]",
+  "cetusMix_Version35.safetensors [de2f2560]",
+  "childrensStories_v13D.safetensors [9dfaabcb]",
+  "childrensStories_v1SemiReal.safetensors [a1c56dbb]",
+  "childrensStories_v1ToonAnime.safetensors [2ec7b88b]",
+  "Counterfeit_v30.safetensors [9e2a8f19]",
+  "cuteyukimixAdorable_midchapter3.safetensors [04bdffe6]",
+  "cyberrealistic_v33.safetensors [82b0d085]",
+  "dalcefo_v4.safetensors [425952fe]",
+  "deliberate_v2.safetensors [10ec4b29]",
+  "deliberate_v3.safetensors [afd9d2d4]",
+  "dreamlike-anime-1.0.safetensors [4520e090]",
+  "dreamlike-diffusion-1.0.safetensors [5c9fd6e0]",
+  "dreamlike-photoreal-2.0.safetensors [fdcf65e7]",
+  "dreamshaper_6BakedVae.safetensors [114c8abb]",
+  "dreamshaper_7.safetensors [5cf5ae06]",
+  "dreamshaper_8.safetensors [9d40847d]",
+  "edgeOfRealism_eorV20.safetensors [3ed5de15]",
+  "EimisAnimeDiffusion_V1.ckpt [4f828a15]",
+  "elldreths-vivid-mix.safetensors [342d9d26]",
+  "epicrealism_naturalSinRC1VAE.safetensors [90a4c676]",
+  "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]",
+  "juggernaut_aftermath.safetensors [5e20c455]",
+  "lofi_v4.safetensors [ccc204d6]",
+  "lyriel_v16.safetensors [68fceea2]",
+  "majicmixRealistic_v4.safetensors [29d0de58]",
+  "mechamix_v10.safetensors [ee685731]",
+  "meinamix_meinaV9.safetensors [2ec66ab0]",
+  "meinamix_meinaV11.safetensors [b56ce717]",
+  "neverendingDream_v122.safetensors [f964ceeb]",
+  "openjourney_V4.ckpt [ca2f377f]",
+  "pastelMixStylizedAnime_pruned_fp16.safetensors [793a26e8]",
+  "portraitplus_V1.0.safetensors [1400e684]",
+  "protogenx34.safetensors [5896f8d5]",
+  "Realistic_Vision_V1.4-pruned-fp16.safetensors [8d21810b]",
+  "Realistic_Vision_V2.0.safetensors [79587710]",
+  "Realistic_Vision_V4.0.safetensors [29a7afaa]",
+  "Realistic_Vision_V5.0.safetensors [614d1063]",
+  "redshift_diffusion-V10.safetensors [1400e684]",
+  "revAnimated_v122.safetensors [3f4fefd9]",
+  "rundiffusionFX25D_v10.safetensors [cd12b0ee]",
+  "rundiffusionFX_v10.safetensors [cd4e694d]",
+  "sdv1_4.ckpt [7460a6fa]",
+  "shoninsBeautiful_v10.safetensors [25d8c546]",
+  "theallys-mix-ii-churned.safetensors [5d9225a4]",
+  "timeless-1.0.ckpt [7c4971d4]",
+  "toonyou_beta6.safetensors [980f6b15]"
+];
+
+app.get('/api/imagine', (req, res) => {
+  const prompt = req.query.prompt;
+  const modelIndex = parseInt(req.query.model, 10);
+  const model = models[modelIndex];
+
+  if (!prompt || !model) {
+    return res.status(400).json({ error: "Invalid prompts or models" });
+  }
+
+  const negative_prompt = "HD_Qulity, 4K, Upscale, Cool image's, realistic images, ";
+
+  rsnchat.prodia(prompt, negative_prompt, model)
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error.message });
+    });
+});
+               
+app.get("/api/dalle", (req, res) => {
+  // Extract prompt from query parameter or use a default prompt
+  const prompt = req.query.prompt;
+
+  // Call RsnChat API with the provided prompt
+  rsnchat.dalle(prompt)
+    .then((response) => {
+      res.send(response); // Send the response from the AI to the client
+    })
+    .catch((error) => {
+      res.status(500).send("An error occurred: " + error); // Send an error status and message to the client
+    });
+});
 
 app.get('/api/pixart', async (req, res) => {
     const prompt = req.query.prompt;
@@ -796,7 +1020,7 @@ app.get('/api/tempmail/inbox', async (req, res) => {
     }
 });
 
-app.get('/api/gpt', async (req, res) => {
+app.get('/api/ask', async (req, res) => {
     const { prompt } = req.query;
 
     if (!prompt) {
