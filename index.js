@@ -35,6 +35,23 @@ app.get('/api/pinterest', async (req, res) => {
     }
 });
 
+app.get('/ask/gpt', async (req, res) => {
+  const { prompt } = req.query;
+
+  try {
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt`, {
+      params: {
+        prompt: prompt
+      }
+    });
+
+    const answer = response.data;
+    res.json(answer);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/gpt', (req, res) => {
   // Extract the prompt and model from the query parameters
   const prompt = req.query.prompt;
@@ -235,17 +252,6 @@ const { url } = req.query;
     const response = await axios.get(`https://sandipbaruwal.onrender.com/imgur?link=${url}`);
 const pastebin = response.data;
     res.json(pastebin);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/stalk/fb', async (req, res) => {
-const { uid } = req.query;
-
-  try {
-    const response = await axios.get(`https://graph.facebook.com/${uid}?fields=id,is_verified,cover,created_time,work,hometown,username,link,name,locale,location,about,website,birthday,gender,relationship_status,significant_other,quotes,first_name,subscribers.limit(0)&access_token=EAAD6V7os0gcBO24ArJjUaBN0ZC3ejzKkM8ZCfIOWtsGZAGdXmVUzmg0ZCrizFi7h6pDUjq3bBQbNJzIagT5UWJyZAvp2Gv3tU0POJ8SNwXFBzeEFNtKAF2I5CGcwkHAYxRZCxh5SGksZCUEqFUZAInSnrXZCzAWWZBsBusZAQwmz2OYZAcYzwLiCtWiBHgI2PTplpJHXCAZDZD`);
-    res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
