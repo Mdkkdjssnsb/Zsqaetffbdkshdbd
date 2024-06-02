@@ -45,7 +45,7 @@ app.get('/ask/gpt', async (req, res) => {
       }
     });
 
-    const answer = response.data;
+    const answer = response.data.original;
     res.json(answer);
   } catch (error) {
     res.status(500).json({ error: error.message });
