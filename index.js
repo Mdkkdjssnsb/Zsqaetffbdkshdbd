@@ -21,14 +21,30 @@ app.get('/', (req, res) => {
 const requestTimestamps = [];
 
 app.get("/api/dalle", (req, res) => {
-  const prompt = req.query.prompt;
+  const prompt = req.query.prompt || cat;
+  const amount = parseInt(req.query.amount) || 1;
 
-   rsnchat.dalle(prompt)
-    .then((response) => {
-      res.send(response.image.url); // Send the response from the AI to the client
+  if (!prompt) {
+    return res.status(400).send("Error: Please provide a prompt query parameter.");
+  }
+
+  if (amount < 1 || amount > 4) {
+    return res.status(400).send("Error: Amount must be between 1 and 4.");
+  }
+
+  const promises = [];
+
+  for (let i = 0; i < amount; i++) {
+    promises.push(rsnchat.dalle(prompt));
+  }
+
+  Promise.all(promises)
+    .then((responses) => {
+      const images = responses.map(response => response.image.url);
+      res.send({ images });
     })
     .catch((error) => {
-      res.status(500).send("An error occurred: " + error); // Send an error status and message to the client
+      res.status(500).send("An error occurred: " + error.message);
     });
 });
 
