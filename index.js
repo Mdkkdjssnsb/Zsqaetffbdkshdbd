@@ -2,6 +2,7 @@ const fs = require('fs');
 const axios = require('axios');
 const { G4F } = require('g4f');
 const { gpt } = require('gpti');
+const { bing } = require('gpti');
 const { search } = require('pinterest-dl');
 const { Hercai } = require('hercai');
 const { RsnChat } = require("rsnchat");
@@ -18,6 +19,50 @@ app.get('/', (req, res) => {
 
 // Array to store request timestamps
 const requestTimestamps = [];
+
+app.get("/api/dalle", (req, res) => {
+  const prompt = req.query.prompt;
+
+   rsnchat.dalle(prompt)
+    .then((response) => {
+      res.send(response.image.url); // Send the response from the AI to the client
+    })
+    .catch((error) => {
+      res.status(500).send("An error occurred: " + error); // Send an error status and message to the client
+    });
+});
+
+app.get('/api/llama', (req, res) => {
+  const prompt = req.query.prompt;
+
+  if (!prompt) {
+    return res.status(400).send("Error: Please provide a prompt query parameter.");
+  }
+
+  rsnchat.llama(prompt)
+    .then((response) => {
+      res.send(response.message);
+    })
+    .catch((error) => {
+      res.status(500).send("Error: " + error.message);
+    });
+});
+
+app.get('/api/mixtral', (req, res) => {
+  const prompt = req.query.prompt;
+
+  if (!prompt) {
+    return res.status(400).send("Error: Please provide a prompt query parameter.");
+  }
+
+  rsnchat.mixtral(prompt)
+    .then((response) => {
+      res.send(response.message);
+    })
+    .catch((error) => {
+      res.status(500).send("Error: " + error.message);
+    });
+});
 
 app.get('/api/pinterest', async (req, res) => {
     const query = req.query.query; // Get the search query from the query parameters
@@ -123,21 +168,6 @@ app.get('/api/gemini', (req, res) => {
   });
 });
 
-app.get('/api/mixtral', (req, res) => {
-  // Extract the message from the query parameters
-  const prompt = req.query.prompt || 'Hello, what is your name?';
-
-  // Call the mixtral method of rsnchat with the provided message
-  rsnchat.mixtral(prompt).then((response) => {
-    // Send the response message back to the client
-    res.send(response.message);
-  }).catch((error) => {
-    // Handle any errors
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  });
-});
-
 app.get('/api/gen', (req, res) => {
     const query = req.query.q;
 
@@ -171,27 +201,12 @@ app.get('/api/bing', (req, res) => {
         markdown: true,
         stream: false,
     }, (err, data) => {
-        if (err) {
+        if (err != null) {
             console.error(err);
             return res.status(500).send('Error processing the request');
         } else {
-            // Assuming the bing function returns some data
-            res.json(data);
+            res.json(data.original);
         }
-    });
-});
-
-app.get("/api/dalle", (req, res) => {
-  // Extract prompt from query parameter or use a default prompt
-  const prompt = req.query.prompt;
-
-  // Call RsnChat API with the provided prompt
-  rsnchat.dalle(prompt)
-    .then((response) => {
-      res.send(response); // Send the response from the AI to the client
-    })
-    .catch((error) => {
-      res.status(500).send("An error occurred: " + error); // Send an error status and message to the client
     });
 });
 
