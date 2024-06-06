@@ -21,6 +21,9 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+const TMDB_API_KEY = '35781046b4bc42f91068a15caab2cdda
+';
+
 app.get('/api/movieinfo', (req, res) => {
     const title = req.query.title; // Extract the title from query parameters
 
@@ -113,6 +116,61 @@ app.get('/api/pinterest', async (req, res) => {
         res.status(500).send('Error processing the search query.');
     }
 });
+
+app.get('/ask/movieinfo/v2', async (req, res) => {
+  const { id } = req.query;
+
+  if (!id) {
+    return res.status(400).json({ error: "Movie ID is required" });
+  }
+
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+      params: {
+        api_key: TMDB_API_KEY,
+        append_to_response: 'credits'
+      }
+    });
+
+    const movieData = response.data;
+    const genres = movieData.genres.map(genre => genre.name).join(", ");
+    const productionCountries = movieData.production_countries.map(country => country.name).join(", ");
+    const spokenLanguages = movieData.spoken_languages.map(language => language.name).join(", ");
+    const director = movieData.credits.crew.find(person => person.job === "Director")?.name || "N/A";
+    const cast = movieData.credits.cast.slice(0, 5).map(actor => actor.name).join(", ");
+    const productionCompanies = movieData.production_companies.map(company => company.name).join(", ");
+
+    const movieInfo = {
+      title: movieData.title || "N/A",
+      original_title: movieData.original_title || "N/A",
+      year: new Date(movieData.release_date).getFullYear() || "N/A",
+      tagline: movieData.tagline || "N/A",
+      genre: genres || "N/A",
+      plot: movieData.overview || "N/A",
+      vote_average: movieData.vote_average || "N/A",
+      vote_count: movieData.vote_count || "N/A",
+      popularity: movieData.popularity || "N/A",
+      original_language: movieData.original_language || "N/A",
+      adult: movieData.adult ? "Yes" : "No",
+      runtime: movieData.runtime || "N/A",
+      director: director,
+      cast: cast,
+      production_companies: productionCompanies,
+      budget: movieData.budget ? `$${movieData.budget.toLocaleString()}` : "N/A",
+      revenue: movieData.revenue ? `$${movieData.revenue.toLocaleString()}` : "N/A",
+      production_countries: productionCountries || "N/A",
+      spoken_languages: spokenLanguages || "N/A",
+      homepage: movieData.homepage || "N/A",
+      movie_id: movieData.id || "N/A",
+      details_link: `https://www.themoviedb.org/movie/${movieData.id || ""}`
+    };
+
+    res.json(movieInfo);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 app.get('/ask/gpt', async (req, res) => {
   const { prompt } = req.query;
