@@ -7,6 +7,7 @@ const { search } = require('pinterest-dl');
 const { Hercai } = require('hercai');
 const { RsnChat } = require("rsnchat");
 const { imagine } = require('@shuddho11288/sdxl-imagine');
+const movieInfo = require('movie-info');
 const express = require('express');
 const app = express();
 const rsnchat = new RsnChat("rsnai_ykZc1pfP2VnLLog34eFgWZI1");
@@ -19,6 +20,23 @@ app.get('/', (req, res) => {
 
 // Array to store request timestamps
 const requestTimestamps = [];
+
+app.get('/api/movieinfo', (req, res) => {
+    const title = req.query.title; // Extract the title from query parameters
+
+    if (!title) {
+        return res.status(400).send({ error: 'Movie title is required' });
+    }
+
+    movieInfo(title, (error, response) => {
+        if (error) {
+            console.error(error);
+            res.status(500).send({ error: 'An error occurred while fetching the movie info' });
+        } else {
+            res.send(response);
+        }
+    });
+});
 
 app.get("/api/dalle", (req, res) => {
   const prompt = req.query.prompt || cat;
