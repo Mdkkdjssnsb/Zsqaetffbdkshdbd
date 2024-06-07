@@ -12,7 +12,6 @@ const express = require('express');
 const app = express();
 const rsnchat = new RsnChat("rsnai_ykZc1pfP2VnLLog34eFgWZI1");
 const herc = new Hercai(); // Initialize Hercai
-const YOUTUBE_API_KEY = 'AIzaSyBn7qBpnq1dy1RbPJ8t_BsIHz6ESoR00i4';  // Replace with your YouTube Data API key
 
 // Serve the HTML file
 app.get('/', (req, res) => {
