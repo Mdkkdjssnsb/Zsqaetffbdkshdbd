@@ -27,7 +27,7 @@ app.get('/api/bing', async (req, res) => {
   try {
     const response = await axios.get(`https://xxxxxxxx-mvam.onrender.com/q`, {
       params: {
-        q: encodeURIComponent(q) // encodeURIComponent the query parameter
+        prompt: encodeURIComponent(prompt) // encodeURIComponent the query parameter
       }
     });
 
