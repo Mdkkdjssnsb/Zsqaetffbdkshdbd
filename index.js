@@ -21,6 +21,23 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get('/api/songinfo/v2', async (req, res) => {
+  const { id } = req.query; // Change 'prompt' to 'q'
+
+  try {
+    const response = await axios.get(`https://video-info-ux3s.onrender.com/api/songinfo`, {
+      params: {
+        id: encodeURIComponent(id) // encodeURIComponent the query parameter
+      }
+    });
+
+    const answer = response.data;
+    res.json(answer);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/bing', async (req, res) => {
   const { prompt } = req.query; // Change 'prompt' to 'q'
 
