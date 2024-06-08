@@ -317,7 +317,7 @@ app.get('/api/gen', (req, res) => {
     });
 });
 
-app.get('/api/bing', (req, res) => {
+app.get('/api/bingai', (req, res) => {
     const prompt = req.query.prompt;
 
     if (!prompt) {
