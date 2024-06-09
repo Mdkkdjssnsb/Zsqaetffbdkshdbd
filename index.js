@@ -75,6 +75,23 @@ app.get('/api/songinfo/v2', async (req, res) => {
   }
 });
 
+app.get('/api/niji', async (req, res) => {
+  const { prompt } = req.query; 
+
+  try {
+    const response = await axios.get(`https://imagegeneration-kshitiz-odpj.onrender.com/animex`, {
+      params: {
+        prompt: encodeURIComponent(prompt) 
+      }
+    });
+
+    const answer = response.data;
+    res.json(answer);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/api/bing', async (req, res) => {
   const { prompt } = req.query; // Change 'prompt' to 'q'
 
