@@ -8,6 +8,8 @@ const { Hercai } = require('hercai');
 const { RsnChat } = require("rsnchat");
 const { imagine } = require('@shuddho11288/sdxl-imagine');
 const movieInfo = require('movie-info');
+const jarifapi = require('jarif-api');
+const ainasepics = require('ainasepics');
 const express = require('express');
 const app = express();
 const rsnchat = new RsnChat("rsnai_ykZc1pfP2VnLLog34eFgWZI1");
@@ -20,6 +22,41 @@ app.get('/', (req, res) => {
 
 // Array to store request timestamps
 const requestTimestamps = [];
+
+app.get('/api/promptgen', async (req, res) => {
+  try {
+    const { query } = req;
+    const searchTerm = query.term || 'cat'; // Default to 'cat' if no term is provided
+
+    const pgen = await jarifapi.promptgen(searchTerm);
+    res.json(pgen);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching the prompt.' });
+  }
+});
+
+app.get('/anime', (req, res) => {
+    const { type } = req.query;
+
+    // List of acceptable types
+    const validTypes = ['chase','cheer','cringe','cry','cuddle','dance','facepalm','glomp','handhold','happy','hi','highfive','hug	','kiss','laugh','lick','love','nervous','nom','nope','panic','pat','poke','pout','punch','run','sad','shrug','slap'];
+
+    // Validate the type parameter
+    if (!type || !validTypes.includes(type)) {
+        return res.status(400).json({ error: 'Invalid or missing type parameter.' });
+    }
+
+    // Fetch the anime image based on the type
+    ainasepics.get(type)
+        .then(imageData => {
+            res.json({ url: imageData.url });
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while fetching the image.' });
+        });
+});
 
 app.get('/api/songinfo/v2', async (req, res) => {
   const { id } = req.query; // Change 'prompt' to 'q'
