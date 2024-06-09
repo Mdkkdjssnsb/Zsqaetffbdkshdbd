@@ -76,17 +76,21 @@ app.get('/api/songinfo/v2', async (req, res) => {
 });
 
 app.get('/api/niji', async (req, res) => {
-  const { prompt } = req.query; 
+  const { prompt } = req.query;
 
   try {
     const response = await axios.get(`https://imagegeneration-kshitiz-odpj.onrender.com/animex`, {
       params: {
-        prompt: encodeURIComponent(prompt) 
-      }
+        prompt: encodeURIComponent(prompt)
+      },
+      responseType: 'stream' // This ensures we get the image as a stream
     });
 
-    const answer = response.data;
-    res.json(answer);
+    // Set the appropriate headers for the image response
+    res.setHeader('Content-Type', 'image/jpeg');
+    
+    // Pipe the image data to the response
+    response.data.pipe(res);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
