@@ -23,6 +23,19 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get("/api/prodia", async (req, res) => {
+ try {
+   const { prompt } = req.query.prompt;
+   const { model } = req.query.model;
+
+   const response = await axios.get(`https://itsaryan.onrender.com/g?prompt=${encodeURIComponent(promot)}&model={model}`);
+
+   res.json({ response.data });
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
+});
+
 app.get('/api/promptgen', async (req, res) => {
   try {
     const { query } = req;
