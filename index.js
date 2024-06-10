@@ -44,7 +44,7 @@ app.get("/api/prodia", async (req, res) => {
    const { prompt } = req.query.prompt;
    const { model } = req.query.model;
 
-   const response = await axios.get(`https://itsaryan.onrender.com/g?prompt=${encodeURIComponent(prompt)}&model={model}`);
+   const response = await axios.get(`https://prodia-gen-009.onrender.com/g?prompt=${encodeURIComponent(prompt)}&model={model}`);
 
    res.json(response.data);
  } catch (error) {
