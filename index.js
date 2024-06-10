@@ -23,6 +23,18 @@ app.get('/', (req, res) => {
 // Array to store request timestamps
 const requestTimestamps = [];
 
+app.get("/api/prodia", async (req, res) => {
+  try {
+    const { prompt, model } = req.query;
+
+    const response = await axios.get(`https://prodia-gen-009.onrender.com/g?prompt=${encodeURIComponent(prompt)}&model=${model}`);
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get("/api/wallpaper", async (req, res) => {
    const { query } = req.query;
 
@@ -32,19 +44,6 @@ app.get("/api/wallpaper", async (req, res) => {
 
   try {
    const response = await axios.get(`https://pixabay.com/api?query ${query}&image_type=photo&per_page=20&key=39178311-acadeb32d7e369897e41dba06&q=`);
-
-   res.json(response.data);
- } catch (error) {
-   res.status(500).json({ error: error.message });
- }
-});
-
-app.get("/api/prodia", async (req, res) => {
- try {
-   const { prompt } = req.query.prompt;
-   const { model } = req.query.model;
-
-   const response = await axios.get(`https://prodia-gen-009.onrender.com/g?prompt=${encodeURIComponent(prompt)}&model={model}`);
 
    res.json(response.data);
  } catch (error) {
