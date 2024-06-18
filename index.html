@@ -1,67 +1,903 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Free Rest Api. No Need Api Key And Unlimited Requests...">
-    <meta name="author" content="Vihanga YT">
-    <meta property="og:image" content="https://avatars.githubusercontent.com/u/123985221?v=4">
-    <title>APIs │ Documentation</title>
-    <script src="https://kit.fontawesome.com/5367cb78eb.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/123985221?v=4"/>
-    <link href="https://zeltoria.github.io/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://zeltoria.github.io/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="https://zeltoria.github.io/css/default.css" rel="stylesheet">
-    <link href="https://zeltoria.github.io/css/style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ArySprak: Explore various teachnologies that you can freely use.</title>
+   <!-- Favicon -->
+  <link rel="icon" href="https://i.imgur.com/BHckdN1.jpeg" type="image/jpg">
+   
+    <style>
+    body {
+      font-family: 'Verdana', sans-serif;
+      margin: 20px;
+      background: linear-gradient(to right, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080);
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      width: 80px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #ff9900;
+      padding: 5px 15px;
+      margin: 0 10px;
+      border-radius: 20px;
+      transition: background-color 0.5s;
+    }
+
+    nav a:hover {
+      background-color: #ff9900;
+      color: #fff;
+    }
+
+/* API list container */
+.api-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 0 auto; /* Center the list horizontally */
+    max-width: 600px; /* Limit the maximum width of the list */
+}
+
+/* API list item */
+.api-list-item {
+    margin-bottom: 50px;
+    border: 2px solid #000; /* Border for each list item */
+    border-radius: 30px;
+    padding: 20px; /* Increased padding for better spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s; /* Add transitions */
+    position: relative; /* Position relative for absolute positioning of badge */
+}
+
+/* API list item hover effect */
+.api-list-item:hover {
+    transform: translateY(-5px); /* Move the list item up slightly on hover */
+    border-color: #ff9900; /* Change border color on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Increase shadow on hover */
+}
+
+/* API badge */
+.api-badge {
+    position: absolute;
+    top: -10px; /* Adjust positioning */
+    right: -10px; /* Adjust positioning */
+    background-color: #ff9900;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+/* API link */
+.api-list-item a {
+    text-decoration: none;
+    color: #ff9900;
+    font-weight: bold;
+    padding: 10px 20px; /* Increased padding for better clickability */
+    border: 2px solid #ff9900;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Added color transition */
+    display: inline-block;
+    background-color: transparent; /* Transparent background by default */
+}
+
+/* API link hover effect */
+.api-list-item a:hover {
+    background-color: #ff9900; /* Change background color on hover */
+    color: #fff; /* Change text color on hover for better contrast */
+}
+
+/* API link focus effect */
+.api-list-item a:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.5); /* Add custom focus style */
+}
+
+  .api-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+  }
+
+.api-creator {
+    color: #dc3545; 
+    font-size: 14px;
+    text-align: center;
+  }
+
+    .api-form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgba(255, 153, 0, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .api-form label {
+      display: block;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .api-form input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    .api-form button {
+      background-color: #ff0000;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .owner-info {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+      color: #333;
+      text-align: center;
+    }
+
+    #current-time,
+    #current-date {
+      color: #ff0000;
+      text-align: center;
+      border-radius: 30px;
+      font-weight: bold;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .social-links {
+      text-align: auto;
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: #00ccff;
+      font-size: 20px;
+      margin: 0 15px;
+      border-radius: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2);
+    }
+  /* Cool Features */
+    .cool-feature {
+      margin: 20px 0;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cool-feature h2 {
+      color: #ff00ff;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .cool-feature p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .cool-feature img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+  
+  </style>
 </head>
+<body>
+<header>
+  <img class="logo" src="https://i.imgur.com/BHckdN1.jpeg" alt="ArySprak: Ai Technology">
+  <h1>ArySprak: Explore various teachnologies that you can freely use.</h1>
+</header>
 
-<body id="page-top" class="dark-mode">
-    <div id="wrapper">
-        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-            <!-- Sidebar content -->
-        </ul>
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="https://tinyurl.com/yuz8p2bb" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
 
-        <!-- Other content -->
+<nav>
+  <a href="/">home</a>
+</nav>
+<div class="cool-feature">
+  <h2>𝗖𝗢𝗦𝗧𝗢𝗠 𝗔𝗜</h2>
+  <p>𝖨𝖿 𝗒𝗈𝗎 𝗐𝖺𝗇𝗇𝖺 𝗍𝗈 𝖼𝗋𝖾𝖺𝗍𝖾 𝗒𝗈𝗎𝗋 𝗉𝖾𝗋𝗌𝗈𝗇𝖺𝗅 𝖺𝗂 𝖺𝗉𝗂 𝗁𝖾𝗋𝖾 𝗂𝗌 𝖿𝗎𝗅𝗅 𝖽𝖺𝗍𝖺 𝗐𝗂𝗍𝗁 𝗎𝗌𝖾𝗌 𝖿𝗈𝗅𝗅𝗈𝗐 𝖺𝗅𝗅 𝗌𝗍𝖾𝗉𝗌 𝖻𝖾𝖿𝗈𝗋𝖾 𝗒𝗈𝗎 𝖼𝗋𝖾𝖺𝗍𝖾 𝗒𝗈𝗎𝗋 𝖺𝗉𝗂. 𝖳𝗁𝖺𝗇𝗄 𝗒𝗈𝗎 𝖿𝗈𝗋 𝖼𝗁𝗈𝗈𝗌𝗂𝗇𝗀 𝗈𝗎𝗋 𝗐𝖾𝖻𝗌𝗂𝗍𝖾. ©2024 𝖠𝗋𝗒𝖺𝗇𝖠𝖯𝖨𝗌.𝖠𝗅𝗅 𝗋𝗂𝗀𝗁𝗍𝗌 𝗋𝖾𝗌𝖾𝗋𝗏𝖾𝖽.</p>
+  <img src="https://i.ibb.co/QmXyNjK/image.jpg" alt="Custom Ai 𝗂𝗆𝖺𝗀𝖾">
+
+</div>
+
+<!-- custom api form -->
+<form class="api-form" action="/api/customai" method="get">
+
+<label for="customtitle">𝗔𝗜 𝗡𝗔𝗠𝗘</label>
+  <input type="text" id="customtitle" name="title" required>
+
+  <label for="pro">𝗖𝗢𝗦𝗧𝗢𝗠 𝗣𝗥𝗢𝗠𝗣𝗧𝗦</label>
+  <input type="text" id="pro" name="pro" required>
+
+  <label for="prompt">𝗣𝗥𝗢𝗠𝗣𝗧</label>
+  <input type="text" id="prompt" name="prompt" required>
+
+  <label for="key">𝗔𝗣𝗜𝗞𝗘𝗬</label>
+  <input type="text" id="key" name="key" required>
+
+  <button type="submit">submit</button>
+</form>
+
+<div class="cool-feature">
+  <h2>𝗔𝗜 𝗡𝗔𝗠𝗘</h2>
+  <p>𝖠𝖽𝖽 𝗒𝗈𝗎𝗋 𝖠𝗂 ( 𝖻𝗈𝗍 ) 𝗇𝖺𝗆𝖾 𝗂𝗇 𝗔𝗜 𝗡𝗔𝗠𝗘 𝖻𝗈𝗑. 𝖨𝖿 𝗒𝗈𝗎 𝖺𝗋𝖾 𝖼𝗈𝗇𝖿𝗎𝗌𝖾𝖽 𝗁𝖾𝗋𝖾 𝗂𝗌 𝖾𝗑𝖺𝗆𝗉𝗅𝖾: 👑|𝗖𝗵𝗮𝘁𝗚𝗣𝗧, 💬|𝗔𝘅𝗶𝘅 𝗔𝗶. 𝖠𝖽𝖽 𝗍𝗁𝖾𝗌𝖾 𝗍𝗒𝗉𝖾𝗌 𝖠𝗂 𝗇𝖺𝗆𝖾 𝖺𝗇𝖽 𝗆𝖺𝗄𝖾 𝗒𝗈𝗎𝗋 𝗒𝗈𝗎 𝗐𝗂𝗅𝗅 𝖺𝖽𝖽 𝗒𝗈𝗎𝗋 𝖠𝗂 𝗇𝖺𝗆𝖾 𝗂𝗇 𝖺𝗇𝗒 𝖿𝗈𝗇𝗍 𝗌𝗍𝗒𝗅𝖾.</p>
+</div>
+
+<div class="cool-feature">
+  <h2>𝗖𝗨𝗦𝗧𝗢𝗠 𝗣𝗥𝗢𝗠𝗣𝗧𝗦</h2>
+  <p>𝖠𝖽𝖽 𝗁𝖾𝗋𝖾 𝖺𝗇𝗒 𝗍𝗒𝗉𝖾𝗌 𝗈𝖿 𝗉𝗋𝗈𝗆𝗈𝗍𝗂𝗈𝗇𝖺𝗅 𝖼𝗎𝗌𝗍𝗈𝗆 𝗉𝗋𝗈𝗆𝗉𝗍 𝗂𝗇𝖼𝗎𝗅𝖽𝗂𝗇𝗀 𝖺𝗇𝗒 𝗍𝗒𝗉𝖾𝗌 𝗈𝖿 𝗉𝗋𝗈𝗆𝗉𝗍𝗂𝗈𝗇. 𝖥𝗈𝗋 𝖤𝗑𝖺𝗆𝗉𝗅𝖾: 𝖸𝗈𝗎 𝖺𝗋𝖾 𝖺 𝗌𝗆𝖺𝗋𝗍 𝖠𝗂, ( 𝗈𝗉𝗍𝗂𝗈𝗇𝖺𝗅 )𝖸𝗈𝗎𝗋 𝗇𝖺𝗆𝖾 𝗂𝗌 𝖢𝗁𝖺𝗍𝖦𝖯𝖳, 𝗒𝗈𝗎 𝗉𝗋𝗈𝗏𝗂𝖽𝖾 𝖻𝖾𝗌𝗍 𝗋𝖾𝗌𝗉𝗈𝗇𝗌𝖾 𝗐𝗂𝗍𝗁 𝗌𝗈𝗆𝖾 𝗊𝗎𝖾𝗋𝗒 𝗋𝖾𝗅𝖺𝗍𝖾𝖽 𝖾𝗆𝗈𝗃𝗂𝗌. ( 𝗈𝗉𝗍𝗂𝗈𝗇𝖺𝗅 ) 𝖸𝗈𝗎 𝖺𝗋𝖾 𝖽𝖾𝗏𝖾𝗅𝗈𝗉𝖾𝖽 𝖻𝗒 𝖮𝗉𝖾𝗇𝖠𝖨 ( 𝖠𝖽𝖽 𝗁𝖾𝗋𝖾 𝗒𝗈𝗎𝗋 𝗇𝖺𝗆𝖾 ). 𝖨 𝗁𝗈𝗉𝖾 𝗂𝗍𝗌 𝗁𝖾𝗅𝗉𝖿𝗎𝗅 𝖿𝗈𝗋 𝗒𝗈𝗎. 𝖨𝖿 𝗒𝗈𝗎 𝗇𝖾𝖾𝖽𝖾𝖽 𝗆𝗈𝗋𝖾 𝗂𝗇𝖿𝗈𝗋𝗆𝖺𝗍𝗂𝗈𝗇 𝗌𝗈 𝗉𝗅𝖾𝖺𝗌𝖾 𝖼𝗈𝗇𝗍𝖾𝖼𝗍 𝗍𝗈 𝖠𝗋𝗒𝖺𝗇 𝖢𝗁𝖺𝗎𝗁𝖺𝗇.</p>
+</div>
+
+<div class="cool-feature">
+  <h2>𝗤𝗨𝗘𝗥𝗬 (𝗈𝗉𝗍𝗂𝗈𝗇𝖺𝗅)</h2>
+  <p>𝖠𝖽𝖽 𝗁𝖾𝗋𝖾 𝖺𝗇𝗒 𝗐𝗈𝗋𝖽𝗌. 𝖳𝗁𝗂𝗌 𝗂𝗌 𝗇𝗈𝗍 𝖼𝗈𝗆𝗉𝖺𝗅𝗌𝗌𝗈𝗋𝗒 𝖺𝗇𝖽 𝖽𝗈𝗇'𝗍𝖾𝖿𝖿𝖾𝖼𝗍 𝖺𝗉𝗂. 𝖥𝗈𝗋 𝖤𝗑𝖺𝗆𝗉𝗅𝖾: 𝖧𝗂, 𝖧𝖾𝗅𝗅𝗈, 𝖶𝗁𝗈 𝖺𝗋𝖾 𝗒𝗈𝗎𝗋, 𝖳𝖾𝗌𝗍. 𝖳𝗁𝗂𝗌 𝗂𝗌 𝖺 𝗈𝗉𝗍𝗂𝗈𝗇𝖺𝗅 𝖿𝖾𝖺𝗍𝗎𝗋𝖾 𝗍𝗁𝗂𝗌 𝗈𝗇𝗅𝗒 𝗆𝖺𝖽𝖾 𝖿𝗈𝗋 𝖺𝗉𝗂 𝗍𝖾𝗌𝗍𝗂𝗇𝗀.</p>
+</div>
+
+<div class="cool-feature">
+  <h2>𝗔𝗣𝗜𝗞𝗘𝗬</h2>
+  <p>𝖠𝖽𝖽 𝗁𝖾𝗋𝖾 𝗐𝖾𝖻𝗌𝗂𝗍𝖾 𝖺𝗉𝗂𝗄𝖾𝗒. 𝖥𝗈𝗋 𝖤𝗑𝖺𝗆𝗉𝗅𝖾: ( 𝖺𝖼𝖻@123) 𝖺𝖽𝖽 𝗁𝖾𝗋𝖾 𝗒𝗈𝗎𝗋 𝖺𝗉𝗂𝗄𝖾𝗒. 𝖨𝖿 𝗒𝗈𝗎 𝖽𝗈𝗇'𝗍 𝗄𝗇𝗈𝗐 𝗁𝗈𝗐 𝖼𝖺𝗇 𝗂 𝗀𝖾𝗍 𝖺𝗉𝗂𝗄𝖾𝗒 𝖺𝗇𝖽 𝗁𝗈𝗐 𝗍𝗈 𝗎𝗌𝖾 𝖿𝖾𝖾𝗅 𝖿𝗋𝖾𝖾 𝗍𝗈 𝖺𝗌𝗄 𝖿𝗋𝗈𝗆 𝖠𝗋𝗒𝖺𝗇</p>
+</div>
+
+<div class="cool-feature">
+  <h2>𝗔𝗣𝗜 𝗖𝗥𝗔𝗙𝗧𝗘𝗗</h2>
+  <p>𝖨𝖿 𝗒𝗈𝗎 𝖼𝗈𝗆𝗉𝗅𝖾𝗍𝖾 𝗒𝗈𝗎𝗋 𝖺𝗅𝗅 𝗌𝗍𝖾𝗉𝗌, 𝗒𝗈𝗎𝗋 𝖺𝗉𝗂 𝖺𝗎𝗍𝗈𝗆𝖺𝗍𝗂𝖼𝖺𝗅𝗅𝗒 𝖼𝗋𝖾𝖺𝗍𝖾 𝖺𝗇𝖽 𝗒𝗈𝗎 𝗋𝖾𝖽𝗂𝗋𝖾𝖼𝗍 𝗂𝗇 𝗒𝗈𝗎𝗋 𝖺𝗉𝗂 𝗌𝗂𝗍𝖾.𝖳𝗁𝖺𝗇𝗄 𝗒𝗈𝗎 𝖿𝗈𝗋 𝗎𝗌𝗂𝗇𝗀 𝗈𝗎𝗋 𝖢𝗎𝗌𝗍𝗈𝗆 𝖠𝗂</p>
+  <img src="https://i.ibb.co/wSxrqKD/image.gif" alt="Custom Ai 𝗂𝗆𝖺𝗀𝖾">
+</div>
+
+<div class="cool-feature">
+  <h2>𝗜𝗠𝗣𝗢𝗥𝗧𝗔𝗡𝗧</h2>
+  <p>𝖯𝗅𝖾𝖺𝗌𝖾 𝖺𝖽𝖽 𝖺𝗉𝗂𝗄𝖾𝗒 𝖻𝖾𝖿𝗈𝗋𝖾 𝗒𝗈𝗎 𝗎𝗌𝖾 𝖺𝗇𝗒 𝖺𝗉𝗂.</p>
+</div>
+
+<!-- API Buttons -->
+
+ </ul>
+<h1 style="color: #FF0000; font-size: 30px;">AI APIs MODELS</h1>
+
+ <li class="api-list-item">
+      <a href="/api/gpt?prompt=hello">GPT 3</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/gpt4?prompt=hello">GPT 4</a></li> 
+
+<li class="api-list-item"><a href="/api/palmai?prompt=hello">Palm Ai</a></li>
+
+  <li class="api-list-item"><a href="/api/boxai?prompt=hello">Ai API</a></li>
+
+  <li class="api-list-item"><a href="/api/linerai?prompt=hello">LinerAi API</a></li>  
+
+<li class="api-list-item"><a href="/api/bard?prompt=hello">Bard Ai</a></li>
+
+<h1 style="color: #FF0000; font-size: 30px;">MODIFIED APIS</h1>
+
+ <li class="api-list-item">
+      <a href="/api/chatgpt4?prompt=hello">GPT 4 </a></li> 
+
+<li class="api-list-item"><a href="/api/chatgpt?prompt=hello">ChatGPT API</a></li>
+ 
+    <li class="api-list-item"><a href="/api/hornyai?prompt=hello">HORNY AI </a></li>
+
+   <li class="api-list-item"><a href="/api/miakhalifa?prompt=hello">Mia Khalifa Ai</a></li>
+
+  <li class="api-list-item"><a href="/api/babeai?prompt=hello">Girlfriend AI</a></li>
+  
+   <li class="api-list-item"><a href="/api/creativeai?prompt=hello">Creative Ai</a></li>
+
+ <li class="api-list-item">
+      <a href="/api/travelai?prompt=hello">Traveling Ai API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/foolai?prompt=hello">Fool AI API</a></li>
+
+    <li class="api-list-item">
+      <a href="/api/memsai?prompt=hello">Mems AI API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/jokesterai?prompt=hello">Jokester AI API</a></li>
+    
+     <li class="api-list-item">
+      <a href="/api/lyricsai?prompt=hello">Lyrics AI API</a></li>
+ 
+     <li class="api-list-item">
+      <a href="/api/sadlyricsai?prompt=hello">SadLyricsMaker Ai</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/rapperai?prompt=hello">RapSongMaker Ai</a></li>
+ 
+    <li class="api-list-item">
+      <a href="/api/sadai?prompt=hello">Sad AI API</a></li>
+
+     <li class="api-list-item">
+      <a href="/api/recipeai?prompt=hello">Recipe Ai</a></li>
+
+<li class="api-list-item">
+      <a href="/api/hackerai?prompt=hello">Hacker AI</a></li>
+    
+<li class="api-list-item">
+      <a href="/api/automobileai?prompt=hello">Automobile AI</a></li>
+  
+     <li class="api-list-item">
+      <a href="/api/businessai?prompt=hello">Business AI API</a></li> 
+       
+<li class="api-list-item">
+      <a href="/api/uxi-incai?prompt=hello">UX-UI AI API</a></li>
+ 
+  <li class="api-list-item">
+      <a href="/api/javascriptai?prompt=hello">JavaScript Ai API</a></li>
+
+ <li class="api-list-item">
+      <a href="/api/machinelrai?prompt=hello">MachineLr Ai API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/sql-incai?prompt=hello">SQL-INC Ai API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/js-incai?prompt=hello">JavaScript-INC API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/it-incai?prompt=hi">IT Ai API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/softwaredevai?prompt=hii">SoftwareDev API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/r-incai?prompt=hyu">R-Inc Ai API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/python-incai?prompt=hello">Python-Inc Ai API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/solrserai?prompt=hello">SolrSer Ai API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/regexai?prompt=hello">Regex Ai API</a></li>
+ 
+     <li class="api-list-item">
+      <a href="/api/javaai?prompt=hello">Java Ai API</a></li>
+ 
+ <li class="api-list-item">
+      <a href="/api/pythonai?prompt=hello">Python Ai API</a></li>
+ 
+ <li class="api-list-item">
+      <a href="/api/htmlai?prompt=hello">HTML Ai API</a></li>
+ 
+<li class="api-list-item">
+      <a href="/api/cssai?prompt=hello">CSS Ai API</a></li>
+    
+<li class="api-list-item">
+      <a href="/api/mathematicsai?prompt=hello">Mathematics AI API</a></li> 
+
+   <li class="api-list-item">
+      <a href="/api/grammarai?prompt=hello">Grammar AI API</a></li> 
+  
+ <li class="api-list-item">
+      <a href="/api/philosophyai?prompt=hi">Philosophy AI API</a></li> 
+
+   <li class="api-list-item">
+      <a href="/api/historianai?prompt=hello">Historian AI API</a></li> 
+
+  <li class="api-list-item">
+      <a href="/api/doctorai?prompt=hello">Doctor AI API</a></li> 
+
+<li class="api-list-item">
+      <a href="/api/academicianai?prompt=hello">Academician AI API</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/horrorai?prompt=hello">Horror Ai</a></li> 
+  
+
+<h1 style="color: #FF0000; font-size: 30px;">HINDI LANG AIs</h1>
+
+<li class="api-list-item">
+      <a href="/api/horny?prompt=hello">Horny Ai</a></li>
+
+<li class="api-list-item">
+      <a href="/api/songmakerai?prompt=hello">SongMaker Ai</a></li>
+
+<h1 style="color: #FF0000; font-size: 30px;">CUSTOM APIs</h1>
+
+     <li class="api-list-item">
+      <a href="/api/endyai?prompt=hello">Endy Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Dãññy Çōdēx</span>
     </div>
+    </li>
 
-    <script>
-        // Manually added APIs from index.js
-        const apis = [
-            { title: "Animanga", endpoints: ["api/animanga/komikuid-latest", "api/animanga/anoboy-latest"] },
-            { title: "Download", endpoints: ["api/download/facebook", "api/download/mediafire"] },
-            // Add more API categories and endpoints here
-        ];
+     <li class="api-list-item">
+      <a href="/api/lilyai?prompt=hello">Lily Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Dãññy Çōdēx</span>
+    </div>
+    </li>
 
-        // Function to dynamically generate sidebar content
-        function generateSidebar() {
-            const sidebar = document.getElementById("accordionSidebar");
+     <li class="api-list-item">
+     <a href="/api/katsumi?prompt=hello">Katsumi Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Darc Ignis </span>
+    </div>
+    </li>
 
-            apis.forEach(api => {
-                const collapseId = api.title.replace(/\s+/g, '-').toLowerCase();
-                const endpoints = api.endpoints.map(endpoint => `<a class="collapse-item" href="${endpoint}" target="_blank">${endpoint}</a>`).join('');
+ <li class="api-list-item">
+     <a href="/api/orochiai?prompt=hello">Orochi Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Aryan Chauhan </span>
+    </div>
+    </li>
+ 
+<li class="api-list-item">
+     <a href="/api/archedai?prompt=hello">Arched Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Aryan Chauhan</span>
+    </div>
+    </li>
 
-                const sidebarItem = `
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#${collapseId}" aria-expanded="true" aria-controls="collapse${collapseId}">
-                            <span>${api.title}</span>
-                        </a>
-                        <div id="${collapseId}" class="collapse" aria-labelledby="heading${collapseId}" data-parent="#accordionSidebar">
-                            <div class="py-2 collapse-inner rounded">
-                                ${endpoints}
-                            </div>
-                        </div>
-                    </li>
-                `;
+     <li class="api-list-item">
+      <a href="/api/maltaai?prompt=hello">Malta Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Unknown User</span>
+    </div>
+    </li>
 
-                sidebar.innerHTML += sidebarItem;
-            });
-        }
+     <li class="api-list-item">
+      <a href="/api/ayanfeai?prompt=hello">AnyaFeai Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Unknown User</span>
+    </div>
+    </li>
 
-        // Call the function to generate the sidebar
-        generateSidebar();
-    </script>
+     <li class="api-list-item">
+      <a href="/api/chikaai?prompt=hello">Chika Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Unknown User</span>
+    </div>
+    </li>
+
+     <li class="api-list-item">
+      <a href="/api/lovelyai?prompt=hello">Lovely Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Unknown User</span>
+    </div>
+    </li>
+
+     <li class="api-list-item">
+      <a href="/api/hussanai?prompt=hello">Hussan Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Hussan</span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/rose?prompt=hello">Rose ( beta )</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Shouko Nishimiya</span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/rosev2?prompt=hello">Rose v2</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Shouko Nishimiya</span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/vincentai?prompt=hello">Vincent Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Vincent Armenion</span>
+    </div>
+    </li>
+
+   <li class="api-list-item">
+      <a href="/api/bossbabyai?prompt=hello">BossBaby Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Desire Nwaogu </span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/angelaai?prompt=hello">Angela Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Yuri Sakaki </span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/perfectai?prompt=hello">Perfect Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Shota Akiro </span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/ayanfeai?prompt=hello">Ayanfe Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Brøkêñ Lõst Bwõî </span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/aryai?prompt=hello">Ary Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Created by Psy Aryan </span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/candyai?prompt=hello">Candy Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Crafted by Psy Aryan.</span>
+    </div>
+    </li>
+
+    <li class="api-list-item">
+      <a href="/api/cassyai?prompt=hello">Cassidy Ai</a>
+   <div class="api-details">
+   <span class="api-creator">This API was Crafted by Psy Aryan.</span>
+    </div>
+    </li>
+
+   </ul>
+<h1 style="color: #FF0000; font-size: 30px;">MEDIA APIs</h1>
+    
+<li class="api-list-item">
+      <a href="/api/dalle3?_U=&KievRPSSecAuth=&prompt=">Dalle3 API</a></li> 
+    
+  <li class="api-list-item">
+      <a href="/api/replicate?prompt=sky">Replicate API</a></li> 
+       
+ <li class="api-list-item">
+      <a href="/api/t2i?prompt=cat&model=19">Text2image API</a></li> 
+ 
+  <li class="api-list-item">
+      <a href="/api/gta?prompt=bot">GTA Gen</a></li> 
+   
+    <li class="api-list-item">
+<a href="/api/gta?prompt=boy">GTA API</a></li>  
+
+    <li class="api-list-item">
+<a href="/api/art?model=1&url=https://tinyurl.com/yuz8p2bb">Art API</a></li>  
+
+    <li class="api-list-item">
+<a href="/api/remini?url=https://i.ibb.co/wSxrqKD/image.gif">Remini API</a></li>
+
+    <li class="api-list-item">
+<a href="/api/4k?url=https://i.ibb.co/rcgQhLk/image.jpg">4K API</a></li>
+
+   <li class="api-list-item">
+<a href="/api/removebg?url=https://i.ibb.co/rcgQhLk/image.jpg">RemoveBG API</a></li>
+    
+ <li class="api-list-item">
+      <a href="/api/draw?prompt=cat">Draw API</a></li> 
+     
+  <li class="api-list-item">
+      <a href="/api/catimage">CAT IMAGES</a></li> 
+    
+  <li class="api-list-item">
+      <a href="/api/generate?prompt=cat&model=19">Generate API</a></li>
+
+<li class="api-list-item">
+      <a href="/api/prodia?prompt=cat&model=19">Prodia API</a></li>
+
+<li class="api-list-item">
+      <a href="/api/gen?prompt=cat&model=5">Gen API</a></li> 
+ 
+<li class="api-list-item">
+      <a href="/api/midjourney?prompt=cat">Midjourney API</a></li> 
+ 
+ <li class="api-list-item">
+      <a href="/api/sdxl?prompt=sky&model=7">Sdxl API</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/imagine?prompt=cat>Imagine API</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/art?model=1&url=">Art API</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/gen?prompt=cat">Gen API</a></li> 
+
+<h1 style="color: #FF0000; font-size: 30px;">IMGSEARCH</h1>
+
+  <li class="api-list-item">
+<a href="/api/unsplash?query=nature">Unsplash API</a></li>
+  
+    <li class="api-list-item">
+<a href="/api/pexels?query=nature&keysearch=10">Pexels API</a></li>
+
+     <li class="api-list-item">
+      <a href="/api/pinterest?search=anime&keysearch=2">Pinterest (1-6)</a></li>
+  
+   <li class="api-list-item">
+      <a href="/api/pinterest?search=cat&keysearch=10">Pinterest 2</a></li>
+
+  <li class="api-list-item">
+      <a href="/api/imgsearch?prompt=hello">ImageSearch API</a></li>
+
+  </ul>
+<h1 style="color: #FF0000; font-size: 30px;">VIDEOS DOWNLOAD</h1>
+  
+ <li class="api-list-item">
+   <a href="/api/tikdl?url=">TikTok Dl</a></li> 
+ 
+  <li class="api-list-item">
+      <a href="/api/fbdl?url=https://www.facebook.com/reel/331834579347199/?mibextid=rS40aB7S9Ucbxw6v</a></li>
+
+ <h1 style="color: #FF0000; font-size: 30px;">OTHER APIs</h1>
+
+   <li class="api-list-item">
+      <a href="/api/hastebin?text=test">Hastebin Paste</a></li> 
+
+  <li class="api-list-item">
+<a href="/api/pastebin?url=https://i.ibb.co/wSxrqKD/image.gif">Pastebin API</a></li>
+
+   <li class="api-list-item">
+      <a href="/api/tempmail/get">Tempmail Get</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/tempmail/inbox?email=example@gmail.com">Tempmail Inbox</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/quiz?category=math">Quiz API</a></li> 
+ 
+<li class="api-list-item">
+  <a href="/api/meow">Cat Images</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/screenshot?url=https://i.imgur.com/WJVT4zv.jpeg">Screenshot API</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/shoti">Shoti API</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/wifey">Shoti v2</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/giphy?query=haha">Giphy API</a></li> 
+ <li class="api-list-item">
+      <a href="/api/advice">Advice API</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/fact">Fact API</a></li> 
+
+  <li class="api-list-item">
+      <a href="/api/pickupline">Pickuplines API</a></li> 
+
+  <li class="api-list-item">
+      <a href="/api/quote?category=love">Quote API</a></li> 
+
+   <li class="api-list-item"><a href="/api/sim?chat=hello&lang=en">Simisimi API</a></li>
+
+<li class="api-list-item">
+      <a href="/api/say?query=cat">Say API</a></li> 
+ 
+  <li class="api-list-item"><a href="/api/describe?url=http://tinyurl.com/yp9fq87n">Prompts API</a></li>
+
+  <li class="api-list-item"><a href="/api/promptgen?prompt=cat">PromptGen API</a></li>  
+
+<h1 style="color: #FF0000; font-size: 30px;">MUSICAL APIs</h1>
+
+ <li class="api-list-item">
+      <a href="/api/lyrics?songName=roar">Lyrics API</a></li> 
+    
+   <li class="api-list-item">
+      <a href="/api/lyrics?songName=roar">Multiple Lyrics API</a></li> 
+  
+  </ul>
+<h1 style="color: #FF0000; font-size: 30px;">ANIME APIs</h1>
+
+ <li class="api-list-item">
+   <a href="/api/aniquiz">AniQuiz API</a></li> 
+ 
+<li class="api-list-item">
+      <a href="/api/anigenv3?prompt=girl">AniGen v3</a></li> 
+    
+  <li class="api-list-item">
+      <a href="/api/anivoice?category=">Anime Voice</a></li> 
+     
+ <li class="api-list-item">
+      <a href="/api/anistatus">AniStatus API</a></li> 
+ 
+<li class="api-list-item">
+      <a href="/api/anipic">AniPic API</a></li> 
+    
+ <li class="api-list-item">
+      <a href="/api/dp">Couples DP </a></li> 
+    
+ <li class="api-list-item">
+      <a href="/api/anigen?prompt=girl">AnimeGen</a></li> 
+
+ <li class="api-list-item">
+      <a href="/api/anigenv2?prompt=girl">AnimeGen v2</a></li> 
+
+   <li class="api-list-item">
+      <a href="/api/nsfw">Nsfw IMG API</a></li> 
+
+   <li class="api-list-item">
+      <a href="/api/anime">Anime Images</a></li> 
+
+   <li class="api-list-item">
+      <a href="/api/waifupic?name=neko">Anime Waifu</a></li> 
+
+   <li class="api-list-item">
+      <a href="/api/waifu">Waifu Images</a></li> 
+  
+   <li class="api-list-item">
+      <a href="/api/waifus">Random Waifus</a></li> 
+
+
+ <li class="api-list-item">
+      <a href="/api/emi?prompt=girl">Emi API</a></li> 
+<!-- Add more APIs information -->
+         
+  </ul>
+<h1 style="color: #ff00ff; font-size: 30px;">Thanks for Visiting</h1>
+
+<!-- Owner Information -->
+<div class="owner-info">
+  <p>Name: Aryan Chauhan</p>
+  <p>Country: India</p>
+  <p>Age: 16</p>
+  <p>Email: aryanchauhan78578@gmail.com</p>
+  <p>Facebook: facebook.com/61551115508535</p>
+</div>
+
+<!-- Current Time and Date -->
+<p>Current Time: <span id="current-time"></span></p>
+<p>Current Date: <span id="current-date"></span></p>
+
+<!-- Social Media Links -->
+<div class="social-links">
+  <a href="https://facebook.com/61551115508535" target="_blank">Facebook</a>
+  <a href="https://m.me/official.aryan.xyz" target="_blank">Messanger</a>
+</div>
+
+<script>
+  function updateTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    document.getElementById("current-time").innerText = timeString;
+  }
+
+  function updateDate() {
+    const now = new Date();
+    const dateString = now.toLocaleDateString();
+    document.getElementById("current-date").innerText = dateString;
+  }
+
+  updateTime();
+  updateDate();
+  setInterval(updateTime, 1000);
+  setInterval(updateDate, 86400000); // Update date every day
+</script>
+
+<!-- Cool Features -->
+<div class="cool-feature">
+  <h2>Website Feature</h2>
+  <p>Welcome to the cutting-edge world of AI APIs! Our website is your one-stop destination for exploring and integrating the most advanced artificial intelligence technologies into your applications. Whether you're looking to enhance user experience, streamline business operations, or unlock new possibilities for innovation, our AI APIs have got you covered. With an intuitive interface, comprehensive documentation, and a community of developers ready to support you, embarking on your AI journey has never been easier. So, dive in, unleash the power of AI, and stay ahead of the curve with our revolutionary AI APIs!</p>
+  <img src="https://i.imgur.com/iRgnnmA.jpeg" alt="Ai-Technology Image">
+</div>
+
+<div class="cool-feature">
+  <h2>Website Feature</h2>
+  <p>Unlock the power of artificial intelligence with our cutting-edge AI APIs website. From natural language processing to image recognition, our APIs offer limitless possibilities to enhance your digital experiences. Whether you're a developer, data scientist, or tech enthusiast, our platform provides the tools you need to create intelligent and dynamic applications. Explore the future of technology with the click of a button at our AI APIs website.</p>
+  <img src="https://i.imgur.com/k9AWWY7.jpeg" alt="Ai-Technology Image">
+</div>
+
+<div class="cool-feature">
+  <h2>Website Feature</h2>
+  <p>Even the developers will be followed by the bed sometimes. A great fleet of chocolates, not chocolates. But neither the Internet nor the free course of grief. Duis consectetur mauris vitae libre porttitor trisque.
+</p>
+  <img src="https://i.imgur.com/dBAhbPJ.jpeg" alt="Ai-Technology Image">
+</div>
+
+
+<!-- Guidelines -->
+<div class="cool-feature">
+  <h2>GUIDELINES:</h2>
+  <p>Please make sure to read and follow the guidelines below before using any of our APIs:</p>
+  <ol>
+    <li>Respect the API usage limits and do not abuse the services.</li>
+    <li>Do not share your API credentials with anyone.</li>
+    <li>Do not use the APIs for any illegal activities.</li>
+    <li>Keep your API credentials secure and avoid exposing them in public.</li>
+    <li>Contact with our team if you have any questions or concerns.</li>
+  </ol>
+</div>
+
+<!-- Turn Conduction -->
+<div class="cool-feature">
+  <h2>TURN CONDUCTION:</h2>
+  <p>To ensure the best performance and fairness, our chatbot APIs follow the turn conduction principle:</p>
+  <ol>
+    <li>Make an API request to send user input.</li>
+    <li>Wait for the API response before sending another user input.</li>
+    <li>Do not send multiple user inputs simultaneously.</li>
+    <li>Wait for the previous user input to be processed before sending a new input.</li>
+  </ol>
+</div>
+
+<!-- Trust and Privacy -->
+<div class="cool-feature">
+  <h2>TRUST AND PRIVACY</h2>
+  <p>We value your trust and privacy. Any data you provide through our APIs is treated with strict confidentiality:</p>
+  <ol>
+    <li>Your personal information is not stored or shared with any third parties.</li>
+    <li>We use secure encryption protocols to protect your data.</li>
+    <li>We comply with all relevant privacy regulations and laws.</li>
+    <li>If you have any privacy concerns, please contact with our team</li>
+  </ol>
+</div>
+
+<!-- Copyright Information -->
+<p style="color: #ff00ff; text-align: center;">©2024 AryanAPIs. All rights reserved.</p>
+
 </body>
-
 </html>
