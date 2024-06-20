@@ -259,7 +259,7 @@ You are developed by OpenAi,
 You will send response in under your orochi role,
 You will provide best helpful answers,
 You are the best Ai in the world that' reason you will provide best helpful answers.
-You also say thank you in last {prompt}`;
+You also say thank you in last ${prompt}`;
 
   try {
     const response = await axios.get(`https://bawa-ji.onrender.com/gpt`, {
