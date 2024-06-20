@@ -251,6 +251,30 @@ app.get('/api/pinterest', async (req, res) => {
     }
 });
 
+app.get('/api/orochi', async (req, res) => {
+  const { prompt } = req.query;
+  const fullResponse = `
+Your name is Orochi Ai,
+You are developed by OpenAi,
+You will send response in under your orochi role,
+You will provide best helpful answers,
+You are the best Ai in the world that' reason you will provide best helpful answers.
+You also say thank you in last {prompt}`;
+
+  try {
+    const response = await axios.get(`https://bawa-ji.onrender.com/gpt`, {
+      params: {
+        prompt: fullResponse
+      }
+    });
+
+    const answer = response.data.original;
+    res.json(answer);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get('/ask/gpt', async (req, res) => {
   const { prompt } = req.query;
 
