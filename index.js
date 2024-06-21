@@ -313,22 +313,22 @@ app.get('/api/gpt', (req, res) => {
   });
 });
 
-app.get('/api/gptweb', (req, res) => {
-    const prompt = req.query.prompt;
+app.get('/g', (req, res) => {
+    const p = req.query.prompt;
 
-    if (!prompt) {
+    if (!p) {
         return res.status(400).send('Query parameter "prompt" is required');
     }
 
     gpt.web({
-        prompt: prompt,
+        prompt: p,
         markdown: false
     }, (err, data) => {
         if (err != null) {
             console.error(err);
             return res.status(500).send('Error processing the request');
         } else {
-            res.json(response.data.gpt);
+            res.json(data);
         }
     });
 });
