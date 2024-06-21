@@ -322,13 +322,13 @@ app.get('/api/gptweb', (req, res) => {
 
     gpt.web({
         prompt: prompt,
-        markdown: true
+        markdown: false
     }, (err, data) => {
         if (err != null) {
             console.error(err);
             return res.status(500).send('Error processing the request');
         } else {
-            res.json(data);
+            res.json(response.data.gpt);
         }
     });
 });
