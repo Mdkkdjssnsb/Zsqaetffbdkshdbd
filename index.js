@@ -546,60 +546,6 @@ const answer = response.data.answer;
   }
 });
 
-app.get('/api/describe', async (req, res) => {
-     const { url } = req.query;
-
-    if (!url) {
-        return res.status(400).json({ error: 'Please provide a valid url' });
-    }
-
-  try {
-        const baseURL = `https://www.api.vyturex.com/describe?url=${url}`;
-        
-const response = await axios.get(baseURL);
-
-   const answer = response.data.message;
-
-    res.json({ answer });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/api/dp', async (req, res) => {
-    try {
-        const baseURL = `https://sandipapi.onrender.com/dp`;
-
-const answer = response.data;
-
-    res.json({ answer });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-    }
-});
-
-app.get('/api/anime', async (req, res) => {
-    try {
-        const baseURL = `https://sandipapi.onrender.com/anime`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error generating image:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-app.get('/api/nsfw', async (req, res) => {
-    try {
-        const baseURL = `https://sandipapi.onrender.com/nsfw`;
-        const response = await axios.get(baseURL, { responseType: 'stream' });
-        response.data.pipe(res);
-    } catch (error) {
-        console.error('Error', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
 app.get("/api/lyrics", async (req, res) => {
   const songName = req.query.songName;
   if (!songName) {
