@@ -20,8 +20,190 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-// Array to store request timestamps
-const requestTimestamps = [];
+app.get("/api/bingAi", async (req, res) => {
+  try {
+    const { prompt } = req.query;
+
+    const response = await axios.get(`https://joshweb.click/bing?prompt=${encodeURIComponent(prompt)}&model=1`);
+
+    res.json(response.data.bing);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/genmicrosoft", async (req, res) => {
+  try {
+    const response = await axios.get(`https://joshweb.click/api/genmicro`);
+    const { email, password } = response.data; // Destructure email and password from response.data
+
+    res.json({ email, password }); // Send email and password in the response
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/dl", async (req, res) => {
+  try {
+    const { url } = req.query;
+
+    const response = await axios.get(`https://joshweb.click/anydl?url=${encodeURIComponent(url)}`);
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/getfbcokies", async (req, res) => {
+  try {
+    const { email, pass } = req.query;
+
+    const response = await axios.get(`https://joshweb.click/getcookie?email=${email}&password=${pass}`);
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/geminiweb", async (req, res) => {
+  try {
+    const { prompt, url } = req.query;
+
+    const response = await axios.get(`https://joshweb.click/gemini?prompt=${encodeURIComponent(prompt)}&url=${url}`);
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/ask", async (req, res) => {
+  try {
+    const { prompt } = req.query;
+
+    const response = await axios.get(`https://joshweb.click/new/gpt-3_5-turbo?prompt=${encodeURIComponent(prompt)}`);
+
+    res.json(response.data.reply);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/gpt4", async (req, res) => {
+  try {
+    const { prompt, uid } = req.query;
+
+    const response = await axios.get(`https://joshweb.click/gpt4?prompt=${encodeURIComponent(prompt)}&uid=${uid}`);
+  
+  res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/cdp", async (req, res) => {
+  try {
+    const response = await axios.get(`https://joshweb.click/cdp`);
+
+    res.json(response.data.result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/remini", async (req, res) => {
+  try {
+    const { url } = req.query;
+
+    const response = await axios.get(`https://joshweb.click/remini?q=${url}`);
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/llama-3-70b", async (req, res) => {
+  try {
+    const { prompt } = req.query;
+
+    const response = await axios.get(`https://joshweb.click/api/llama-3-70b?q=${encodeURIComponent(prompt)}`);
+
+    res.json(response.data.result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/anigen', async (req, res) => {
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt.' });
+    }
+
+    try {
+        const baseURL = `https://joshweb.click/sdxl?q=${prompt}&style=1`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/sdxl/v2', async (req, res) => {
+    const { prompt, model } = req.query;
+
+    if (!prompt || !model) {
+        return res.status(400).json({ error: 'Please provide a prompt with styles.' });
+    }
+
+    try {
+        const baseURL = `https://joshweb.click/sdxl?q=${prompt}&style=${model}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/sdxl', async (req, res) => {
+    const { prompt, model } = req.query;
+
+    if (!prompt || !model) {
+        return res.status(400).json({ error: 'Please provide a prompt with styles' });
+    }
+
+    try {
+        const baseURL = `https://sandipapi.onrender.com/sdxl?prompt=${prompt}&model=${model}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/api/generate', async (req, res) => {
+    const { prompt, model } = req.query;
+
+    if (!prompt || !model) {
+        return res.status(400).json({ error: 'Please provide a prompt with styles' });
+    }
+
+    try {
+        const baseURL `https://sandipapi.onrender.com/jeevan?prompt=${prompt}&model=${model}`;
+        const response = await axios.get(baseURL, { responseType: 'stream' });
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 app.get("/api/prodia", async (req, res) => {
   try {
@@ -33,6 +215,22 @@ app.get("/api/prodia", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+
+app.get("/api/promptgen/v2", async (req, res) => {
+   const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Please provide a prompt' });
+    }
+
+  try {
+   const response = await axios.get(`https://sandipapi.onrender.com/prompt?about=${prompt}`);
+
+   res.json(response.data);
+ } catch (error) {
+   res.status(500).json({ error: error.message });
+ }
 });
 
 app.get("/api/wallpaper", async (req, res) => {
