@@ -288,7 +288,7 @@ app.get('/api/songinfo/v2', async (req, res) => {
   const { id } = req.query; // Change 'prompt' to 'q'
 
   try {
-    const response = await axios.get(`https://video-info-ux3s.onrender.com/api/songinfo`, {
+    const response = await axios.get(`https://bhtvdidbd.onrender.com/api/songinfo`, {
       params: {
         id: encodeURIComponent(id) // encodeURIComponent the query parameter
       }
