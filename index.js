@@ -196,7 +196,7 @@ app.get('/api/generate', async (req, res) => {
     }
 
     try {
-        const baseURL `https://sandipapi.onrender.com/jeevan?prompt=${prompt}&model=${model}`;
+        const baseURL = `https://sandipapi.onrender.com/jeevan?prompt=${prompt}&model=${model}`;
         const response = await axios.get(baseURL, { responseType: 'stream' });
         response.data.pipe(res);
     } catch (error) {
