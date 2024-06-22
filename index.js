@@ -19,23 +19,6 @@ app.get("/api/wallpaper", async (req, res) => {
  }
 });
 
-app.get('/api/bing', async (req, res) => {
-  const { prompt } = req.query; // Change 'prompt' to 'q'
-
-  try {
-    const response = await axios.get(`https://bing-xxx.onrender.com/q`, {
-      params: {
-        prompt: encodeURIComponent(prompt) // encodeURIComponent the query parameter
-      }
-    });
-
-    const answer = response.data;
-    res.json(answer);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 app.get('/api/shoti', async (req, res) => {
 try {
     const response = await axios.get(`https://shoti-srv2-itslibyzxy0.koyeb.app/api/v1/request-f`);
