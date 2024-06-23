@@ -3,250 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Spark: Explore various technologies you can freely use</title>
+  <title>Global Spark: Explore Various Technologies</title>
   <link rel="icon" href="https://i.imgur.com/AFKTGv1.jpeg" type="image/jpg">
   <style>
-    <style>
     body {
-      font-family: 'Verdana', sans-serif;
-      margin: 20px;
-      background-image: url('https://i.imgur.com/gf2IesV.jpeg');
-      background-size: cover;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
       color: #333;
     }
     header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      margin-bottom: 10px;
-    }
-
-    .logo {
-      width: 80px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-
-    nav {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #ff9900;
-      padding: 5px 15px;
-      margin: 0 10px;
-      border-radius: 20px;
-      transition: background-color 0.5s;
-    }
-
-    nav a:hover {
-      background-color: #ff9900;
-      color: #fff;
-    }
-
-/* API list container */
-.api-list {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-    margin: 0 auto; /* Center the list horizontally */
-    max-width: 600px; /* Limit the maximum width of the list */
-}
-
-/* API list item */
-.api-list-item {
-    margin-bottom: 50px;
-    border: 2px solid #000; /* Border for each list item */
-    border-radius: 30px;
-    padding: 20px; /* Increased padding for better spacing */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s; /* Add transitions */
-    position: relative; /* Position relative for absolute positioning of badge */
-}
-
-/* API list item hover effect */
-.api-list-item:hover {
-    transform: translateY(-5px); /* Move the list item up slightly on hover */
-    border-color: #ff9900; /* Change border color on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Increase shadow on hover */
-}
-
-/* API badge */
-.api-badge {
-    position: absolute;
-    top: -10px; /* Adjust positioning */
-    right: -10px; /* Adjust positioning */
-    background-color: #ff9900;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 20px;
-}
-
-/* API link */
-.api-list-item a {
-    text-decoration: none;
-    color: #ff9900;
-    font-weight: bold;
-    padding: 10px 20px; /* Increased padding for better clickability */
-    border: 2px solid #ff9900;
-    border-radius: 10px;
-    transition: background-color 0.3s, color 0.3s; /* Added color transition */
-    display: inline-block;
-    background-color: transparent; /* Transparent background by default */
-}
-
-/* API link hover effect */
-.api-list-item a:hover {
-    background-color: #ff9900; /* Change background color on hover */
-    color: #fff; /* Change text color on hover for better contrast */
-}
-
-/* API link focus effect */
-.api-list-item a:focus {
-    outline: none; /* Remove default focus outline */
-    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.5); /* Add custom focus style */
-}
-
-  .api-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-  }
-
-.api-creator {
-    color: #dc3545; 
-    font-size: 14px;
-    text-align: center;
-  }
-
-    .api-form {
-      max-width: 400px;
-      margin: 0 auto;
+      background-color: #282c34;
       padding: 20px;
-      background-color: rgba(255, 153, 0, 0.8);
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 4s ease-in-out;
+      text-align: center;
+      color: white;
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #444;
+      padding: 10px;
     }
-
-    .api-form label {
-      display: block;
-      margin-bottom: 10px;
-      color: #fff;
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
     }
-
-    .api-form input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      box-sizing: border-box;
+    nav a:hover {
+      background-color: #ddd;
+      color: black;
     }
-
-    .api-form button {
-      background-color: #ff0000;
-      color: #fff;
-      padding: 10px 15px;
+    #welcome-message {
+      text-align: center;
+      padding: 50px;
+      background-color: #fff;
+      margin: 20px;
+      border-radius: 10px;
+    }
+    .button-features, .documentation, .cool-feature, .social-links {
+      text-align: center;
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+    }
+    .button-features button {
+      background-color: #008CBA;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      font-size: 16px;
+      margin: 10px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      width: 100%;
     }
-
-    .owner-info {
-      margin-top: 20px;
-      border-top: 1px solid #ccc;
-      padding-top: 10px;
-      color: #333;
-      text-align: center;
+    .button-features button:hover {
+      background-color: #005f75;
     }
-
-    #current-time,
-    #current-date {
-      color: #ff0000;
-      text-align: center;
-      border-radius: 30px;
-      font-weight: bold;
-      animation: heartbeat 1.5s infinite;
+    .documentation ul, .cool-feature ul {
+      list-style-type: none;
+      padding: 0;
     }
-
-    @keyframes heartbeat {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
+    .documentation ul li, .cool-feature ul li {
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #e0e0e0;
+      border-radius: 5px;
     }
-
-    .social-links {
-      text-align: auto;
-      margin-top: 10px;
-    }
-
-    .social-links a {
+    .documentation ul li a, .cool-feature ul li a {
       text-decoration: none;
-      color: #00ccff;
-      font-size: 20px;
-      margin: 0 15px;
-      border-radius: 20px;
-      transition: transform 0.3s ease-in-out;
+      color: #333;
     }
-
+    .social-links a {
+      margin: 10px;
+      padding: 10px;
+      color: white;
+      background-color: #555;
+      text-decoration: none;
+      border-radius: 5px;
+    }
     .social-links a:hover {
-      transform: scale(1.2);
+      background-color: #777;
     }
-  /* Cool Features */
-    .cool-feature {
-      margin: 20px 0;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    .cool-feature h2 {
-      color: #ff00ff;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    
-    .cool-feature p {
-      color: #666;
-      margin-bottom: 10px;
-    }
-    
-    .cool-feature img {
-      max-width: 100%;
-      border-radius: 8px;
+    footer {
+      background-color: #282c34;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
     }
   </style>
 </head>
 <body>
 <header>
-  <h1>Global Spark: Explore various technologies you can freely use</h1>
+  <h1>Global Spark: Explore Various Technologies</h1>
 </header>
 
 <!-- Background Music -->
@@ -257,191 +112,97 @@
 
 <nav>
   <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/contact">Contact</a>
 </nav>
+
+<!-- Cute Welcome Message -->
+<div id="welcome-message">
+  <h2>Welcome to Global Spark!</h2>
+  <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
+</div>
 
 <!-- Button Features -->
 <div class="button-features">
+  <h2>Features</h2>
   <button class="feature-btn">Feature 1</button>
   <button class="feature-btn">Feature 2</button>
   <button class="feature-btn">Feature 3</button>
 </div>
 
 <!-- API Buttons -->
-<h2 style="color: #FF0000; font-size: 30px;">MEDIA APIs</h2>
-</ul>
-<li class="api-list-item">
-      <a href="/api/pixart?prompt=cat">Pixart API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/shoti">Shoti API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/niji?prompt=cat">Niji API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/gen?q=cat">Gen API</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/anigen?prompt=cat">AniGen API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/sdxl/v2?prompt=cat&model=9">SDXL v2</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/anime?type=chase">Anime API</a></li> 
-  
-<li class="api-list-item">
-      <a href="/api/prodia?prompt=cat&model=21">Prodia API (56 models)</a></li> 
-  
-<li class="api-list-item">
-      <a href="/api/sdxl?prompt=cat&model=5">SDXL API</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/promptgen/v2?prompt=cat">PromptGen v2</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/generate?prompt=cat&model=4">Dalle API (56 models)</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/dalle?prompt=cat&amount=4">Dalle API</a></li> 
-      
-</ul>
-<h2 style="color: #FF0000; font-size: 30px;">Other APIs</h2>
-  
-<li class="api-list-item">
-      <a href="/api/wallpaper?query=cat">Wallpaper API</a></li> 
-  
-<li class="api-list-item">
-      <a href="/api/promptgen?query=cat">PromptGen API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/songinfo/v2?id=">SongInfo API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/videoinfo?q=eshq mubarak">VideoInfo API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/movieinfo?title=ra.one">MovieInfo API</a></li> 
-      
-<li class="api-list-item">
-      <a href="/api/pinterest?query=cat&limits=10">Pinterest API</a></li>  
+<div class="documentation">
+  <h2>MEDIA APIs</h2>
+  <ul class="api-list">
+    <li><a href="/api/media1">Media API 1</a></li>
+    <li><a href="/api/media2">Media API 2</a></li>
+  </ul>
 
-<li class="api-list-item">
-      <a href="/api/movieinfo/v2?id=">MovieInfo v2 API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/fb_stalk?uid=123&access_token=">Llama API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/bin?url=">Pastebin API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/aniquiz">AniQuiz API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/quiz?category=math">Quiz API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/screenshot?url=https://itsaryan.onrender.com">Screenshot API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/waifu_dex">WaifuDex API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/giphy?query=cry">Giphy API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/pexels?query=rose&keysearch=10">Pexels API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/4k?url=">4K API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/sim?chat=hello&land=en">Simismi API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/lyrics?songName=cupid+fifty+fifty">Lyrics API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/dl?url=hello">Download API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/genmicrosoft">Microsoft Account</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/getfbcokies?email=&password=">Facebook Cookies</a></li> 
-   
-    </ul>
-<h1 style="color: #FF0000; font-size: 30px;">Ai Models</h1>
-  
-<li class="api-list-item">
-      <a href="/api/llama?prompt=hello">Llama API</a></li> 
-      
-<li class="api-list-item">
-      <a href="/api/mixtral?prompt=hello">Mixtral API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/bard?prompt=hello">Bard API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/gemini?prompt=hello">Gemini API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/metaai?prompt=hello">MetaAi API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/bingAi?prompt=hello">BingAi API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/geminiweb?prompt=&url=">Gemini </a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/ask?prompt=hello">GPT API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/llama-3-70b?prompt=hello">Llama-3-70b</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/gpt4?prompt=hello&uid=1">GPT-4 (conversation)</a></li> 
-   
-</ul>
-<h1 style="color: #ff00ff; font-size: 30px;">Thanks for Visiting!</h1>
+  <h2>Other APIs</h2>
+  <ul class="api-list">
+    <li><a href="/api/other1">Other API 1</a></li>
+    <li><a href="/api/other2">Other API 2</a></li>
+  </ul>
 
-<!-- Welcome Message -->
-<div id="welcome-message"></div>
+  <h2>AI Models</h2>
+  <ul class="api-list">
+    <li><a href="/api/ai1">AI Model 1</a></li>
+    <li><a href="/api/ai2">AI Model 2</a></li>
+  </ul>
+</div>
 
-<!-- Owner Information -->
-<div class="owner-info">
-  <!-- Owner information details here -->
+<!-- APIs Documentation -->
+<div class="documentation">
+  <h2>APIs Documentation</h2>
+  <p>Explore our comprehensive APIs documentation to learn more about each API's capabilities and usage.</p>
+  <ul>
+    <li><a href="/docs/media">Media APIs Documentation</a></li>
+    <li><a href="/docs/others">Other APIs Documentation</a></li>
+    <li><a href="/docs/ai">AI Models Documentation</a></li>
+  </ul>
+</div>
+
+<!-- Thank You Message -->
+<div class="button-features">
+  <h2>Thanks for Visiting!</h2>
 </div>
 
 <!-- Current Time and Date -->
-<p>Current Time: <span id="current-time"></span></p>
-<p>Current Date: <span id="current-date"></span></p>
+<div class="button-features">
+  <p>Current Time: <span id="current-time"></span></p>
+  <p>Current Date: <span id="current-date"></span></p>
+</div>
 
 <!-- Social Media Links -->
 <div class="social-links">
-  <!-- Social media links here -->
+  <a href="#" class="social-link">Facebook</a>
+  <a href="#" class="social-link">Twitter</a>
+  <a href="#" class="social-link">Instagram</a>
 </div>
 
 <!-- Cool Features -->
 <div class="cool-feature">
-  <!-- Cool feature section here -->
+  <h2>Cool Features</h2>
+  <p>Explore our cool features including interactive APIs, advanced AI models, and more!</p>
+  <img src="https://example.com/cool-feature-image.jpg" alt="Cool Feature" class="lazy" data-src="https://example.com/cool-feature-image.jpg">
 </div>
 
 <!-- Guidelines -->
 <div class="cool-feature">
-  <!-- Guidelines section here -->
+  <h2>Guidelines</h2>
+  <p>Follow our guidelines for using our APIs and AI models responsibly.</p>
 </div>
 
 <!-- Turn Conduction -->
 <div class="cool-feature">
-  <!-- Turn conduction section here -->
+  <h2>Turn Conduction</h2>
+  <p>Learn about our turn conduction system and how it optimizes resource allocation.</p>
 </div>
 
 <!-- Trust and Privacy -->
 <div class="cool-feature">
-  <!-- Trust and privacy section here -->
+  <h2>Trust and Privacy</h2>
+  <p>Your trust and privacy are important to us. Learn about our privacy policies and data protection measures.</p>
 </div>
 
 <footer>
@@ -475,6 +236,18 @@
 
     lazyImages.forEach(lazyLoad);
   });
+</script>
+
+<!-- Additional JavaScript for interactivity, animations, and database integration -->
+<script>
+  // Current Time and Date
+  function updateTimeAndDate() {
+    const now = new Date();
+    document.getElementById('current-time').textContent = now.toLocaleTimeString();
+    document.getElementById('current-date').textContent = now.toLocaleDateString();
+  }
+  setInterval(updateTimeAndDate, 1000);
+  updateTimeAndDate();
 </script>
 
 </body>
