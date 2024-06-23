@@ -13,12 +13,21 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      transition: background-color 0.5s, color 0.5s;
+    }
+    body.light-theme {
+      background-color: #f4f4f4;
+      color: #333;
     }
     header {
       background-color: #282c34;
       padding: 20px;
       text-align: center;
       color: #61dafb;
+    }
+    header.light-theme {
+      background-color: #fff;
+      color: #282c34;
     }
     nav {
       display: flex;
@@ -114,6 +123,21 @@
       position: fixed;
       width: 100%;
       bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    footer a {
+      color: #61dafb;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    footer div {
+      display: flex;
+      align-items: center;
     }
     .cool-feature img {
       width: 100%;
@@ -131,6 +155,49 @@
     .slide-in-visible {
       opacity: 1;
       transform: translateX(0);
+    }
+    .theme-toggle {
+      cursor: pointer;
+      background-color: #282c34;
+      color: #61dafb;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+    .theme-toggle.light-theme {
+      background-color: #f4f4f4;
+      color: #282c34;
+    }
+    .hero {
+      position: relative;
+      background-image: url('https://example.com/hero-bg.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      text-align: center;
+      color: white;
+      padding: 100px 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    .hero p {
+      font-size: 1.5em;
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 2em;
+      }
+      .hero p {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
@@ -150,6 +217,15 @@
   <a href="/about">About</a>
   <a href="/contact">Contact</a>
 </nav>
+
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+
+<!-- Hero Section -->
+<div class="hero">
+  <h1>Welcome to Global Spark!</h1>
+  <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
+</div>
 
 <!-- Cute Welcome Message -->
 <div id="welcome-message" class="slide-in">
@@ -192,109 +268,60 @@
   <p>Explore our comprehensive APIs documentation to learn more about each API's capabilities and usage.</p>
   <ul>
     <li><a href="/docs/media">Media APIs Documentation</a></li>
-    <li><a href="/docs/others">Other APIs Documentation</a></li>
+    <li><a href="/docs/other">Other APIs Documentation</a></li>
     <li><a href="/docs/ai">AI Models Documentation</a></li>
   </ul>
 </div>
 
-<!-- Thank You Message -->
-<div class="button-features slide-in">
-  <h2>Thanks for Visiting!</h2>
-</div>
-
-<!-- Current Time and Date -->
-<div class="button-features slide-in">
-  <p>Current Time: <span id="current-time"></span></p>
-  <p>Current Date: <span id="current-date"></span></p>
+<!-- Cool Feature Section -->
+<div class="cool-feature slide-in">
+  <h2>Cool Feature</h2>
+  <p>Check out this awesome feature we offer. It will blow your mind!</p>
+  <img src="https://example.com/cool-feature.jpg" alt="Cool Feature Image">
 </div>
 
 <!-- Social Media Links -->
 <div class="social-links slide-in">
-  <a href="#" class="social-link">Facebook</a>
-  <a href="#" class="social-link">Twitter</a>
-  <a href="#" class="social-link">Instagram</a>
+  <h2>Follow Us</h2>
+  <a href="https://www.facebook.com/globalspark">Facebook</a>
+  <a href="https://www.twitter.com/globalspark">Twitter</a>
+  <a href="https://www.linkedin.com/company/globalspark">LinkedIn</a>
 </div>
 
-<!-- Cool Features -->
-<div class="cool-feature slide-in">
-  <h2>Cool Features</h2>
-  <p>Explore our cool features including interactive APIs, advanced AI models, and more!</p>
-  <img src="https://example.com/cool-feature-image.jpg" alt="Cool Feature" class="lazy" data-src="https://example.com/cool-feature-image.jpg">
-</div>
-
-<!-- Guidelines -->
-<div class="cool-feature slide-in">
-  <h2>Guidelines</h2>
-  <p>Follow our guidelines for using our APIs and AI models responsibly.</p>
-</div>
-
-<!-- Turn Conduction -->
-<div class="cool-feature slide-in">
-  <h2>Turn Conduction</h2>
-  <p>Learn about our turn conduction system and how it optimizes resource allocation.</p>
-</div>
-
-<!-- Trust and Privacy -->
-<div class="cool-feature slide-in">
-  <h2>Trust and Privacy</h2>
-  <p>Your trust and privacy are important to us. Learn about our privacy policies and data protection measures.</p>
-</div>
-
+<!-- Footer -->
 <footer>
-  <p>&copy;2024 Global Spark. All rights reserved.</p>
+  <div>
+    <p>&copy; 2024 Global Spark. All rights reserved.</p>
+  </div>
+  <div>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+  </div>
 </footer>
 
-<!-- JavaScript libraries or external scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-
-<!-- Example of lazy loading -->
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const lazyImages = document.querySelectorAll('img.lazy');
+  // Theme toggle functionality
+  function toggleTheme() {
+    document.body.classList.toggle('light-theme');
+    document.querySelector('.theme-toggle').classList.toggle('light-theme');
+    document.querySelector('header').classList.toggle('light-theme');
+  }
 
-    const lazyLoad = target => {
-      const io = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
-            observer.disconnect();
-          }
-        });
-      });
-      io.observe(target);
-    };
-
-    lazyImages.forEach(img => lazyLoad(img));
-
-    // Slide-in animation
+  // Slide-in animation functionality
+  document.addEventListener('DOMContentLoaded', () => {
     const slideInElements = document.querySelectorAll('.slide-in');
-    const slideIn = target => {
-      const io = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('slide-in-visible');
-            observer.disconnect();
-          }
-        });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('slide-in-visible');
+        }
       });
-      io.observe(target);
-    };
+    }, {
+      threshold: 0.5
+    });
 
-    slideInElements.forEach(el => slideIn(el));
-
-    // Current Time and Date
-    function updateTime() {
-      const now = new Date();
-      document.getElementById('current-time').textContent = now.toLocaleTimeString();
-      document.getElementById('current-date').textContent = now.toLocaleDateString();
-    }
-
-    setInterval(updateTime, 1000);
-    updateTime();
+    slideInElements.forEach(el => observer.observe(el));
   });
 </script>
-
 </body>
 </html>
