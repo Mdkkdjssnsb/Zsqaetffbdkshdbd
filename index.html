@@ -93,20 +93,36 @@
       text-decoration: none;
       color: #61dafb;
     }
-    .social-links a {
-      margin: 10px;
-      padding: 10px;
-      color: white;
-      background-color: #555;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .social-links a:hover {
-      background-color: #777;
-      transform: scale(1.1);
-    }
-    footer {
+    .social-links {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #282c34;
+    border-radius: 10px;
+    max-width: 800px;
+  }
+  .social-link {
+    margin: 10px;
+    padding: 10px;
+    color: white;
+    background-color: #555;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .social-link:hover {
+    background-color: #777;
+    transform: scale(1.1);
+  }
+  .social-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+      footer {
       background-color: #282c34;
       color: white;
       text-align: center;
@@ -141,14 +157,14 @@
 
 <!-- Background Music -->
 <audio autoplay loop>
-  <source src="https://tinyurl.com/yuz8p2bb" type="audio/mp3">
+  <source src="https://tinyurl.com/2bsc8mat" type="audio/mp3">
   Your browser does not support the audio element.
 </audio>
 
 <nav>
   <a href="/">Home</a>
   <a href="/about">About</a>
-  <a href="/contact">Contact</a>
+  <a href="/contect">Contact</a>
 </nav>
 
 <!-- Cute Welcome Message -->
@@ -157,32 +173,112 @@
   <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
 </div>
 
-<!-- Button Features -->
-<div class="button-features">
-  <h2>Features</h2>
-  <button class="feature-btn" onclick="alert('Feature 1 Activated')">Feature 1</button>
-  <button class="feature-btn" onclick="alert('Feature 2 Activated')">Feature 2</button>
-  <button class="feature-btn" onclick="alert('Feature 3 Activated')">Feature 3</button>
-</div>
-
 <!-- API Buttons -->
 <div class="documentation slide-in">
   <h2>MEDIA APIs</h2>
   <ul class="api-list">
-    <li><a href="/api/media1">Media API 1</a></li>
-    <li><a href="/api/media2">Media API 2</a></li>
+    <li class="api-list-item">
+      <a href="/api/pixart?prompt=cat">Pixart API</a></li> 
+     
+<li class="api-list-item">
+      <a href="/api/shoti">Shoti API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/niji?prompt=cat">Niji API</a></li> 
+     
+<li class="api-list-item">
+      <a href="/api/gen?q=cat">Gen API</a></li> 
+   
+<li class="api-list-item">
+      <a href="/api/anigen?prompt=cat">AniGen API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/sdxl/v2?prompt=cat&model=9">SDXL v2</a></li> 
+   
+<li class="api-list-item">
+      <a href="/api/anime?type=chase">Anime API</a></li> 
+  
+<li class="api-list-item">
+      <a href="/api/prodia?prompt=cat&model=21">Prodia API (56 models)</a></li> 
+  
+<li class="api-list-item">
+      <a href="/api/sdxl?prompt=cat&model=5">SDXL API</a></li> 
+   
+<li class="api-list-item">
+      <a href="/api/promptgen/v2?prompt=cat">PromptGen v2</a></li> 
+   
+<li class="api-list-item">
+      <a href="/api/generate?prompt=cat&model=4">Dalle API (56 models)</a></li> 
+   
+<li class="api-list-item">
+      <a href="/api/dalle?prompt=cat&amount=4">Dalle API</a></li> 
   </ul>
 
   <h2>Other APIs</h2>
-  <ul class="api-list">
-    <li><a href="/api/other1">Other API 1</a></li>
-    <li><a href="/api/other2">Other API 2</a></li>
+  <ul class="api-list"> 
+<li class="api-list-item">
+      <a href="/api/llama?prompt=hello">Llama API</a></li> 
+      
+<li class="api-list-item">
+      <a href="/api/mixtral?prompt=hello">Mixtral API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/bard?prompt=hello">Bard API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/gemini?prompt=hello">Gemini API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/metaai?prompt=hello">MetaAi API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/bingAi?prompt=hello">BingAi API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/geminiweb?prompt=&url=">Gemini </a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/ask?prompt=hello">GPT API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/llama-3-70b?prompt=hello">Llama-3-70b</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/gpt4?prompt=hello&uid=1">GPT-4 (conversation)</a></li> 
   </ul>
 
   <h2>AI Models</h2>
   <ul class="api-list">
-    <li><a href="/api/ai1">AI Model 1</a></li>
-    <li><a href="/api/ai2">AI Model 2</a></li>
+
+<li class="api-list-item">
+      <a href="/api/llama?prompt=hello">Llama API</a></li> 
+      
+<li class="api-list-item">
+      <a href="/api/mixtral?prompt=hello">Mixtral API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/bard?prompt=hello">Bard API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/gemini?prompt=hello">Gemini API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/metaai?prompt=hello">MetaAi API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/bingAi?prompt=hello">BingAi API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/geminiweb?prompt=&url=">Gemini </a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/ask?prompt=hello">GPT API</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/llama-3-70b?prompt=hello">Llama-3-70b</a></li> 
+    
+<li class="api-list-item">
+      <a href="/api/gpt4?prompt=hello&uid=1">GPT-4 (conversation)</a></li>   
   </ul>
 </div>
 
@@ -210,16 +306,23 @@
 
 <!-- Social Media Links -->
 <div class="social-links slide-in">
-  <a href="#" class="social-link">Facebook</a>
-  <a href="#" class="social-link">Twitter</a>
-  <a href="#" class="social-link">Instagram</a>
+  <h2>Follow Us</h2>
+  <a href="https://www.facebook.com/100091359169655" class="social-link">
+    <img src="https://i.imgur.com/lKTYekw.jpeg" alt="Facebook" class="social-icon"> Facebook
+  </a>
+  <a href="https://www.twitter.com/globalspark" class="social-link">
+    <img src="https://i.imgur.com/aji8iWn.png" alt="Twitter" class="social-icon"> Twitter
+  </a>
+  <a href="https://www.instagram.com/its_aryan_686" class="social-link">
+    <img src="https://i.imgur.com/ZkpP5sN.jpeg" alt="Instagram" class="social-icon"> Instagram
+  </a>
 </div>
 
 <!-- Cool Features -->
 <div class="cool-feature slide-in">
   <h2>Cool Features</h2>
   <p>Explore our cool features including interactive APIs, advanced AI models, and more!</p>
-  <img src="https://example.com/cool-feature-image.jpg" alt="Cool Feature" class="lazy" data-src="https://example.com/cool-feature-image.jpg">
+  <img src="https://i.imgur.com/I9NsjXt.jpeg" alt="Cool Feature" class="lazy" data-src="https://i.imgur.com/I9NsjXt.jpeg">
 </div>
 
 <!-- Guidelines -->
