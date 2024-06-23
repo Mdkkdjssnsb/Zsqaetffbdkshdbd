@@ -14,6 +14,7 @@
       padding: 0;
       overflow-x: hidden;
       transition: background-color 0.5s, color 0.5s;
+      display: flex;
     }
     body.light-theme {
       background-color: #f4f4f4;
@@ -24,6 +25,7 @@
       padding: 20px;
       text-align: center;
       color: #61dafb;
+      flex: 0 0 100%;
     }
     header.light-theme {
       background-color: #fff;
@@ -46,115 +48,35 @@
       background-color: #61dafb;
       color: black;
     }
-    #welcome-message {
-      text-align: center;
-      padding: 50px;
+    .sidebar {
+      width: 250px;
       background-color: #282c34;
-      margin: 20px auto;
-      border-radius: 10px;
-      max-width: 800px;
-      color: #61dafb;
-      animation: fadeIn 2s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .button-features, .documentation, .cool-feature, .social-links {
-      text-align: center;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #282c34;
-      border-radius: 10px;
-      max-width: 800px;
-    }
-    .button-features button {
-      background-color: #008CBA;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      font-size: 16px;
-      margin: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-    .button-features button:hover {
-      background-color: #005f75;
-      transform: scale(1.05);
-    }
-    .documentation ul, .cool-feature ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .documentation ul li, .cool-feature ul li {
-      padding: 10px;
-      margin: 5px 0;
-      background-color: #444;
-      border-radius: 5px;
-      transition: transform 0.3s ease;
-    }
-    .documentation ul li:hover, .cool-feature ul li:hover {
-      transform: translateX(10px);
-    }
-    .documentation ul li a, .cool-feature ul li a {
-      text-decoration: none;
-      color: #61dafb;
-    }
-    .social-links a {
-      margin: 10px;
-      padding: 10px;
-      color: white;
-      background-color: #555;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .social-links a:hover {
-      background-color: #777;
-      transform: scale(1.1);
-    }
-    footer {
-      background-color: #282c34;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
+      height: 100vh;
       position: fixed;
-      width: 100%;
-      bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      padding: 20px;
-    }
-    footer a {
-      color: #61dafb;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    footer div {
-      display: flex;
-      align-items: center;
-    }
-    .cool-feature img {
-      width: 100%;
-      border-radius: 10px;
+      top: 0;
+      left: 0;
+      padding-top: 60px;
+      overflow-y: auto;
       transition: transform 0.3s ease;
+      transform: translateX(-100%);
     }
-    .cool-feature img:hover {
-      transform: scale(1.05);
-    }
-    .slide-in {
-      opacity: 0;
-      transform: translateX(-100px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-    .slide-in-visible {
-      opacity: 1;
+    .sidebar.active {
       transform: translateX(0);
+    }
+    .sidebar a {
+      padding: 15px;
+      text-decoration: none;
+      color: #61dafb;
+      display: block;
+      transition: background-color 0.3s;
+    }
+    .sidebar a:hover {
+      background-color: #444;
+    }
+    .content {
+      margin-left: 250px;
+      padding: 20px;
+      flex: 1;
     }
     .theme-toggle {
       cursor: pointer;
@@ -166,38 +88,36 @@
       position: fixed;
       top: 20px;
       right: 20px;
+      z-index: 1000;
     }
     .theme-toggle.light-theme {
       background-color: #f4f4f4;
       color: #282c34;
     }
-    .hero {
-      position: relative;
-      background-image: url('https://example.com/hero-bg.jpg');
-      background-size: cover;
-      background-attachment: fixed;
-      text-align: center;
-      color: white;
-      padding: 100px 20px;
-      margin-bottom: 20px;
+    .toggle-sidebar {
+      cursor: pointer;
+      background-color: #282c34;
+      color: #61dafb;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
     }
-    .hero h1 {
-      font-size: 3em;
-      margin: 0;
+    .toggle-sidebar.light-theme {
+      background-color: #f4f4f4;
+      color: #282c34;
     }
-    .hero p {
-      font-size: 1.5em;
+    .slide-in {
+      opacity: 0;
+      transform: translateX(-100px);
+      transition: opacity 1s ease, transform 1s ease;
     }
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-      }
-      .hero h1 {
-        font-size: 2em;
-      }
-      .hero p {
-        font-size: 1em;
-      }
+    .slide-in-visible {
+      opacity: 1;
+      transform: translateX(0);
     }
   </style>
 </head>
@@ -212,80 +132,101 @@
   Your browser does not support the audio element.
 </audio>
 
-<nav>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/contact">Contact</a>
-</nav>
-
 <!-- Theme Toggle Button -->
 <button class="theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+<!-- Toggle Sidebar Button -->
+<button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
 
-<!-- Hero Section -->
-<div class="hero">
-  <h1>Welcome to Global Spark!</h1>
-  <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
+<!-- Sidebar Navigation -->
+<div class="sidebar" id="sidebar">
+  <a href="#home" onclick="loadContent('home')">Home</a>
+  <a href="#features" onclick="loadContent('features')">Features</a>
+  <a href="#media-apis" onclick="loadContent('media-apis')">MEDIA APIs</a>
+  <a href="#other-apis" onclick="loadContent('other-apis')">Other APIs</a>
+  <a href="#ai-models" onclick="loadContent('ai-models')">AI Models</a>
+  <a href="#docs" onclick="loadContent('docs')">APIs Documentation</a>
+  <a href="#social-links" onclick="loadContent('social-links')">Social Media</a>
 </div>
 
-<!-- Cute Welcome Message -->
-<div id="welcome-message" class="slide-in">
-  <h2>Welcome to Global Spark!</h2>
-  <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
-</div>
+<div class="content" id="content">
+  <!-- Home Content -->
+  <div id="home-content">
+    <div class="hero">
+      <h1>Welcome to Global Spark!</h1>
+      <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
+    </div>
 
-<!-- Button Features -->
-<div class="button-features">
-  <h2>Features</h2>
-  <button class="feature-btn" onclick="alert('Feature 1 Activated')">Feature 1</button>
-  <button class="feature-btn" onclick="alert('Feature 2 Activated')">Feature 2</button>
-  <button class="feature-btn" onclick="alert('Feature 3 Activated')">Feature 3</button>
-</div>
+    <div id="welcome-message" class="slide-in">
+      <h2>Welcome to Global Spark!</h2>
+      <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
+    </div>
+  </div>
 
-<!-- API Buttons -->
-<div class="documentation slide-in">
-  <h2>MEDIA APIs</h2>
-  <ul class="api-list">
-    <li><a href="/api/media1">Media API 1</a></li>
-    <li><a href="/api/media2">Media API 2</a></li>
-  </ul>
+  <!-- Features Content -->
+  <div id="features-content" style="display: none;">
+    <div class="button-features">
+      <h2>Features</h2>
+      <button class="feature-btn" onclick="alert('Feature 1 Activated')">Feature 1</button>
+      <button class="feature-btn" onclick="alert('Feature 2 Activated')">Feature 2</button>
+      <button class="feature-btn" onclick="alert('Feature 3 Activated')">Feature 3</button>
+    </div>
+  </div>
 
-  <h2>Other APIs</h2>
-  <ul class="api-list">
-    <li><a href="/api/other1">Other API 1</a></li>
-    <li><a href="/api/other2">Other API 2</a></li>
-  </ul>
+  <!-- Media APIs Content -->
+  <div id="media-apis-content" style="display: none;">
+    <div class="documentation">
+      <h2>MEDIA APIs</h2>
+      <ul class="api-list">
+        <li><a href="/api/media1">Media API 1</a></li>
+        <li><a href="/api/media2">Media API 2</a></li>
+      </ul>
+    </div>
+  </div>
 
-  <h2>AI Models</h2>
-  <ul class="api-list">
-    <li><a href="/api/ai1">AI Model 1</a></li>
-    <li><a href="/api/ai2">AI Model 2</a></li>
-  </ul>
-</div>
+  <!-- Other APIs Content -->
+  <div id="other-apis-content" style="display: none;">
+    <div class="documentation">
+      <h2>Other APIs</h2>
+      <ul class="api-list">
+        <li><a href="/api/other1">Other API 1</a></li>
+        <li><a href="/api/other2">Other API 2</a></li>
+      </ul>
+    </div>
+  </div>
 
-<!-- APIs Documentation -->
-<div class="documentation slide-in">
-  <h2>APIs Documentation</h2>
-  <p>Explore our comprehensive APIs documentation to learn more about each API's capabilities and usage.</p>
-  <ul>
-    <li><a href="/docs/media">Media APIs Documentation</a></li>
-    <li><a href="/docs/other">Other APIs Documentation</a></li>
-    <li><a href="/docs/ai">AI Models Documentation</a></li>
-  </ul>
-</div>
+  <!-- AI Models Content -->
+  <div id="ai-models-content" style="display: none;">
+    <div class="documentation">
+      <h2>AI Models</h2>
+      <ul class="api-list">
+        <li><a href="/api/ai1">AI Model 1</a></li>
+        <li><a href="/api/ai2">AI Model 2</a></li>
+      </ul>
+    </div>
+  </div>
 
-<!-- Cool Feature Section -->
-<div class="cool-feature slide-in">
-  <h2>Cool Feature</h2>
-  <p>Check out this awesome feature we offer. It will blow your mind!</p>
-  <img src="https://example.com/cool-feature.jpg" alt="Cool Feature Image">
-</div>
+  <!-- APIs Documentation Content -->
+  <div id="docs-content" style="display: none;">
+    <div class="documentation">
+      <h2>APIs Documentation</h2>
+      <p>Explore our comprehensive APIs documentation to learn more about each API's capabilities and usage.</p>
+      <ul>
+        <li><a href="/docs/media">Media APIs Documentation</a></li>
+        <li><a href="/docs/other">Other APIs Documentation</a></li>
+        <li><a href="/docs/ai">AI Models Documentation</a></li>
+      </ul>
+    </div>
+  </div>
 
-<!-- Social Media Links -->
-<div class="social-links slide-in">
-  <h2>Follow Us</h2>
-  <a href="https://www.facebook.com/globalspark">Facebook</a>
-  <a href="https://www.twitter.com/globalspark">Twitter</a>
-  <a href="https://www.linkedin.com/company/globalspark">LinkedIn</a>
+  <!-- Social Media Links Content -->
+  <div id="social-links-content" style="display: none;">
+    <div class="social-links">
+      <h2>Follow Us</h2>
+      <a href="https://www.facebook.com/globalspark">Facebook</a>
+      <a href="https://www.twitter.com/globalspark">Twitter</a>
+      <a href="https://www.linkedin.com/company/globalspark">LinkedIn</a>
+    </div>
+  </div>
 </div>
 
 <!-- Footer -->
@@ -304,23 +245,39 @@
   function toggleTheme() {
     document.body.classList.toggle('light-theme');
     document.querySelector('.theme-toggle').classList.toggle('light-theme');
-    document.querySelector('header').classList.toggle('light-theme');
+    document.querySelector('.toggle-sidebar').classList.toggle('light-theme');
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('light-theme');
   }
 
-  // Slide-in animation functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const slideInElements = document.querySelectorAll('.slide-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('slide-in-visible');
-        }
-      });
-    }, {
-      threshold: 0.5
+  // Sidebar toggle functionality
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('active');
+  }
+
+  // Function to load content dynamically
+  function loadContent(contentId) {
+    const contents = document.querySelectorAll('.content > div');
+    contents.forEach(content => {
+      content.style.display = 'none';
     });
 
-    slideInElements.forEach(el => observer.observe(el));
+    const activeContent = document.getElementById(`${contentId}-content`);
+    if (activeContent) {
+      activeContent.style.display = 'block';
+      if (contentId === 'home') {
+        setTimeout(() => {
+          document.getElementById('welcome-message').classList.add('slide-in-visible');
+        }, 100); // Delay to allow transition to take effect
+      }
+    }
+    toggleSidebar();
+  }
+
+  // Set initial content to be displayed
+  document.addEventListener('DOMContentLoaded', () => {
+    loadContent('home');
   });
 </script>
 </body>
