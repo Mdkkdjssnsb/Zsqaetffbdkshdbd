@@ -7,17 +7,18 @@
   <link rel="icon" href="https://i.imgur.com/AFKTGv1.jpeg" type="image/jpg">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1a1a1d;
+      color: #c9c9c9;
       margin: 0;
       padding: 0;
-      color: #333;
+      overflow-x: hidden;
     }
     header {
       background-color: #282c34;
       padding: 20px;
       text-align: center;
-      color: white;
+      color: #61dafb;
     }
     nav {
       display: flex;
@@ -30,24 +31,33 @@
       padding: 14px 20px;
       text-decoration: none;
       text-align: center;
+      transition: background-color 0.3s ease;
     }
     nav a:hover {
-      background-color: #ddd;
+      background-color: #61dafb;
       color: black;
     }
     #welcome-message {
       text-align: center;
       padding: 50px;
-      background-color: #fff;
-      margin: 20px;
+      background-color: #282c34;
+      margin: 20px auto;
       border-radius: 10px;
+      max-width: 800px;
+      color: #61dafb;
+      animation: fadeIn 2s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     .button-features, .documentation, .cool-feature, .social-links {
       text-align: center;
-      margin: 20px;
+      margin: 20px auto;
       padding: 20px;
-      background-color: #fff;
+      background-color: #282c34;
       border-radius: 10px;
+      max-width: 800px;
     }
     .button-features button {
       background-color: #008CBA;
@@ -59,9 +69,11 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
     .button-features button:hover {
       background-color: #005f75;
+      transform: scale(1.05);
     }
     .documentation ul, .cool-feature ul {
       list-style-type: none;
@@ -70,12 +82,16 @@
     .documentation ul li, .cool-feature ul li {
       padding: 10px;
       margin: 5px 0;
-      background-color: #e0e0e0;
+      background-color: #444;
       border-radius: 5px;
+      transition: transform 0.3s ease;
+    }
+    .documentation ul li:hover, .cool-feature ul li:hover {
+      transform: translateX(10px);
     }
     .documentation ul li a, .cool-feature ul li a {
       text-decoration: none;
-      color: #333;
+      color: #61dafb;
     }
     .social-links a {
       margin: 10px;
@@ -84,9 +100,11 @@
       background-color: #555;
       text-decoration: none;
       border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
     .social-links a:hover {
       background-color: #777;
+      transform: scale(1.1);
     }
     footer {
       background-color: #282c34;
@@ -96,6 +114,23 @@
       position: fixed;
       width: 100%;
       bottom: 0;
+    }
+    .cool-feature img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .cool-feature img:hover {
+      transform: scale(1.05);
+    }
+    .slide-in {
+      opacity: 0;
+      transform: translateX(-100px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .slide-in-visible {
+      opacity: 1;
+      transform: translateX(0);
     }
   </style>
 </head>
@@ -117,7 +152,7 @@
 </nav>
 
 <!-- Cute Welcome Message -->
-<div id="welcome-message">
+<div id="welcome-message" class="slide-in">
   <h2>Welcome to Global Spark!</h2>
   <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
 </div>
@@ -125,13 +160,13 @@
 <!-- Button Features -->
 <div class="button-features">
   <h2>Features</h2>
-  <button class="feature-btn">Feature 1</button>
-  <button class="feature-btn">Feature 2</button>
-  <button class="feature-btn">Feature 3</button>
+  <button class="feature-btn" onclick="alert('Feature 1 Activated')">Feature 1</button>
+  <button class="feature-btn" onclick="alert('Feature 2 Activated')">Feature 2</button>
+  <button class="feature-btn" onclick="alert('Feature 3 Activated')">Feature 3</button>
 </div>
 
 <!-- API Buttons -->
-<div class="documentation">
+<div class="documentation slide-in">
   <h2>MEDIA APIs</h2>
   <ul class="api-list">
     <li><a href="/api/media1">Media API 1</a></li>
@@ -152,7 +187,7 @@
 </div>
 
 <!-- APIs Documentation -->
-<div class="documentation">
+<div class="documentation slide-in">
   <h2>APIs Documentation</h2>
   <p>Explore our comprehensive APIs documentation to learn more about each API's capabilities and usage.</p>
   <ul>
@@ -163,44 +198,44 @@
 </div>
 
 <!-- Thank You Message -->
-<div class="button-features">
+<div class="button-features slide-in">
   <h2>Thanks for Visiting!</h2>
 </div>
 
 <!-- Current Time and Date -->
-<div class="button-features">
+<div class="button-features slide-in">
   <p>Current Time: <span id="current-time"></span></p>
   <p>Current Date: <span id="current-date"></span></p>
 </div>
 
 <!-- Social Media Links -->
-<div class="social-links">
+<div class="social-links slide-in">
   <a href="#" class="social-link">Facebook</a>
   <a href="#" class="social-link">Twitter</a>
   <a href="#" class="social-link">Instagram</a>
 </div>
 
 <!-- Cool Features -->
-<div class="cool-feature">
+<div class="cool-feature slide-in">
   <h2>Cool Features</h2>
   <p>Explore our cool features including interactive APIs, advanced AI models, and more!</p>
   <img src="https://example.com/cool-feature-image.jpg" alt="Cool Feature" class="lazy" data-src="https://example.com/cool-feature-image.jpg">
 </div>
 
 <!-- Guidelines -->
-<div class="cool-feature">
+<div class="cool-feature slide-in">
   <h2>Guidelines</h2>
   <p>Follow our guidelines for using our APIs and AI models responsibly.</p>
 </div>
 
 <!-- Turn Conduction -->
-<div class="cool-feature">
+<div class="cool-feature slide-in">
   <h2>Turn Conduction</h2>
   <p>Learn about our turn conduction system and how it optimizes resource allocation.</p>
 </div>
 
 <!-- Trust and Privacy -->
-<div class="cool-feature">
+<div class="cool-feature slide-in">
   <h2>Trust and Privacy</h2>
   <p>Your trust and privacy are important to us. Learn about our privacy policies and data protection measures.</p>
 </div>
@@ -222,32 +257,43 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const img = entry.target;
-            const src = img.getAttribute('data-src');
-
-            img.setAttribute('src', src);
+            img.src = img.dataset.src;
             img.classList.remove('lazy');
             observer.disconnect();
           }
         });
       });
-
       io.observe(target);
     };
 
-    lazyImages.forEach(lazyLoad);
-  });
-</script>
+    lazyImages.forEach(img => lazyLoad(img));
 
-<!-- Additional JavaScript for interactivity, animations, and database integration -->
-<script>
-  // Current Time and Date
-  function updateTimeAndDate() {
-    const now = new Date();
-    document.getElementById('current-time').textContent = now.toLocaleTimeString();
-    document.getElementById('current-date').textContent = now.toLocaleDateString();
-  }
-  setInterval(updateTimeAndDate, 1000);
-  updateTimeAndDate();
+    // Slide-in animation
+    const slideInElements = document.querySelectorAll('.slide-in');
+    const slideIn = target => {
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('slide-in-visible');
+            observer.disconnect();
+          }
+        });
+      });
+      io.observe(target);
+    };
+
+    slideInElements.forEach(el => slideIn(el));
+
+    // Current Time and Date
+    function updateTime() {
+      const now = new Date();
+      document.getElementById('current-time').textContent = now.toLocaleTimeString();
+      document.getElementById('current-date').textContent = now.toLocaleDateString();
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+  });
 </script>
 
 </body>
