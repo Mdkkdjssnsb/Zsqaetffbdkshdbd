@@ -78,7 +78,7 @@ ${title}
   }
 });
 
-app.get("/api/gpt", async (req, res) => {
+app.get("/api/ask", async (req, res) => {
   try {
     const { prompt } = req.query;
 
@@ -90,7 +90,7 @@ app.get("/api/gpt", async (req, res) => {
   }
 });
 
-app.get("/api/bingAi", async (req, res) => {
+app.get("/api/gpt", async (req, res) => {
   try {
     const { prompt } = req.query.prompt;
 
@@ -155,7 +155,7 @@ app.get("/api/ask", async (req, res) => {
 
     const response = await axios.get(`https://joshweb.click/new/gpt-3_5-turbo?prompt=${encodeURIComponent(prompt)}`);
 
-    res.json(response.data.reply);
+    res.json(response.data.);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -166,8 +166,8 @@ app.get("/api/gpt4", async (req, res) => {
     const { prompt, uid } = req.query;
 
     const response = await axios.get(`https://joshweb.click/gpt4?prompt=${encodeURIComponent(prompt)}&uid=${uid}`);
-  
-  res.json(response.data);
+    const answer = res.data.gpt4;
+  res.json({ answer: answer });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -200,9 +200,9 @@ app.get("/api/llama-3-70b", async (req, res) => {
     const { prompt } = req.query;
 
     const response = await axios.get(`https://joshweb.click/api/llama-3-70b?q=${encodeURIComponent(prompt)}`);
-
-    res.json(response.data.result);
-  } catch (error) {
+    const answer = res.data.result;
+  res.json({ answer: answer });
+     } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
@@ -332,7 +332,7 @@ app.get('/api/promptgen', async (req, res) => {
   }
 });
 
-app.get('/anime', (req, res) => {
+app.get('/api/anime', (req, res) => {
     const { type } = req.query;
 
     // List of acceptable types
