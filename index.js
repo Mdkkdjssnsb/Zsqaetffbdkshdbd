@@ -20,14 +20,59 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get("/api/orochi", async (req, res) => {
+// Array to store request timestamps
+const requestTimestamps = [];
+
+app.get('/api/orochiai', async (req, res) => {
   try {
     const { prompt } = req.query;
-    const fullPrompt = `Intreact as Orochi Ai developed by master Aryn (Itz Aryan), you are created for providing best helpful responses, you are created for helping each others ${prompt}`;
+    const title = "🤖 𝗢𝗿𝗼𝗰𝗵𝗶"; // Add your desired title here
 
-    const response = await axios.get(`https://gpt-v1.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+    // Add current time and date
+    const currentTime = new Date().toLocaleTimeString();
+    const currentDate = new Date().toLocaleDateString();
+    const dateTimePrompt = `Today's date is ${currentDate}, and the time is ${currentTime}.`;
 
-    res.json(response.data);
+    // Enhanced prompt
+    const fullPrompt = `
+Your name is Orochi Ai.
+You are developed by master ArYAN.
+You are very strict.
+You provide best response based on users inputs.
+You never send unless words and emojis.
+You provide best responce as you know.
+You are allowed to provide best answers.
+You provide best responce to user.
+`;
+
+    const response = await axios.get(`https://gpt-v1.onrender.com/gpt?prompt=${encodeURIComponent(title + fullPrompt + prompt)}`);
+    const answer = response.data.answer;
+
+    // Store request timestamp
+    const timestamp = new Date();
+    requestTimestamps.push(timestamp);
+
+    // Calculate total requests
+    const totalRequests = requestTimestamps.length;
+
+    // Save today's requests to JSON file
+    const requestsData = {
+      date: currentDate,
+      requests: requestTimestamps.map(ts => ts.toLocaleString())
+    };
+    fs.writeFileSync('requests.json', JSON.stringify(requestsData, null, 2));
+
+    // Combining title with response
+    const fullResponse = `
+${title}
+━━━━━━━━━━
+\n${answer}
+━━━━━━━━━━━━━
+🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
+➜ ${totalRequests} as 24/07/24
+`;
+
+    res.json({ fullResponse });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
