@@ -81,11 +81,11 @@ ${title}
 app.get("/api/bingAi", async (req, res) => {
   try {
     const { prompt } = req.query;
-
+    
     const response = await axios.get(`https://joshweb.click/bing?prompt=${encodeURIComponent(prompt)}&model=1`);
-    const answer = res.data.bing;
+    const answer = response.data.bing;
     res.json({ answer: answer });
-   } catch (error) {
+  } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
@@ -154,8 +154,9 @@ app.get("/api/ask", async (req, res) => {
     const { prompt } = req.query;
 
     const response = await axios.get(`https://joshweb.click/new/gpt-3_5-turbo?prompt=${encodeURIComponent(prompt)}`);
+    const reply = response.data.result.reply;
 
-    res.json(response.data);
+    res.json({ answer: reply });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -166,8 +167,9 @@ app.get("/api/gpt4", async (req, res) => {
     const { prompt, uid } = req.query;
 
     const response = await axios.get(`https://joshweb.click/gpt4?prompt=${encodeURIComponent(prompt)}&uid=${uid}`);
-    const answer = res.data.gpt4;
-  res.json({ answer: answer });
+    const answer = response.data.gpt4;
+
+    res.json({ answer: answer });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -200,9 +202,10 @@ app.get("/api/llama-3-70b", async (req, res) => {
     const { prompt } = req.query;
 
     const response = await axios.get(`https://joshweb.click/api/llama-3-70b?q=${encodeURIComponent(prompt)}`);
-    const answer = res.data.result;
-  res.json({ answer: answer });
-     } catch (error) {
+    const answer = response.data.result;
+
+    res.json({ answer: answer });
+  } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
