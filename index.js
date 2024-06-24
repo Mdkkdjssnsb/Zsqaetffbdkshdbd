@@ -78,13 +78,25 @@ ${title}
   }
 });
 
-app.get("/api/bingAi", async (req, res) => {
+app.get("/api/gpt", async (req, res) => {
   try {
     const { prompt } = req.query;
 
     const response = await axios.get(`https://joshweb.click/bing?prompt=${encodeURIComponent(prompt)}&model=1`);
 
     res.json(response.data.bing);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/bingAi", async (req, res) => {
+  try {
+    const { prompt } = req.query.prompt;
+
+    const response = await axios.get(`https://gpt-v1.onrender.com/gpt?prompt=${encodeURIComponent(prompt)}`);
+
+    res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
