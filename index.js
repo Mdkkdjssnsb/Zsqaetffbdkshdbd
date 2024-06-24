@@ -20,6 +20,19 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get("/api/orochi", async (req, res) => {
+  try {
+    const { prompt } = req.query;
+    const fullPrompt = `Intreact as Orochi Ai developed by master Aryn (Itz Aryan), you are created for providing best helpful responses, you are created for helping each others ${prompt}`;
+
+    const response = await axios.get(`https://gpt-v1.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get("/api/bingAi", async (req, res) => {
   try {
     const { prompt } = req.query;
