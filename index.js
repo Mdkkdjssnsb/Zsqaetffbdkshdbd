@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 app.get("/api/orochi", async (req, res) => {
   try {
     const { prompt } = req.query;
-    const fullPrompt = `Intreact as Orochi Ai developed by master Aryn (Itz Aryan),you don't introduce yourself or your creators but if anyone ask about your then you say about yourself otherwise you never show yourself you only provide best helpful responses, you are created for providing best helpful responses, you are created for helping each others ${prompt}`;
+    const fullPrompt = `Intreact as Orochi Ai developed by master Aryn (Itz Aryan), you are created for providing best helpful responses, you are created for helping each others ${prompt}`;
 
     const response = await axios.get(`https://gpt-v1.onrender.com/gpt?prompt=${encodeURIComponent(fullPrompt)}`);
 
