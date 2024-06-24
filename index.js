@@ -78,14 +78,14 @@ ${title}
   }
 });
 
-app.get("/api/ask", async (req, res) => {
+app.get("/api/bingAi", async (req, res) => {
   try {
     const { prompt } = req.query;
 
     const response = await axios.get(`https://joshweb.click/bing?prompt=${encodeURIComponent(prompt)}&model=1`);
-
-    res.json(response.data.bing);
-  } catch (error) {
+    const answer = res.data.bing;
+    res.json({ answer: answer });
+   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
@@ -155,7 +155,7 @@ app.get("/api/ask", async (req, res) => {
 
     const response = await axios.get(`https://joshweb.click/new/gpt-3_5-turbo?prompt=${encodeURIComponent(prompt)}`);
 
-    res.json(response.data.);
+    res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
