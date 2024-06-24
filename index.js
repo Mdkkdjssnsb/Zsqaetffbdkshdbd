@@ -66,10 +66,10 @@ You provide best responce to user.
     const fullResponse = `
 ${title}
 ━━━━━━━━━━
-\n${answer}
-━━━━━━━━━━━━━
-🥂 𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
+\n${answer}\n
+👑|𝗧𝗼𝘁𝗮𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
 ➜ ${totalRequests} as 24/07/24
+━━━━━━━━━━
 `;
 
     res.json({ fullResponse });
