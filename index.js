@@ -90,6 +90,18 @@ app.get("/api/bingAi", async (req, res) => {
   }
 });
 
+app.get("/api/spdl", async (req, res) => {
+  try {
+    const { query } = req.query;
+    
+    const response = await axios.get(`https://joshweb.click/spotify?q=${query}`);
+    const answer = response.data.result;
+    res.json({ spdl: answer });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get("/api/gpt", async (req, res) => {
   try {
     const { prompt } = req.query.prompt;
