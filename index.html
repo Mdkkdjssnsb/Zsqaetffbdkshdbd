@@ -1,442 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Spark</title>
-  <link rel="icon" href="https://i.imgur.com/AFKTGv1.jpeg" type="image/jpg">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1a1a1d;
-      color: #c9c9c9;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    header {
-      background-color: #282c34;
-      padding: 20px;
-      text-align: center;
-      color: #61dafb;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #444;
-      padding: 10px;
-    }
-    nav a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      text-align: center;
-      transition: background-color 0.3s ease;
-    }
-    nav a:hover {
-      background-color: #61dafb;
-      color: black;
-    }
-    #welcome-message {
-      text-align: center;
-      padding: 50px;
-      background-color: #282c34;
-      margin: 20px auto;
-      border-radius: 10px;
-      max-width: 800px;
-      color: #61dafb;
-      animation: fadeIn 2s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .button-features, .documentation, .cool-feature, .social-links {
-      text-align: center;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #282c34;
-      border-radius: 10px;
-      max-width: 800px;
-    }
-    .button-features button {
-      background-color: #008CBA;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      font-size: 16px;
-      margin: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-    .button-features button:hover {
-      background-color: #005f75;
-      transform: scale(1.05);
-    }
-    .documentation ul, .cool-feature ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .documentation ul li, .cool-feature ul li {
-      padding: 10px;
-      margin: 5px 0;
-      background-color: #444;
-      border-radius: 5px;
-      transition: transform 0.3s ease;
-    }
-    .documentation ul li:hover, .cool-feature ul li:hover {
-      transform: translateX(10px);
-    }
-    .documentation ul li a, .cool-feature ul li a {
-      text-decoration: none;
-      color: #61dafb;
-    }
-    .social-links {
-    text-align: center;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #282c34;
-    border-radius: 10px;
-    max-width: 800px;
-  }
-  .social-link {
-    margin: 10px;
-    padding: 10px;
-    color: white;
-    background-color: #555;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .social-link:hover {
-    background-color: #777;
-    transform: scale(1.1);
-  }
-  .social-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-  }
-      footer {
-      background-color: #282c34;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-    .cool-feature img {
-      width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-    .cool-feature img:hover {
-      transform: scale(1.05);
-    }
-    .slide-in {
-      opacity: 0;
-      transform: translateX(-100px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-    .slide-in-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Spark</title>
+    <link rel="icon" href="https://i.imgur.com/AFKTGv1.jpeg" type="image/jpg">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1d;
+            color: #c9c9c9;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #282c34;
+            padding: 20px;
+            text-align: center;
+            color: #61dafb;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #61dafb;
+            color: black;
+        }
+        #welcome-message {
+            text-align: center;
+            padding: 50px;
+            background-color: #282c34;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 800px;
+            color: #61dafb;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .section {
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #282c34;
+            border-radius: 10px;
+            max-width: 800px;
+        }
+        .section button, .button {
+            background-color: #008CBA;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .section button:hover, .button:hover {
+            background-color: #005f75;
+            transform: scale(1.05);
+        }
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .section ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #444;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .section ul li:hover {
+            transform: translateX(10px);
+        }
+        .section ul li a {
+            text-decoration: none;
+            color: #61dafb;
+        }
+        .social-links {
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #282c34;
+            border-radius: 10px;
+            max-width: 800px;
+        }
+        .social-link {
+            margin: 10px;
+            padding: 10px;
+            color: white;
+            background-color: #555;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-link:hover {
+            background-color: #777;
+            transform: scale(1.1);
+        }
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        footer {
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .cool-feature img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .cool-feature img:hover {
+            transform: scale(1.05);
+        }
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .slide-in-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .text-area {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #1a1a1d;
+            color: #c9c9c9;
+        }
+        .todo-list {
+            text-align: left;
+        }
+        .todo-list input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #1a1a1d;
+            color: #c9c9c9;
+        }
+        .todo-list ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        .todo-list ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #444;
+            border-radius: 5px;
+        }
+        .todo-list ul li button {
+            background-color: #ff4c4c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .todo-list ul li button:hover {
+            background-color: #ff1c1c;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .image-box {
+            border: 2px solid #333;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        #loading {
+            display: none;
+        }
+        .error {
+            color: red;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <header>
-  <h1>Global Spark</h1>
+    <h1>Global Spark</h1>
 </header>
 
 <!-- Background Music -->
 <audio autoplay loop>
-  <source src="https://tinyurl.com/2bsc8mat" type="audio/mp3">
-  Your browser does not support the audio element.
+    <source src="https://tinyurl.com/2bsc8mat" type="audio/mp3">
+    Your browser does not support the audio element.
 </audio>
 
 <nav>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/contect">Contact</a>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
 </nav>
 
 <!-- Cute Welcome Message -->
 <div id="welcome-message" class="slide-in">
-  <h2>Welcome to Global Spark!</h2>
-  <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
-</div>
-
-<!-- API Buttons -->
-<div class="documentation slide-in">
-  <h2>MEDIA APIs</h2>
-  <ul class="api-list">
-    <li class="api-list-item">
-      <a href="/api/pixart?prompt=cat">Pixart API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/shoti">Shoti API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/niji?prompt=cat">Niji API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/gen?q=cat">Gen API</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/anigen?prompt=cat">AniGen API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/sdxl/v2?prompt=cat&model=9">SDXL v2</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/anime?type=chase">Anime API</a></li> 
-  
-<li class="api-list-item">
-      <a href="/api/prodia?prompt=cat&model=21">Prodia API (56 models)</a></li> 
-  
-<li class="api-list-item">
-      <a href="/api/sdxl?prompt=cat&model=5">SDXL API</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/promptgen/v2?prompt=cat">PromptGen v2</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/generate?prompt=cat&model=4">Generate API (56 models)</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/dalle?prompt=cat&amount=4">Dalle API</a></li> 
-  </ul>
-
-  <h2>Other APIs</h2>
-  <ul class="api-list"> 
-<li class="api-list-item">
-      <a href="/api/wallpaper?query=cat">Wallpaper API</a></li> 
-  
-<li class="api-list-item">
-      <a href="/api/promptgen?query=cat">PromptGen API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/songinfo/v2?id=">SongInfo API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/videoinfo?q=eshq mubarak">VideoInfo API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/movieinfo?title=ra.one">MovieInfo API</a></li> 
-      
-<li class="api-list-item">
-      <a href="/api/pinterest?query=cat&limits=10">Pinterest API</a></li>  
-
-<li class="api-list-item">
-      <a href="/api/movieinfo/v2?id=">MovieInfo v2 API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/fb_stalk?uid=123&access_token=">Llama API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/bin?url=">Pastebin API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/aniquiz">AniQuiz API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/quiz?category=math">Quiz API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/screenshot?url=https://itsaryan.onrender.com">Screenshot API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/waifu_dex">WaifuDex API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/giphy?query=cry">Giphy API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/pexels?query=rose&keysearch=10">Pexels API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/4k?url=">4K API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/sim?chat=hello&land=en">Simismi API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/lyrics?songName=cupid+fifty+fifty">Lyrics API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/dl?url=hello">Download API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/genmicrosoft">Microsoft Account</a></li> 
-   
-<li class="api-list-item">
-      <a href="/api/getfbcokies?email=&password=">Facebook Cookies</a></li> 
-  </ul>
-
-  <h2>AI Models</h2>
-  <ul class="api-list">
-
-<li class="api-list-item">
-      <a href="/api/llama?prompt=hello">Llama API</a></li> 
-
-    <li class="api-list-item">
-      <a href="/api/orochiai?prompt=hello">Orochi API</a></li> 
-     
-    <li class="api-list-item">
-      <a href="/api/gpt?prompt=hello">GPT API</a></li> 
-     
-<li class="api-list-item">
-      <a href="/api/mixtral?prompt=hello">Mixtral API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/bard?prompt=hello">Bard API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/gemini?prompt=hello">Gemini API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/metaai?prompt=hello">MetaAi API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/bingAi?prompt=hello">BingAi API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/geminiweb?prompt=&url=">Gemini </a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/ask?prompt=hello">GPT API</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/llama-3-70b?prompt=hello">Llama-3-70b</a></li> 
-    
-<li class="api-list-item">
-      <a href="/api/gpt4?prompt=hello&uid=1">GPT-4 (conversation)</a></li>   
-  </ul>
-</div>
-
-<!-- APIs Documentation -->
-<div class="documentation slide-in">
-  <h2>APIs Documentation</h2>
-  <p>Explore our comprehensive APIs documentation to learn more about each API's capabilities and usage.</p>
-  <ul>
-    <li><a href="/docs/media">Media APIs Documentation</a></li>
-    <li><a href="/docs/others">Other APIs Documentation</a></li>
-    <li><a href="/docs/ai">AI Models Documentation</a></li>
-  </ul>
+    <h2>Welcome to Global Spark!</h2>
+    <p>Where innovation meets creativity. Get ready to explore a world of possibilities.</p>
 </div>
 
 <!-- Thank You Message -->
-<div class="button-features slide-in">
-  <h2>Thanks for Visiting!</h2>
+<div class="section slide-in">
+    <h2>Thanks for Visiting!</h2>
 </div>
 
 <!-- Current Time and Date -->
-<div class="button-features slide-in">
-  <p>Current Time: <span id="current-time"></span></p>
-  <p>Current Date: <span id="current-date"></span></p>
+<div class="section slide-in">
+    <p>Current Time: <span id="current-time"></span></p>
+    <p>Current Date: <span id="current-date"></span></p>
 </div>
 
-<!-- Social Media Links -->
-<div class="social-links slide-in">
-  <h2>Follow Us</h2>
-  <a href="https://www.facebook.com/100091359169655" class="social-link">
-    <img src="https://i.imgur.com/lKTYekw.jpeg" alt="Facebook" class="social-icon"> Facebook
-  </a>
-  <a href="https://www.twitter.com/globalspark" class="social-link">
-    <img src="https://i.imgur.com/aji8iWn.png" alt="Twitter" class="social-icon"> Twitter
-  </a>
-  <a href="https://www.instagram.com/its_aryan_686" class="social-link">
-    <img src="https://i.imgur.com/ZkpP5sN.jpeg" alt="Instagram" class="social-icon"> Instagram
-  </a>
+<!-- Text Analysis Widget -->
+<div class="section slide-in">
+    <h2>Text Analysis</h2>
+    <textarea id="textInput" class="text-area" placeholder="Enter text for analysis..."></textarea><br>
+    <button onclick="analyzeText()">Analyze Text</button>
+    <p id="textAnalysisResult"></p>
 </div>
 
-<!-- Cool Features -->
-<div class="cool-feature slide-in">
-  <h2>Cool Features</h2>
-  <p>Explore our cool features including interactive APIs, advanced AI models, and more!</p>
-  <img src="https://i.imgur.com/I9NsjXt.jpeg" alt="Cool Feature" class="lazy" data-src="https://i.imgur.com/I9NsjXt.jpeg">
+<!-- Weather Widget -->
+<div class="section slide-in">
+    <h2>Weather</h2>
+    <p>Enter Location: <input type="text" id="locationInput" placeholder="e.g., New York"></p>
+    <button onclick="getWeather()">Get Weather</button>
+    <p id="weatherResult"></p>
 </div>
 
-<!-- Guidelines -->
-<div class="cool-feature slide-in">
-  <h2>Guidelines</h2>
-  <p>Follow our guidelines for using our APIs and AI models responsibly.</p>
+<!-- Todo List Widget -->
+<div class="section slide-in todo-list">
+    <h2>Todo List</h2>
+    <input type="text" id="todoInput" placeholder="Enter a new task">
+    <button onclick="addTodo()">Add Task</button>
+    <ul id="todoList"></ul>
 </div>
 
-<!-- Turn Conduction -->
-<div class="cool-feature slide-in">
-  <h2>Turn Conduction</h2>
-  <p>Learn about our turn conduction system and how it optimizes resource allocation.</p>
+<!-- Calendar Widget -->
+<div class="section slide-in">
+    <h2>Calendar</h2>
+    <p id="calendar"></p>
 </div>
 
-<!-- Trust and Privacy -->
-<div class="cool-feature slide-in">
-  <h2>Trust and Privacy</h2>
-  <p>Your trust and privacy are important to us. Learn about our privacy policies and data protection measures.</p>
+<!-- Currency Converter Widget -->
+<div class="section slide-in">
+    <h2>Currency Converter</h2>
+    <p>Amount: <input type="number" id="amountInput" placeholder="Enter amount"></p>
+    <p>From: 
+        <select id="fromCurrency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <!-- Add more currencies as needed -->
+        </select>
+    </p>
+    <p>To: 
+        <select id="toCurrency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <!-- Add more currencies as needed -->
+        </select>
+    </p>
+    <button onclick="convertCurrency()">Convert</button>
+    <p id="conversionResult"></p>
+</div>
+
+<!-- Image Generation Widget -->
+<div class="section slide-in">
+    <h2>Generate Images</h2>
+    <p>Prompt: <input type="text" id="imagePrompt" placeholder="Describe the image..."></p>
+    <p>API Key: <input type="text" id="apiKey" placeholder="Enter API Key"></p>
+    <p>Number of Images: <input type="number" id="imageCount" value="1"></p>
+    <button onclick="generateImages()">Generate Images</button>
+    <div id="loading">Loading...</div>
+    <div class="error" id="error"></div>
+    <div class="image-container" id="imageContainer"></div>
 </div>
 
 <footer>
-  <p>&copy;2024 Global Spark. All rights reserved.</p>
+    <p>&copy; 2024 Global Spark. All rights reserved.</p>
 </footer>
 
-<!-- JavaScript libraries or external scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-
-<!-- Example of lazy loading -->
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const lazyImages = document.querySelectorAll('img.lazy');
-
-    const lazyLoad = target => {
-      const io = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
-            observer.disconnect();
-          }
+    document.addEventListener("DOMContentLoaded", function() {
+        const elements = document.querySelectorAll('.slide-in');
+        elements.forEach(element => {
+            element.classList.add('slide-in-visible');
         });
-      });
-      io.observe(target);
-    };
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    });
 
-    lazyImages.forEach(img => lazyLoad(img));
-
-    // Slide-in animation
-    const slideInElements = document.querySelectorAll('.slide-in');
-    const slideIn = target => {
-      const io = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('slide-in-visible');
-            observer.disconnect();
-          }
-        });
-      });
-      io.observe(target);
-    };
-
-    slideInElements.forEach(el => slideIn(el));
-
-    // Current Time and Date
-    function updateTime() {
-      const now = new Date();
-      document.getElementById('current-time').textContent = now.toLocaleTimeString();
-      document.getElementById('current-date').textContent = now.toLocaleDateString();
+    function updateDateTime() {
+        const now = new Date();
+        document.getElementById('current-time').textContent = now.toLocaleTimeString();
+        document.getElementById('current-date').textContent = now.toLocaleDateString();
     }
 
-    setInterval(updateTime, 1000);
-    updateTime();
-  });
-</script>
+    function analyzeText() {
+        const text = document.getElementById('textInput').value;
+        // Simple text analysis example (word count)
+        const wordCount = text.trim().split(/\s+/).length;
+        document.getElementById('textAnalysisResult').textContent = `Word Count: ${wordCount}`;
+    }
 
+    function getWeather() {
+        const location = document.getElementById('locationInput').value;
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=YOUR_API_KEY&units=metric`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.cod === 200) {
+                    document.getElementById('weatherResult').textContent = `Temperature: ${data.main.temp} °C`;
+                } else {
+                    document.getElementById('weatherResult').textContent = `Error: ${data.message}`;
+                }
+            })
+            .catch(error => {
+                document.getElementById('weatherResult').textContent = `Error: ${error.message}`;
+            });
+    }
+
+    function addTodo() {
+        const task = document.getElementById('todoInput').value;
+        if (task) {
+            const ul = document.getElementById('todoList');
+            const li = document.createElement('li');
+            li.textContent = task;
+            const button = document.createElement('button');
+            button.textContent = 'Remove';
+            button.onclick = () => li.remove();
+            li.appendChild(button);
+            ul.appendChild(li);
+            document.getElementById('todoInput').value = '';
+        }
+    }
+
+    function convertCurrency() {
+        const amount = document.getElementById('amountInput').value;
+        const fromCurrency = document.getElementById('fromCurrency').value;
+        const toCurrency = document.getElementById('toCurrency').value;
+        fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`)
+            .then(response => response.json())
+            .then(data => {
+                const rate = data.rates[toCurrency];
+                const result = amount * rate;
+                document.getElementById('conversionResult').textContent = `${amount} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
+            })
+            .catch(error => {
+                document.getElementById('conversionResult').textContent = `Error: ${error.message}`;
+            });
+    }
+
+    function generateImages() {
+        const prompt = document.getElementById('imagePrompt').value;
+        const apiKey = document.getElementById('apiKey').value;
+        const count = document.getElementById('imageCount').value;
+        const container = document.getElementById('imageContainer');
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        container.innerHTML = '';
+        error.textContent = '';
+        loading.style.display = 'block';
+
+        fetch('https://bing-xxx.com/api/bing', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({ prompt, count })
+        })
+        .then(response => response.json())
+        .then(data => {
+            loading.style.display = 'none';
+            if (data.success) {
+                data.images.forEach(url => {
+                    const div = document.createElement('div');
+                    div.className = 'image-box';
+                    const img = document.createElement('img');
+                    img.src = url;
+                    div.appendChild(img);
+                    container.appendChild(div);
+                });
+            } else {
+                error.textContent = `Error: ${data.message}`;
+            }
+        })
+        .catch(error => {
+            loading.style.display = 'none';
+            error.textContent = `Error: ${error.message}`;
+        });
+    }
+</script>
 </body>
 </html>
